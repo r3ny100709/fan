@@ -94,10 +94,15 @@ body{
 .message-row.theirs{justify-content:flex-end}
 
 .message-bubble{
+  position:relative;
   max-width:min(72%,600px);padding:12px 16px;border-radius:20px;
   line-height:1.75;font-size:15px;white-space:pre-wrap;
   word-break:break-word;overflow-wrap:anywhere;
   box-shadow:0 4px 13px #82649114;
+  user-select:none;
+  -webkit-user-select:none;
+  -webkit-touch-callout:none;
+  cursor:pointer;
 }
 
 .mine .message-bubble{
@@ -115,6 +120,32 @@ body{
 .message-time{margin-top:5px;font-size:10px;line-height:1.2;opacity:.62}
 .mine .message-time{text-align:left}
 .theirs .message-time{text-align:right}
+
+
+/* กำลังลบ */
+
+.message-bubble.holding{
+  transform:scale(.97);
+  filter:brightness(.96);
+}
+
+.message-bubble.holding::after{
+  content:"";
+  position:absolute;
+  inset:-3px;
+  border-radius:inherit;
+  border:3px solid transparent;
+  border-top-color:#ff8fbd;
+  border-right-color:#ff8fbd;
+  animation:deleteProgress 5s linear forwards;
+  pointer-events:none;
+}
+
+@keyframes deleteProgress{
+  0%{transform:rotate(-45deg);opacity:.5}
+  100%{transform:rotate(315deg);opacity:1}
+}
+
 
 .empty-chat{
   width:100%;height:100%;display:flex;align-items:center;
@@ -327,6 +358,8 @@ import{
   getFirestore,
   collection,
   addDoc,
+  deleteDoc,
+  doc,
   query,
   orderBy,
   onSnapshot,
@@ -363,15 +396,7 @@ const status=document.getElementById("connectionStatus");
 const name=document.getElementById("profileName");
 
 
-/* IDENTITY
-
-   เริ่มต้น = แฟน
-   กด Jaoka = เรา
-   กดอีกครั้ง = แฟน
-
-   ใช้ KEY ใหม่ เพื่อไม่ให้
-   ค่าจากระบบเก่ามาปน
-*/
+/* IDENTITY */
 
 const IDENTITY_KEY="jaoka_chat_identity_v2";
 
@@ -467,6 +492,151 @@ down.addEventListener(
 );
 
 
+/* =========================================
+   LONG PRESS DELETE
+========================================= */
+
+const HOLD_TIME=5000;
+
+let holdTimer=null;
+let holdBubble=null;
+let holdPointer=null;
+
+
+function cancelHold(){
+
+  if(holdTimer){
+
+    clearTimeout(holdTimer);
+
+    holdTimer=null;
+
+  }
+
+  if(holdBubble){
+
+    holdBubble.classList.remove(
+      "holding"
+    );
+
+    holdBubble=null;
+
+  }
+
+  holdPointer=null;
+
+}
+
+
+function startHold(
+  event,
+  bubble,
+  messageId,
+  messageSender
+){
+
+  /*
+     ลบได้เฉพาะข้อความ
+     ที่เป็นของตัวเอง
+  */
+
+  if(messageSender!==identity)return;
+
+  if(event.pointerType==="mouse"&&event.button!==0)return;
+
+  cancelHold();
+
+  holdBubble=bubble;
+  holdPointer=event.pointerId;
+
+  bubble.classList.add("holding");
+
+  holdTimer=setTimeout(
+    async()=>{
+
+      holdTimer=null;
+      bubble.classList.remove("holding");
+
+      try{
+
+        await deleteDoc(
+          doc(
+            db,
+            "jaoka_chat",
+            messageId
+          )
+        );
+
+      }catch(error){
+
+        console.error(
+          "Delete error:",
+          error
+        );
+
+        alert(
+          "ลบข้อความไม่สำเร็จ"
+        );
+
+      }
+
+      holdBubble=null;
+      holdPointer=null;
+
+    },
+    HOLD_TIME
+  );
+
+}
+
+
+messages.addEventListener(
+  "pointerdown",
+  event=>{
+
+    const bubble=
+      event.target.closest(
+        ".message-bubble"
+      );
+
+    if(!bubble)return;
+
+    const row=
+      bubble.closest(
+        ".message-row"
+      );
+
+    if(!row)return;
+
+    startHold(
+      event,
+      bubble,
+      row.dataset.id,
+      row.dataset.sender
+    );
+
+  }
+);
+
+
+messages.addEventListener(
+  "pointerup",
+  cancelHold
+);
+
+
+messages.addEventListener(
+  "pointercancel",
+  cancelHold
+);
+
+
+messages.addEventListener(
+  "pointerleave",
+  cancelHold
+);
+
+
 /* RENDER */
 
 function render(snapshot){
@@ -488,9 +658,9 @@ function render(snapshot){
   }
 
 
-  snapshot.forEach(doc=>{
+  snapshot.forEach(docSnap=>{
 
-    const data=doc.data();
+    const data=docSnap.data();
 
     const row=
       document.createElement("div");
@@ -510,6 +680,12 @@ function render(snapshot){
           :"theirs"
       );
 
+    row.dataset.id=
+      docSnap.id;
+
+    row.dataset.sender=
+      data.sender||"";
+
 
     bubble.className=
       "message-bubble";
@@ -522,11 +698,15 @@ function render(snapshot){
       "message-time";
 
     clock.textContent=
-      formatTime(data.createdAt);
+      formatTime(
+        data.createdAt
+      );
 
 
     bubble.appendChild(clock);
+
     row.appendChild(bubble);
+
     messages.appendChild(row);
 
   });
@@ -553,12 +733,10 @@ const chat=query(
   orderBy("createdAt","asc")
 );
 
-
 status.style.display="block";
 
 
 onSnapshot(
-
   chat,
 
   snapshot=>{
@@ -582,7 +760,6 @@ onSnapshot(
     status.style.display="block";
 
   }
-
 );
 
 
@@ -607,21 +784,15 @@ async function sendMessage(){
   try{
 
     await addDoc(
-
       collection(
         db,
         "jaoka_chat"
       ),
-
       {
         text:text,
-
         sender:identity,
-
-        createdAt:
-          serverTimestamp()
+        createdAt:serverTimestamp()
       }
-
     );
 
 
@@ -635,7 +806,6 @@ async function sendMessage(){
       ()=>scrollDown(),
       100
     );
-
 
   }catch(error){
 
