@@ -121,7 +121,10 @@ body{
   justify-content:center;text-align:center;color:#b99eb9;
   font-size:14px;line-height:1.8;
 }
-.empty-chat span{display:block;font-size:38px;margin-bottom:8px}
+
+.empty-chat span{
+  display:block;font-size:38px;margin-bottom:8px;
+}
 
 .scroll-bottom{
   position:absolute;right:25px;bottom:25px;width:43px;height:43px;
@@ -130,7 +133,10 @@ body{
   font-size:19px;cursor:pointer;box-shadow:0 6px 18px #82649133;
   opacity:0;pointer-events:none;transform:translateY(8px);transition:.2s;
 }
-.scroll-bottom.show{opacity:1;pointer-events:auto;transform:translateY(0)}
+
+.scroll-bottom.show{
+  opacity:1;pointer-events:auto;transform:translateY(0);
+}
 
 .input-area{
   flex-shrink:0;padding:13px 16px 15px;background:#ffffffd4;
@@ -145,7 +151,9 @@ body{
   outline:0;background:#fffafd;color:#66566b;font:14px/1.65 Mali;
   overflow-y:auto;transition:.2s;
 }
+
 .message-input::placeholder{color:#c3a9c1}
+
 .message-input:focus{
   border-color:#dfa7c9;background:#fff;
   box-shadow:0 0 0 4px #dfa7c91f;
@@ -158,6 +166,7 @@ body{
   background:linear-gradient(135deg,#f39fc4,#b99fe7);
   box-shadow:0 6px 15px #bc84be40;transition:.2s;
 }
+
 .send-button:hover{transform:translateY(-2px)}
 .send-button:active{transform:scale(.95)}
 .send-button:disabled{opacity:.55;cursor:wait}
@@ -171,17 +180,24 @@ body{
 
 @media(max-width:600px){
   body{padding:8px}
+
   .chat-window{
     width:100%;height:calc(100vh - 16px);
     min-height:500px;border-radius:23px
   }
+
   .top-bar{min-height:68px;padding:8px 13px}
   .profile-image{width:43px;height:43px}
   .profile-name{font-size:22px}
   .profile-status{font-size:10px}
   .chat-area{padding:12px 8px}
   .messages{padding:3px 6px 15px}
-  .message-bubble{max-width:82%;font-size:14px;padding:10px 13px;line-height:1.7}
+
+  .message-bubble{
+    max-width:82%;font-size:14px;
+    padding:10px 13px;line-height:1.7
+  }
+
   .input-area{padding:10px}
   .message-input{font-size:14px}
   .send-button{width:48px;height:47px}
@@ -199,44 +215,83 @@ body{
 <main class="chat-window">
 
 <header class="top-bar">
+
   <div class="profile">
-    <img class="profile-image"
+
+    <img
+      class="profile-image"
       src="./EF49275A-74C1-46A1-AECC-04F296D98CB0.gif"
-      alt="Jaoka">
+      alt="Jaoka"
+    >
 
     <div class="profile-info">
-      <button class="profile-name" id="profileName">Jaoka</button>
+
+      <button
+        class="profile-name"
+        id="profileName"
+        type="button"
+      >
+        Jaoka
+      </button>
 
       <div class="profile-status">
         <span class="status-dot"></span>
         <span>obsessed</span>
       </div>
+
     </div>
+
   </div>
 
   <div class="window-dots">
-    <span></span><span></span><span></span>
+    <span></span>
+    <span></span>
+    <span></span>
   </div>
+
 </header>
+
 
 <section class="chat-area">
 
-  <div class="connection-status" id="connectionStatus">
+  <div
+    class="connection-status"
+    id="connectionStatus"
+  >
     กำลังเชื่อมต่อ...
   </div>
 
-  <div class="messages" id="messages">
-    <div class="empty-chat" id="emptyChat">
-      <div><span>♡</span>เริ่มคุยกันตรงนี้นะ</div>
+  <div
+    class="messages"
+    id="messages"
+  >
+
+    <div
+      class="empty-chat"
+      id="emptyChat"
+    >
+      <div>
+        <span>♡</span>
+        เริ่มคุยกันตรงนี้นะ
+      </div>
     </div>
+
   </div>
 
-  <button class="scroll-bottom" id="scrollBottom"
-    type="button" aria-label="ไปข้อความล่าสุด">↓</button>
+  <button
+    class="scroll-bottom"
+    id="scrollBottom"
+    type="button"
+    aria-label="ไปข้อความล่าสุด"
+  >
+    ↓
+  </button>
 
 </section>
 
+
 <footer class="input-area">
+
   <div class="input-box">
 
     <textarea
@@ -247,15 +302,21 @@ body{
       placeholder="พิมพ์ข้อความ..."
     ></textarea>
 
-    <button class="send-button"
+    <button
+      class="send-button"
       id="sendButton"
       type="button"
-      aria-label="ส่งข้อความ">♡</button>
+      aria-label="ส่งข้อความ"
+    >
+      ♡
+    </button>
 
   </div>
+
 </footer>
 
 </main>
+
 
 <script type="module">
 
@@ -263,10 +324,18 @@ import{initializeApp}
 from"https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
 
 import{
-  getFirestore,collection,addDoc,query,orderBy,
-  onSnapshot,serverTimestamp
-}from"https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+  getFirestore,
+  collection,
+  addDoc,
+  query,
+  orderBy,
+  onSnapshot,
+  serverTimestamp
+}
+from"https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 
+
+/* FIREBASE */
 
 const firebaseConfig={
   apiKey:"AIzaSyBkxDeR-IgljHiFbczQOlvUDtoz7z5xxh4",
@@ -278,7 +347,12 @@ const firebaseConfig={
   measurementId:"G-1HQ7045XKF"
 };
 
-const db=getFirestore(initializeApp(firebaseConfig));
+const db=getFirestore(
+  initializeApp(firebaseConfig)
+);
+
+
+/* ELEMENTS */
 
 const messages=document.getElementById("messages");
 const input=document.getElementById("messageInput");
@@ -289,60 +363,111 @@ const status=document.getElementById("connectionStatus");
 const name=document.getElementById("profileName");
 
 
-/* =========================================
-   IDENTITY
+/* IDENTITY
 
    เริ่มต้น = แฟน
    กด Jaoka = เรา
    กดอีกครั้ง = แฟน
-========================================= */
 
-const KEY="jaoka_chat_identity";
+   ใช้ KEY ใหม่ เพื่อไม่ให้
+   ค่าจากระบบเก่ามาปน
+*/
 
-let identity=localStorage.getItem(KEY)||"them";
+const IDENTITY_KEY="jaoka_chat_identity_v2";
+
+let identity=
+  localStorage.getItem(IDENTITY_KEY)||"them";
+
 
 name.addEventListener("click",()=>{
-  identity=identity==="them"?"me":"them";
-  localStorage.setItem(KEY,identity);
+
+  identity=
+    identity==="them"
+      ?"me"
+      :"them";
+
+  localStorage.setItem(
+    IDENTITY_KEY,
+    identity
+  );
+
 });
 
 
-/* =========================================
-   HELPERS
-========================================= */
+/* HELPERS */
 
-const nearBottom=()=>(
-  messages.scrollHeight-messages.scrollTop-messages.clientHeight<120
-);
+function nearBottom(){
 
-const scrollDown=(smooth=true)=>{
+  return(
+    messages.scrollHeight-
+    messages.scrollTop-
+    messages.clientHeight
+  )<120;
+
+}
+
+
+function scrollDown(smooth=true){
+
   messages.scrollTo({
     top:messages.scrollHeight,
     behavior:smooth?"smooth":"auto"
   });
-};
 
-const time=t=>{
-  if(!t)return"";
+}
+
+
+function formatTime(timestamp){
+
+  if(!timestamp)return"";
+
   try{
-    const d=t.toDate?t.toDate():new Date(t);
-    return d.toLocaleTimeString("th-TH",{
-      hour:"2-digit",minute:"2-digit"
-    });
-  }catch{return""}
-};
 
-const updateDown=()=>{
-  down.classList.toggle("show",!nearBottom());
-};
+    const date=
+      timestamp.toDate
+        ?timestamp.toDate()
+        :new Date(timestamp);
 
-messages.addEventListener("scroll",updateDown);
-down.addEventListener("click",()=>scrollDown());
+    return date.toLocaleTimeString(
+      "th-TH",
+      {
+        hour:"2-digit",
+        minute:"2-digit"
+      }
+    );
+
+  }catch{
+
+    return"";
+
+  }
+
+}
 
 
-/* =========================================
-   RENDER
-========================================= */
+function updateScrollButton(){
+
+  down.classList.toggle(
+    "show",
+    !nearBottom()
+  );
+
+}
+
+
+messages.addEventListener(
+  "scroll",
+  updateScrollButton
+);
+
+
+down.addEventListener(
+  "click",
+  ()=>scrollDown()
+);
+
+
+/* RENDER */
 
 function render(snapshot){
 
@@ -351,93 +476,173 @@ function render(snapshot){
   messages.innerHTML="";
 
   if(snapshot.empty){
+
     messages.appendChild(empty);
+
     empty.style.display="flex";
-    updateDown();
+
+    updateScrollButton();
+
     return;
+
   }
+
 
   snapshot.forEach(doc=>{
 
     const data=doc.data();
-    const row=document.createElement("div");
-    const bubble=document.createElement("div");
-    const clock=document.createElement("div");
+
+    const row=
+      document.createElement("div");
+
+    const bubble=
+      document.createElement("div");
+
+    const clock=
+      document.createElement("div");
+
 
     row.className=
       "message-row "+
-      (data.sender==="me"?"mine":"theirs");
+      (
+        data.sender==="me"
+          ?"mine"
+          :"theirs"
+      );
 
-    bubble.className="message-bubble";
-    bubble.textContent=data.text||"";
 
-    clock.className="message-time";
-    clock.textContent=time(data.createdAt);
+    bubble.className=
+      "message-bubble";
+
+    bubble.textContent=
+      data.text||"";
+
+
+    clock.className=
+      "message-time";
+
+    clock.textContent=
+      formatTime(data.createdAt);
+
 
     bubble.appendChild(clock);
     row.appendChild(bubble);
     messages.appendChild(row);
+
   });
 
-  if(stick)requestAnimationFrame(()=>scrollDown(false));
 
-  updateDown();
+  if(stick){
+
+    requestAnimationFrame(
+      ()=>scrollDown(false)
+    );
+
+  }
+
+
+  updateScrollButton();
+
 }
 
 
-/* =========================================
-   FIRESTORE REALTIME
-========================================= */
+/* FIRESTORE */
 
 const chat=query(
   collection(db,"jaoka_chat"),
   orderBy("createdAt","asc")
 );
 
+
 status.style.display="block";
 
-onSnapshot(chat,snapshot=>{
-  status.style.display="none";
-  render(snapshot);
-},error=>{
-  console.error(error);
-  status.textContent="เชื่อมต่อแชทไม่ได้";
-  status.style.display="block";
-});
+
+onSnapshot(
+
+  chat,
+
+  snapshot=>{
+
+    status.style.display="none";
+
+    render(snapshot);
+
+  },
+
+  error=>{
+
+    console.error(
+      "Firestore error:",
+      error
+    );
+
+    status.textContent=
+      "เชื่อมต่อแชทไม่ได้";
+
+    status.style.display="block";
+
+  }
+
+);
 
 
-/* =========================================
-   SEND
-========================================= */
+/* SEND */
 
 async function sendMessage(){
 
   const text=input.value;
 
   if(!text.trim()){
+
     input.focus();
+
     return;
+
   }
+
 
   send.disabled=true;
 
+
   try{
 
-    await addDoc(collection(db,"jaoka_chat"),{
-      text,
-      sender:identity,
-      createdAt:serverTimestamp()
-    });
+    await addDoc(
+
+      collection(
+        db,
+        "jaoka_chat"
+      ),
+
+      {
+        text:text,
+
+        sender:identity,
+
+        createdAt:
+          serverTimestamp()
+      }
+
+    );
+
 
     input.value="";
-    resize();
+
+    resizeInput();
+
     input.focus();
 
-    setTimeout(()=>scrollDown(),100);
+    setTimeout(
+      ()=>scrollDown(),
+      100
+    );
+
 
   }catch(error){
 
-    console.error(error);
+    console.error(
+      "Send error:",
+      error
+    );
 
     alert(
       "ส่งข้อความไม่สำเร็จ\n\n"+
@@ -445,42 +650,68 @@ async function sendMessage(){
     );
 
   }finally{
+
     send.disabled=false;
+
   }
+
 }
 
-send.addEventListener("click",sendMessage);
+
+send.addEventListener(
+  "click",
+  sendMessage
+);
 
 
-/* =========================================
-   TEXTAREA
-========================================= */
+/* TEXTAREA */
 
-function resize(){
+function resizeInput(){
 
   input.style.height="auto";
 
   input.style.height=
-    Math.min(input.scrollHeight,130)+"px";
+    Math.min(
+      input.scrollHeight,
+      130
+    )+"px";
+
 }
 
-input.addEventListener("input",resize);
 
-input.addEventListener("keydown",e=>{
+input.addEventListener(
+  "input",
+  resizeInput
+);
 
-  if(
-    e.key==="Enter" &&
-    (e.ctrlKey||e.metaKey)
-  ){
-    e.preventDefault();
-    sendMessage();
+
+input.addEventListener(
+  "keydown",
+  event=>{
+
+    if(
+      event.key==="Enter"&&
+      (event.ctrlKey||event.metaKey)
+    ){
+
+      event.preventDefault();
+
+      sendMessage();
+
+    }
+
   }
+);
 
-});
 
-resize();
+/* INITIAL */
 
-setTimeout(()=>scrollDown(false),300);
+resizeInput();
+
+setTimeout(
+  ()=>scrollDown(false),
+  300
+);
 
 </script>
 
