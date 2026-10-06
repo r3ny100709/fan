@@ -1,1874 +1,1113 @@
 <!DOCTYPE html>
 <html lang="th">
 <head>
-
 <meta charset="UTF-8">
 
 <meta
-  name="viewport"
-  content="width=device-width,initial-scale=1,viewport-fit=cover"
->
+name=“viewport”
+content=“width=device-width,initial-scale=1,viewport-fit=cover”
 
 <title>Jaoka ♡</title>
-
 <style>
-
 @import url('https://fonts.googleapis.com/css2?family=Itim&family=Mali:wght@400;500;600;700&display=swap');
-
-
 *{
   box-sizing:border-box;
   margin:0;
   padding:0;
 }
-
 html,
 body{
   width:100%;
   min-height:100%;
 }
-
 body{
-
   min-height:100vh;
-
   padding:20px;
-
   display:flex;
   align-items:center;
   justify-content:center;
-
   overflow:hidden;
-
   font-family:Mali,sans-serif;
-
   color:#69536f;
-
   background-image:
     linear-gradient(
       rgba(255,255,255,.08),
       rgba(255,255,255,.08)
     ),
     url("./C467C293-73E4-4935-B067-7FF431CF7300.gif");
-
   background-size:cover;
   background-position:center;
   background-repeat:no-repeat;
-
 }
-
-
 /* =====================================================
    BUBBLE EFFECT LAYER
 ===================================================== */
-
 .effect-layer{
-
   position:fixed;
-
   inset:0;
-
   z-index:1000;
-
   pointer-events:none;
-
   overflow:hidden;
-
 }
-
-
 /* =====================================================
    FLOATING BUBBLE
 ===================================================== */
-
 .floating-bubble{
-
   position:absolute;
-
   bottom:-150px;
-
   max-width:75vw;
-
   padding:9px 20px;
-
   color:#74afe8;
-
   font-family:Mali,sans-serif;
-
   font-weight:700;
-
   line-height:1.25;
-
   text-align:center;
-
   white-space:pre-wrap;
-
   word-break:break-word;
-
   text-shadow:
     0 2px 5px rgba(255,255,255,.95),
     0 0 10px rgba(114,174,232,.55),
     0 0 24px rgba(114,174,232,.28);
-
   opacity:0;
-
   animation:
     bubbleBalloon
     var(--bubble-duration)
     linear
     forwards;
-
 }
-
-
-/* ลูกโป่งลอยช้า ๆ */
-
 @keyframes bubbleBalloon{
-
   0%{
-
     transform:
-      translate3d(
-        0,
-        0,
-        0
-      )
-      rotate(
-        var(--rotate-start)
-      )
+      translate3d(0,0,0)
+      rotate(var(--rotate-start))
       scale(.72);
-
     opacity:0;
-
   }
-
   8%{
-
     opacity:.95;
-
   }
-
   25%{
-
     transform:
       translate3d(
         var(--drift-1),
         -22vh,
         0
       )
-      rotate(
-        var(--rotate-1)
-      )
+      rotate(var(--rotate-1))
       scale(1);
-
     opacity:1;
-
   }
-
   50%{
-
     transform:
       translate3d(
         var(--drift-2),
         -48vh,
         0
       )
-      rotate(
-        var(--rotate-2)
-      )
+      rotate(var(--rotate-2))
       scale(1.02);
-
     opacity:.98;
-
   }
-
   75%{
-
     transform:
       translate3d(
         var(--drift-3),
         -75vh,
         0
       )
-      rotate(
-        var(--rotate-3)
-      )
+      rotate(var(--rotate-3))
       scale(1.04);
-
     opacity:.82;
-
   }
-
   100%{
-
     transform:
       translate3d(
         var(--drift-4),
         -125vh,
         0
       )
-      rotate(
-        var(--rotate-end)
-      )
+      rotate(var(--rotate-end))
       scale(1.08);
-
     opacity:0;
-
   }
-
 }
-
-
 /* =====================================================
    CHAT WINDOW
 ===================================================== */
-
 .chat-window{
-
   position:relative;
-
   z-index:1;
-
   width:min(900px,96vw);
-
   height:min(900px,92vh);
-
   min-height:620px;
-
   display:flex;
   flex-direction:column;
-
   overflow:hidden;
-
   background:
     rgba(255,255,255,.72);
-
   border:
     3px solid
     rgba(255,255,255,.95);
-
   border-radius:30px;
-
   box-shadow:
-
     0 25px 80px
     rgba(116,74,125,.25),
-
     inset 0 0 0 2px
     rgba(244,184,221,.45);
-
   backdrop-filter:blur(18px);
-
 }
-
-
 /* =====================================================
    TOP BAR
 ===================================================== */
-
 .top-bar{
-
   min-height:76px;
-
   padding:10px 18px;
-
   flex-shrink:0;
-
   display:flex;
   align-items:center;
-
   background-image:
     linear-gradient(
       rgba(255,255,255,.12),
       rgba(255,255,255,.12)
     ),
     url("./26D05A69-32B1-43D8-B9AA-F002391D38AD.gif");
-
   background-size:cover;
   background-position:center;
-
   border-bottom:
     2px solid
     rgba(255,255,255,.7);
-
 }
-
-
 /* =====================================================
    PROFILE
 ===================================================== */
-
 .profile{
-
   display:flex;
-
   align-items:center;
-
   gap:12px;
-
   min-width:0;
-
 }
-
-
 .profile-image{
-
   width:50px;
   height:50px;
-
   flex-shrink:0;
-
   border-radius:50%;
-
   object-fit:cover;
-
   background:#ffd7e9;
-
   border:
     3px solid
     rgba(255,255,255,.95);
-
   box-shadow:
     0 5px 15px
     rgba(175,120,170,.2);
-
 }
-
-
 .profile-info{
   min-width:0;
 }
-
-
 .profile-name{
-
   border:0;
-
   background:none;
-
   padding:0;
-
   cursor:pointer;
-
   font:
     25px/1
     Itim,
     cursive;
-
   color:#7d5d82;
-
   text-shadow:
     0 1px 8px
     rgba(255,255,255,.7);
-
 }
-
-
 .profile-name:active{
   transform:scale(.96);
 }
-
-
 .profile-status{
-
   display:flex;
-
   align-items:center;
-
   gap:6px;
-
   margin-top:5px;
-
   color:#8d718f;
-
   font-size:12px;
-
 }
-
-
 .status-dot{
-
   width:9px;
   height:9px;
-
   flex-shrink:0;
-
   border-radius:50%;
-
   background:#ff91bd;
-
   box-shadow:
     0 0 8px
     rgba(255,145,189,.75);
-
 }
-
-
 /* =====================================================
    CHAT AREA
 ===================================================== */
-
 .chat-area{
-
   position:relative;
-
   flex:1;
-
   min-height:0;
-
   padding:20px 18px;
-
   background:
     linear-gradient(
       180deg,
       rgba(255,247,252,.68),
       rgba(244,246,255,.62)
     );
-
 }
-
-
 .messages{
-
   width:100%;
   height:100%;
-
   overflow-y:auto;
   overflow-x:hidden;
-
   padding:4px 12px 18px;
-
   scroll-behavior:smooth;
-
   overscroll-behavior:contain;
-
   scrollbar-width:thin;
-
   scrollbar-color:
     #e7a9c8
     rgba(255,255,255,.45);
-
 }
-
-
 .messages::-webkit-scrollbar{
   width:9px;
 }
-
-
 .messages::-webkit-scrollbar-track{
-
   background:
     rgba(255,255,255,.45);
-
   border-radius:20px;
-
 }
-
-
 .messages::-webkit-scrollbar-thumb{
-
   background:
     linear-gradient(
       #f1a6c8,
       #bca9e8
     );
-
   border-radius:20px;
-
   border:
     2px solid
     rgba(255,255,255,.5);
-
 }
-
-
 /* =====================================================
    MESSAGE ROW
 ===================================================== */
-
 .message-row{
-
   display:flex;
-
   width:100%;
-
   margin:7px 0;
-
 }
-
-
 .message-row.mine{
   justify-content:flex-start;
 }
-
-
 .message-row.theirs{
   justify-content:flex-end;
 }
-
-
 /* =====================================================
    NORMAL MESSAGE
 ===================================================== */
-
 .message-bubble{
-
   position:relative;
-
   max-width:min(72%,600px);
-
   padding:12px 16px;
-
   border-radius:20px;
-
   line-height:1.75;
-
   font-size:15px;
-
   white-space:pre-wrap;
-
   word-break:break-word;
-
   overflow-wrap:anywhere;
-
   box-shadow:
     0 4px 13px
     rgba(130,100,145,.08);
-
   user-select:none;
-
   -webkit-user-select:none;
-
   -webkit-touch-callout:none;
-
   cursor:pointer;
-
   touch-action:pan-y;
-
 }
-
-
 .mine .message-bubble{
-
   color:#76576b;
-
   background:
     linear-gradient(
       135deg,
       #ffd1e5,
       #f8c4df
     );
-
   border:
     1px solid
     rgba(239,155,193,.55);
-
   border-bottom-left-radius:6px;
-
 }
-
-
 .theirs .message-bubble{
-
   color:#5b6475;
-
   background:
     linear-gradient(
       135deg,
       #d5ecff,
       #c8e4fa
     );
-
   border:
     1px solid
     rgba(145,196,232,.55);
-
   border-bottom-right-radius:6px;
-
 }
-
-
 /* =====================================================
    GIF STICKER MESSAGE
+   ไม่มีกรอบ / ไม่มีพื้นหลัง / ขนาดเล็ก
 ===================================================== */
-
 .gif-message{
-
-  max-width:230px;
-
-  padding:7px;
-
-  border-radius:20px;
-
-  background:
-    rgba(255,255,255,.78);
-
-  border:
-    2px solid
-    rgba(239,190,216,.65);
-
-  box-shadow:
-    0 5px 18px
-    rgba(130,100,145,.1);
-
+  position:relative;
+  width:max-content;
+  max-width:125px;
+  padding:0;
+  margin:2px 0;
+  background:transparent;
+  border:0;
+  border-radius:0;
+  box-shadow:none;
+  cursor:pointer;
+  user-select:none;
+  -webkit-user-select:none;
+  -webkit-touch-callout:none;
+  touch-action:pan-y;
 }
-
-
 .gif-message img{
-
   display:block;
-
-  width:100%;
-
-  max-height:230px;
-
+  width:auto;
+  max-width:125px;
+  height:auto;
+  max-height:125px;
   object-fit:contain;
-
-  border-radius:14px;
-
-  background:#fff;
-
+  background:transparent;
+  border:0;
+  border-radius:0;
+  box-shadow:none;
+  padding:0;
+  margin:0;
+  user-select:none;
+  -webkit-user-select:none;
+  -webkit-user-drag:none;
+  pointer-events:none;
 }
-
-
+/* เวลาอยู่ใต้ GIF */
+.gif-message .message-time{
+  margin-top:3px;
+  padding:0 2px;
+  font-size:9px;
+  line-height:1.2;
+  opacity:.5;
+}
 /* =====================================================
    MESSAGE TIME
 ===================================================== */
-
 .message-time{
-
   margin-top:5px;
-
   font-size:10px;
-
   line-height:1.2;
-
   opacity:.62;
-
 }
-
-
 .mine .message-time{
   text-align:left;
 }
-
-
 .theirs .message-time{
   text-align:right;
 }
-
-
 /* =====================================================
    LONG PRESS DELETE
 ===================================================== */
-
 .message-bubble.holding,
 .gif-message.holding{
-
   transform:scale(.97);
-
   filter:brightness(.96);
-
 }
-
-
 .message-bubble.holding::after,
 .gif-message.holding::after{
-
   content:"";
-
   position:absolute;
-
   inset:-3px;
-
   border-radius:inherit;
-
   border:3px solid transparent;
-
   border-top-color:#ff8fbd;
-
   border-right-color:#ff8fbd;
-
   animation:
     deleteProgress
     5s
     linear
     forwards;
-
   pointer-events:none;
-
 }
-
-
 @keyframes deleteProgress{
-
   0%{
     transform:rotate(-45deg);
     opacity:.5;
   }
-
   100%{
     transform:rotate(315deg);
     opacity:1;
   }
-
 }
-
-
 /* =====================================================
    EMPTY CHAT
 ===================================================== */
-
 .empty-chat{
-
   width:100%;
   height:100%;
-
   display:flex;
-
   align-items:center;
   justify-content:center;
-
   text-align:center;
-
   color:#b99eb9;
-
   font-size:14px;
-
   line-height:1.8;
-
 }
-
-
 .empty-chat span{
-
   display:block;
-
   font-size:38px;
-
   margin-bottom:8px;
-
 }
-
-
 /* =====================================================
    SCROLL BUTTON
 ===================================================== */
-
 .scroll-bottom{
-
   position:absolute;
-
   right:25px;
   bottom:25px;
-
   width:43px;
   height:43px;
-
   display:flex;
-
   align-items:center;
   justify-content:center;
-
   border:0;
-
   border-radius:50%;
-
   background:
     rgba(255,255,255,.95);
-
   color:#b77ca5;
-
   font-size:19px;
-
   cursor:pointer;
-
   box-shadow:
     0 6px 18px
     rgba(130,100,145,.2);
-
   opacity:0;
-
   pointer-events:none;
-
   transform:translateY(8px);
-
   transition:.2s;
-
 }
-
-
 .scroll-bottom.show{
-
   opacity:1;
-
   pointer-events:auto;
-
   transform:translateY(0);
-
 }
-
-
 /* =====================================================
    INPUT
 ===================================================== */
-
 .input-area{
-
   position:relative;
-
   flex-shrink:0;
-
   padding:13px 16px 15px;
-
   background:
     rgba(255,255,255,.82);
-
   border-top:
     2px solid
     rgba(255,255,255,.9);
-
 }
-
-
 .input-box{
-
   display:flex;
-
   align-items:flex-end;
-
   gap:9px;
-
 }
-
-
 .message-input{
-
   flex:1;
-
   min-width:0;
-
   min-height:48px;
-
   max-height:130px;
-
   resize:none;
-
   padding:12px 16px;
-
   border:
     2px solid
     #efd6e7;
-
   border-radius:21px;
-
   outline:0;
-
   background:#fffafd;
-
   color:#66566b;
-
   font:
     14px/1.65
     Mali;
-
   overflow-y:auto;
-
   transition:.2s;
-
 }
-
-
 .message-input::placeholder{
   color:#c3a9c1;
 }
-
-
 .message-input:focus{
-
   border-color:#dfa7c9;
-
   background:#fff;
-
   box-shadow:
     0 0 0 4px
     rgba(223,167,201,.12);
-
 }
-
-
 /* =====================================================
    BUBBLE MODE
 ===================================================== */
-
 .message-input.bubble-mode{
-
   color:#72aee8;
-
   border-color:#9ec9ee;
-
   background:#f8fcff;
-
   box-shadow:
     0 0 0 4px
     rgba(114,174,232,.1);
-
 }
-
-
 .message-input.bubble-mode::placeholder{
   color:#9abddd;
 }
-
-
 /* =====================================================
    EFFECT BUTTON
 ===================================================== */
-
 .effect-button{
-
   width:48px;
   height:48px;
-
   flex-shrink:0;
-
   border:
     2px solid
     rgba(241,171,204,.55);
-
   border-radius:19px;
-
   cursor:pointer;
-
   display:flex;
-
   align-items:center;
   justify-content:center;
-
   font-size:20px;
-
   color:#d47da8;
-
   background:
     linear-gradient(
       135deg,
       #fff5fa,
       #ffe4ef
     );
-
   box-shadow:
     0 6px 15px
     rgba(241,154,194,.18);
-
   transition:.2s;
-
 }
-
-
 .effect-button:hover{
   transform:translateY(-2px);
 }
-
-
 .effect-button:active{
   transform:scale(.95);
 }
-
-
 .effect-button.active{
-
   color:#72aee8;
-
   border-color:#9ec9ee;
-
   background:
     linear-gradient(
       135deg,
       #edf8ff,
       #d9efff
     );
-
 }
-
-
 /* =====================================================
    EFFECT MENU
 ===================================================== */
-
 .effect-menu{
-
   position:absolute;
-
   right:75px;
-
   bottom:72px;
-
   width:170px;
-
   padding:8px;
-
   border:
     1px solid
     rgba(239,190,216,.75);
-
   border-radius:19px;
-
   background:
     rgba(255,250,253,.96);
-
   box-shadow:
     0 15px 35px
     rgba(115,80,125,.2);
-
   backdrop-filter:blur(16px);
-
   transform:
     translateY(8px)
     scale(.96);
-
   opacity:0;
-
   pointer-events:none;
-
   transition:.18s ease;
-
   z-index:20;
-
 }
-
-
 .effect-menu.open{
-
   transform:
     translateY(0)
     scale(1);
-
   opacity:1;
-
   pointer-events:auto;
-
 }
-
-
 .effect-choice{
-
   width:100%;
-
   min-height:48px;
-
   border:0;
-
   border-radius:14px;
-
   background:transparent;
-
   color:#775c78;
-
   font:
     14px Mali,
     sans-serif;
-
   text-align:left;
-
   padding:8px 13px;
-
   cursor:pointer;
-
 }
-
-
 .effect-choice:hover{
   background:#fff0f7;
 }
-
-
 .effect-choice .choice-icon{
-
   display:inline-flex;
-
   width:30px;
   height:30px;
-
   align-items:center;
   justify-content:center;
-
   margin-right:8px;
-
   border-radius:10px;
-
   background:#fff;
-
 }
-
-
 /* =====================================================
    SEND
 ===================================================== */
-
 .send-button{
-
   width:52px;
   height:48px;
-
   flex-shrink:0;
-
   border:0;
-
   border-radius:19px;
-
   cursor:pointer;
-
   display:flex;
-
   align-items:center;
   justify-content:center;
-
   font-size:20px;
-
   color:#ffffff;
-
   background:
     linear-gradient(
       135deg,
       #ffc4da,
       #f5a9c9
     );
-
   box-shadow:
     0 6px 15px
     rgba(241,154,194,.28);
-
   transition:.2s;
-
 }
-
-
 .send-button:hover{
-
   transform:translateY(-2px);
-
   background:
     linear-gradient(
       135deg,
       #ffd0e2,
       #f7b3d1
     );
-
 }
-
-
 .send-button:active{
   transform:scale(.95);
 }
-
-
 .send-button:disabled{
   opacity:.55;
   cursor:wait;
 }
-
-
 /* =====================================================
    GIF PICKER
 ===================================================== */
-
 .gif-modal{
-
   position:fixed;
-
   inset:0;
-
   z-index:2000;
-
   display:flex;
-
   align-items:center;
   justify-content:center;
-
   padding:18px;
-
   background:
     rgba(70,45,75,.32);
-
   backdrop-filter:blur(7px);
-
   opacity:0;
-
   pointer-events:none;
-
   transition:.2s;
-
 }
-
-
 .gif-modal.open{
-
   opacity:1;
-
   pointer-events:auto;
-
 }
-
-
 .gif-picker{
-
   width:min(620px,94vw);
-
   max-height:min(760px,88vh);
-
   display:flex;
-
   flex-direction:column;
-
   overflow:hidden;
-
   border:
     2px solid
     rgba(255,255,255,.95);
-
   border-radius:27px;
-
   background:
     rgba(255,250,253,.96);
-
   box-shadow:
     0 25px 80px
     rgba(80,50,90,.3);
-
 }
-
-
 .gif-header{
-
   flex-shrink:0;
-
   min-height:64px;
-
   padding:12px 16px 12px 20px;
-
   display:flex;
-
   align-items:center;
-
   justify-content:space-between;
-
   border-bottom:
     1px solid
     rgba(231,199,219,.8);
-
 }
-
-
 .gif-title{
-
   font:
     24px/1
     Itim,
     cursive;
-
   color:#795d7d;
-
 }
-
-
 .gif-close{
-
   width:40px;
   height:40px;
-
   border:0;
-
   border-radius:50%;
-
   background:#fff0f7;
-
   color:#b7779c;
-
   font-size:21px;
-
   cursor:pointer;
-
 }
-
-
 .gif-grid{
-
   flex:1;
-
   min-height:0;
-
   overflow-y:auto;
-
   overflow-x:hidden;
-
   padding:14px;
-
   display:grid;
-
   grid-template-columns:
     repeat(4,minmax(0,1fr));
-
   gap:10px;
-
   scrollbar-width:thin;
-
   scrollbar-color:
     #e4b2cb
     transparent;
-
 }
-
-
 .gif-grid::-webkit-scrollbar{
   width:8px;
 }
-
-
 .gif-grid::-webkit-scrollbar-thumb{
-
   background:#e4b2cb;
-
   border-radius:20px;
-
 }
-
-
 .gif-item{
-
   width:100%;
-
   aspect-ratio:1/1;
-
   padding:4px;
-
   border:
     2px solid
     rgba(235,191,215,.6);
-
   border-radius:17px;
-
   background:#fff;
-
   cursor:pointer;
-
   overflow:hidden;
-
   transition:.16s;
-
 }
-
-
 .gif-item:hover{
-
   transform:translateY(-2px);
-
   border-color:#efa8ca;
-
   box-shadow:
     0 7px 18px
     rgba(225,145,190,.2);
-
 }
-
-
 .gif-item:active{
   transform:scale(.94);
 }
-
-
 .gif-item img{
-
   width:100%;
   height:100%;
-
   display:block;
-
   object-fit:contain;
-
   border-radius:12px;
-
   background:
     linear-gradient(
       135deg,
       #fff7fb,
       #f7f5ff
     );
-
 }
-
-
 /* =====================================================
    CONNECTION
 ===================================================== */
-
 .connection-status{
-
   position:absolute;
-
   top:12px;
   left:50%;
-
   transform:translateX(-50%);
-
   z-index:5;
-
   padding:6px 13px;
-
   border-radius:20px;
-
   background:
     rgba(255,255,255,.94);
-
   color:#a980a4;
-
   font-size:10px;
-
   box-shadow:
     0 4px 15px
     rgba(130,100,145,.12);
-
   display:none;
-
 }
-
-
 /* =====================================================
    MOBILE
 ===================================================== */
-
 @media(max-width:600px){
-
   body{
     padding:8px;
   }
-
-
   .chat-window{
-
     width:100%;
-
     height:calc(100vh - 16px);
-
     min-height:500px;
-
     border-radius:23px;
-
   }
-
-
   .top-bar{
-
     min-height:68px;
-
     padding:8px 13px;
-
   }
-
-
   .profile-image{
-
     width:43px;
     height:43px;
-
   }
-
-
   .profile-name{
     font-size:22px;
   }
-
-
   .profile-status{
     font-size:10px;
   }
-
-
   .chat-area{
     padding:12px 8px;
   }
-
-
   .messages{
     padding:3px 6px 15px;
   }
-
-
   .message-bubble{
-
     max-width:82%;
-
     font-size:14px;
-
     padding:10px 13px;
-
     line-height:1.7;
-
   }
-
-
+  /* GIF เล็กแบบสติกเกอร์ */
   .gif-message{
-    max-width:190px;
+    max-width:105px;
   }
-
-
+  .gif-message img{
+    max-width:105px;
+    max-height:105px;
+  }
   .input-area{
     padding:10px;
   }
-
-
   .input-box{
     gap:6px;
   }
-
-
   .effect-button{
-
     width:46px;
     height:47px;
-
   }
-
-
   .send-button{
-
     width:48px;
     height:47px;
-
   }
-
-
   .effect-menu{
-
     right:63px;
-
     bottom:70px;
-
   }
-
-
   .gif-modal{
     padding:10px;
   }
-
-
   .gif-picker{
-
     width:100%;
-
     max-height:90vh;
-
     border-radius:23px;
-
   }
-
-
   .gif-grid{
-
     grid-template-columns:
       repeat(4,minmax(0,1fr));
-
     gap:7px;
-
     padding:10px;
-
   }
-
-
   .gif-item{
-
     border-radius:13px;
-
     padding:3px;
-
   }
-
-
   .gif-item img{
     border-radius:9px;
   }
-
-
   .scroll-bottom{
-
     right:18px;
     bottom:18px;
-
     width:40px;
     height:40px;
-
   }
-
 }
-
-
 @media(min-width:601px){
-
   .gif-grid{
-
     grid-template-columns:
       repeat(5,minmax(0,1fr));
-
   }
-
 }
-
-
 @media(prefers-reduced-motion:reduce){
-
   *{
-
     scroll-behavior:auto!important;
     transition:none!important;
-
   }
-
   .floating-bubble{
     animation:none!important;
   }
-
 }
-
 </style>
-
 </head>
-
-
 <body>
-
-
-<!-- =====================================================
-     BUBBLE EFFECT LAYER
-===================================================== -->
-
 <div
   class="effect-layer"
   id="effectLayer"
 ></div>
-
-
 <!-- =====================================================
      GIF PICKER
 ===================================================== -->
-
 <div
   class="gif-modal"
   id="gifModal"
   aria-hidden="true"
 >
-
   <div
     class="gif-picker"
     role="dialog"
     aria-modal="true"
     aria-label="เลือก GIF"
   >
-
-    <div class="gif-header">
-
-      <div class="gif-title">
-        GIF ♡
-      </div>
-
-      <button
-        class="gif-close"
-        id="gifClose"
-        type="button"
-        aria-label="ปิด"
-      >
-        ×
-      </button>
-
-    </div>
-
-
-    <div
-      class="gif-grid"
-      id="gifGrid"
-    ></div>
-
+<div class="gif-header">
+  <div class="gif-title">
+    GIF ♡
   </div>
-
+  <button
+    class="gif-close"
+    id="gifClose"
+    type="button"
+    aria-label="ปิด"
+  >
+    ×
+  </button>
 </div>
-
-
+<div
+  class="gif-grid"
+  id="gifGrid"
+></div>
+  </div>
+</div>
 <!-- =====================================================
      CHAT
 ===================================================== -->
-
 <main class="chat-window">
-
-
 <header class="top-bar">
-
   <div class="profile">
-
-    <img
-      class="profile-image"
-      src="./EF49275A-74C1-46A1-AECC-04F296D98CB0.gif"
-      alt="Jaoka"
-    >
-
-    <div class="profile-info">
-
-      <button
-        class="profile-name"
-        id="profileName"
-        type="button"
-      >
-        Jaoka
-      </button>
-
-      <div class="profile-status">
-
-        <span class="status-dot"></span>
-
-        <span>obsessed</span>
-
-      </div>
-
-    </div>
-
+<img
+  class="profile-image"
+  src="./EF49275A-74C1-46A1-AECC-04F296D98CB0.gif"
+  alt="Jaoka"
+>
+<div class="profile-info">
+  <button
+    class="profile-name"
+    id="profileName"
+    type="button"
+  >
+    Jaoka
+  </button>
+  <div class="profile-status">
+    <span class="status-dot"></span>
+    <span>obsessed</span>
   </div>
-
+</div>
+  </div>
 </header>
-
-
 <section class="chat-area">
-
   <div
     class="connection-status"
     id="connectionStatus"
   >
     กำลังเชื่อมต่อ...
   </div>
-
-
   <div
     class="messages"
     id="messages"
   >
-
-    <div
-      class="empty-chat"
-      id="emptyChat"
-    >
-
-      <div>
-
-        <span>♡</span>
-
-        เริ่มคุยกันตรงนี้นะ
-
-      </div>
-
-    </div>
-
+<div
+  class="empty-chat"
+  id="emptyChat"
+>
+  <div>
+    <span>♡</span>
+    เริ่มคุยกันตรงนี้นะ
+  </div>
+</div>
   </div>
 
+<button
+class=“scroll-bottom”
+id=“scrollBottom”
+type=“button”
+aria-label=“ไปข้อความล่าสุด”
 
-  <button
-    class="scroll-bottom"
-    id="scrollBottom"
-    type="button"
-    aria-label="ไปข้อความล่าสุด"
-  >
-
-    ↓
-
+↓
   </button>
-
 </section>
-
-
 <footer class="input-area">
-
-
   <div
     class="effect-menu"
     id="effectMenu"
   >
-
-    <button
-      class="effect-choice"
-      id="bubbleChoice"
-      type="button"
-    >
-
-      <span class="choice-icon">
-        💬
-      </span>
-
-      Bubble
-
-    </button>
-
-
-    <button
-      class="effect-choice"
-      id="gifChoice"
-      type="button"
-    >
-
-      <span class="choice-icon">
-        🎞️
-      </span>
-
-      GIF
-
-    </button>
-
+<button
+  class="effect-choice"
+  id="bubbleChoice"
+  type="button"
+>
+  <span class="choice-icon">
+    💬
+  </span>
+  Bubble
+</button>
+<button
+  class="effect-choice"
+  id="gifChoice"
+  type="button"
+>
+  <span class="choice-icon">
+    🎞️
+  </span>
+  GIF
+</button>
   </div>
-
-
   <div class="input-box">
-
-    <textarea
-      id="messageInput"
-      class="message-input"
-      maxlength="3000"
-      rows="1"
-      placeholder="พิมพ์ข้อความ..."
-    ></textarea>
-
-
-    <button
-      class="effect-button"
-      id="effectButton"
-      type="button"
-      aria-label="เอฟเฟกต์"
-      aria-expanded="false"
-    >
-
-      💬
-
-    </button>
-
-
-    <button
-      class="send-button"
-      id="sendButton"
-      type="button"
-      aria-label="ส่งข้อความ"
-    >
-
-      ♡
-
-    </button>
-
+<textarea
+  id="messageInput"
+  class="message-input"
+  maxlength="3000"
+  rows="1"
+  placeholder="พิมพ์ข้อความ..."
+></textarea>
+<button
+  class="effect-button"
+  id="effectButton"
+  type="button"
+  aria-label="เอฟเฟกต์"
+  aria-expanded="false"
+>
+  💬
+</button>
+<button
+  class="send-button"
+  id="sendButton"
+  type="button"
+  aria-label="ส่งข้อความ"
+>
+  ♡
+</button>
   </div>
-
 </footer>
-
-
 </main>
-
-
 <script type="module">
-
 import{initializeApp}
 from"https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
-
 import{
   getFirestore,
   collection,
@@ -1881,468 +1120,279 @@ import{
   serverTimestamp
 }
 from"https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
-
-
 /* =====================================================
    FIREBASE
 ===================================================== */
-
 const firebaseConfig={
-
   apiKey:
     "AIzaSyBkxDeR-IgljHiFbczQOlvUDtoz7z5xxh4",
-
   authDomain:
     "jaokanjump.firebaseapp.com",
-
   projectId:
     "jaokanjump",
-
   storageBucket:
     "jaokanjump.firebasestorage.app",
-
   messagingSenderId:
     "137877435934",
-
   appId:
     "1:137877435934:web:3160d245dd411917e2200f",
-
   measurementId:
     "G-1HQ7045XKF"
-
 };
-
-
 const db=
   getFirestore(
     initializeApp(firebaseConfig)
   );
-
-
 /* =====================================================
    ELEMENTS
 ===================================================== */
-
 const messages=
   document.getElementById("messages");
-
 const input=
   document.getElementById("messageInput");
-
 const send=
   document.getElementById("sendButton");
-
 const down=
   document.getElementById("scrollBottom");
-
 const empty=
   document.getElementById("emptyChat");
-
 const status=
   document.getElementById("connectionStatus");
-
 const name=
   document.getElementById("profileName");
-
 const effectButton=
   document.getElementById("effectButton");
-
 const effectMenu=
   document.getElementById("effectMenu");
-
 const bubbleChoice=
   document.getElementById("bubbleChoice");
-
 const gifChoice=
   document.getElementById("gifChoice");
-
 const gifModal=
   document.getElementById("gifModal");
-
 const gifClose=
   document.getElementById("gifClose");
-
 const gifGrid=
   document.getElementById("gifGrid");
-
 const effectLayer=
   document.getElementById("effectLayer");
-
-
 /* =====================================================
    GIF LIST
 ===================================================== */
-
 const GIFS=[
-
   "F0280B5F-414D-4E63-9776-0E6FA8AEC484.gif",
-
   "0E38CDD5-E3E6-491C-BA81-A571178EA94F.gif",
-
   "4E0B7F36-3FFA-4AA3-B34E-7DE6B491087D.gif",
-
   "36BE8E1F-5D2A-41C1-88ED-BB06B317B1E8.gif",
-
   "9073500A-3021-44B6-898A-F1C12D3991C9.gif",
-
   "6C364063-E7D5-4F82-8FC6-7A546C33F8F7.gif",
-
   "E33C8953-F043-45DA-806C-31C1F10DDB15.gif",
-
   "27A91E52-BE14-46FA-9C1E-0E9C2D47CAC6.gif",
-
   "0A070562-E429-455F-B499-C0A58BF6D1D2.gif",
-
   "770F0F17-522A-4C17-933F-33C0B018F986.gif",
-
   "17006637-8B8D-4BA0-8BA9-A8114BA2BABB.gif",
-
   "DD5D00EF-C597-41C3-802A-BF5136CEE3CD.gif",
-
   "3046D882-C2E3-473F-A2A7-6E45E787F6EE.gif",
-
   "BE24008A-9234-47FB-8B2C-1339D268E5B8.gif",
-
   "E16D343A-1C4B-46E6-A937-894AF26FFF22.gif"
-
 ];
-
-
 /* =====================================================
    BUILD GIF PICKER
 ===================================================== */
-
 GIFS.forEach(
   filename=>{
-
     const button=
-      document.createElement(
-        "button"
-      );
-
-    button.type=
-      "button";
-
-    button.className=
-      "gif-item";
-
-    button.dataset.gif=
-      filename;
-
+      document.createElement("button");
+    button.type="button";
+    button.className="gif-item";
+    button.dataset.gif=filename;
     button.setAttribute(
       "aria-label",
       "เลือก GIF"
     );
-
-
     const image=
-      document.createElement(
-        "img"
-      );
-
-    image.src=
-      "./"+filename;
-
-    image.alt=
-      "GIF";
-
-    image.loading=
-      "lazy";
-
-
-    button.appendChild(
-      image
-    );
-
-
-    gifGrid.appendChild(
-      button
-    );
-
+      document.createElement("img");
+    image.src="./"+filename;
+    image.alt="GIF";
+    /*
+     * ไม่ใช้ lazy loading ในตัว picker
+     * เพื่อให้ GIF พร้อมและไม่ต้องโหลดซ้ำตอนกด
+     */
+    image.loading="eager";
+    image.decoding="async";
+    button.appendChild(image);
+    gifGrid.appendChild(button);
   }
 );
-
-
 /* =====================================================
    IDENTITY
 ===================================================== */
-
 const IDENTITY_KEY=
   "jaoka_chat_identity_v2";
-
-
 let identity=
   localStorage.getItem(
     IDENTITY_KEY
   )||"them";
-
-
 name.addEventListener(
   "click",
   ()=>{
-
     identity=
       identity==="them"
         ?"me"
         :"them";
-
     localStorage.setItem(
       IDENTITY_KEY,
       identity
     );
-
   }
 );
-
-
 /* =====================================================
    EFFECT MODE
 ===================================================== */
-
-let bubbleMode=
-  false;
-
-
-function setBubbleMode(
-  enabled
-){
-
-  bubbleMode=
-    enabled;
-
+let bubbleMode=false;
+function setBubbleMode(enabled){
+  bubbleMode=enabled;
   input.classList.toggle(
     "bubble-mode",
     bubbleMode
   );
-
   effectButton.classList.toggle(
     "active",
     bubbleMode
   );
-
   input.placeholder=
     bubbleMode
       ?"พิมพ์ข้อความ Bubble..."
       :"พิมพ์ข้อความ...";
-
 }
-
-
 function closeEffectMenu(){
-
-  effectMenu.classList.remove(
-    "open"
-  );
-
+  effectMenu.classList.remove("open");
   effectButton.setAttribute(
     "aria-expanded",
     "false"
   );
-
   if(!bubbleMode){
-
     effectButton.classList.remove(
       "active"
     );
-
   }
-
 }
-
-
 effectButton.addEventListener(
   "click",
   event=>{
-
     event.stopPropagation();
-
     const open=
       effectMenu.classList.toggle(
         "open"
       );
-
     effectButton.setAttribute(
       "aria-expanded",
       String(open)
     );
-
     if(open){
-
       effectButton.classList.add(
         "active"
       );
-
     }else if(!bubbleMode){
-
       effectButton.classList.remove(
         "active"
       );
-
     }
-
   }
 );
-
-
 bubbleChoice.addEventListener(
   "click",
   ()=>{
-
     setBubbleMode(true);
-
     closeEffectMenu();
-
     input.focus();
-
   }
 );
-
-
 /* =====================================================
    GIF MODAL
 ===================================================== */
-
 function openGifPicker(){
-
   closeEffectMenu();
-
-  gifModal.classList.add(
-    "open"
-  );
-
+  /*
+   * ถ้าอยู่ Bubble mode แล้วเลือก GIF
+   * ให้ยกเลิก Bubble mode
+   */
+  setBubbleMode(false);
+  gifModal.classList.add("open");
   gifModal.setAttribute(
     "aria-hidden",
     "false"
   );
-
 }
-
-
 function closeGifPicker(){
-
-  gifModal.classList.remove(
-    "open"
-  );
-
+  gifModal.classList.remove("open");
   gifModal.setAttribute(
     "aria-hidden",
     "true"
   );
-
 }
-
-
 gifChoice.addEventListener(
   "click",
   openGifPicker
 );
-
-
 gifClose.addEventListener(
   "click",
   closeGifPicker
 );
-
-
 gifModal.addEventListener(
   "click",
   event=>{
-
-    if(
-      event.target===
-      gifModal
-    ){
-
+    if(event.target===gifModal){
       closeGifPicker();
-
     }
-
   }
 );
-
-
 document.addEventListener(
   "keydown",
   event=>{
-
-    if(
-      event.key==="Escape"
-    ){
-
+    if(event.key==="Escape"){
       closeEffectMenu();
-
       closeGifPicker();
-
     }
-
   }
 );
-
-
 document.addEventListener(
   "pointerdown",
   event=>{
-
     if(
       !effectMenu.contains(event.target)&&
       event.target!==effectButton
     ){
-
       closeEffectMenu();
-
     }
-
   }
 );
-
-
 /* =====================================================
    HELPERS
 ===================================================== */
-
 function nearBottom(){
-
   return(
     messages.scrollHeight-
     messages.scrollTop-
     messages.clientHeight
   )<120;
-
 }
-
-
-function scrollDown(
-  smooth=true
-){
-
+function scrollDown(smooth=true){
   messages.scrollTo({
-
-    top:
-      messages.scrollHeight,
-
+    top:messages.scrollHeight,
     behavior:
       smooth
         ?"smooth"
         :"auto"
-
   });
-
 }
-
-
-function formatTime(
-  timestamp
-){
-
+function formatTime(timestamp){
   if(!timestamp)return"";
-
   try{
-
     const date=
       timestamp.toDate
         ?timestamp.toDate()
         :new Date(timestamp);
-
     return date.toLocaleTimeString(
       "th-TH",
       {
@@ -2350,116 +1400,64 @@ function formatTime(
         minute:"2-digit"
       }
     );
-
   }catch{
-
     return"";
-
   }
-
 }
-
-
 function updateScrollButton(){
-
   down.classList.toggle(
     "show",
     !nearBottom()
   );
-
 }
-
-
 messages.addEventListener(
   "scroll",
   updateScrollButton
 );
-
-
 down.addEventListener(
   "click",
   ()=>scrollDown()
 );
-
-
 /* =====================================================
    LONG PRESS DELETE
 ===================================================== */
-
 const HOLD_TIME=5000;
-
 let holdTimer=null;
-
 let holdBubble=null;
-
-
 function cancelHold(){
-
   if(holdTimer){
-
-    clearTimeout(
-      holdTimer
-    );
-
+    clearTimeout(holdTimer);
     holdTimer=null;
-
   }
-
-
   if(holdBubble){
-
     holdBubble.classList.remove(
       "holding"
     );
-
     holdBubble=null;
-
   }
-
 }
-
-
 function startHold(
   event,
   bubble,
   messageId
 ){
-
   if(
     event.pointerType==="mouse" &&
     event.button!==0
   ){
-
     return;
-
   }
-
-
   cancelHold();
-
-
-  holdBubble=
-    bubble;
-
-
-  bubble.classList.add(
-    "holding"
-  );
-
-
+  holdBubble=bubble;
+  bubble.classList.add("holding");
   holdTimer=
     setTimeout(
       async()=>{
-
         holdTimer=null;
-
         bubble.classList.remove(
           "holding"
         );
-
-
         try{
-
           await deleteDoc(
             doc(
               db,
@@ -2467,274 +1465,383 @@ function startHold(
               messageId
             )
           );
-
         }catch(error){
-
           console.error(
             "Delete error:",
             error
           );
-
           alert(
             "ลบข้อความไม่สำเร็จ"
           );
-
         }
-
-
         holdBubble=null;
-
       },
       HOLD_TIME
     );
-
 }
-
-
 messages.addEventListener(
   "pointerdown",
   event=>{
-
     const bubble=
       event.target.closest(
         ".message-bubble,.gif-message"
       );
-
     if(!bubble)return;
-
-
     const row=
       bubble.closest(
         ".message-row"
       );
-
     if(!row)return;
-
-
     startHold(
       event,
       bubble,
       row.dataset.id
     );
-
   }
 );
-
-
 messages.addEventListener(
   "pointerup",
   cancelHold
 );
-
-
 messages.addEventListener(
   "pointercancel",
   cancelHold
 );
-
-
 messages.addEventListener(
   "pointerleave",
   cancelHold
 );
-
-
 /* =====================================================
-   RENDER CHAT
+   MESSAGE ELEMENT CREATOR
 ===================================================== */
-
-function render(
+function createMessageRow(
+  docSnap
+){
+  const data=
+    docSnap.data();
+  const row=
+    document.createElement(
+      "div"
+    );
+  row.className=
+    "message-row "+
+    (
+      data.sender==="me"
+        ?"mine"
+        :"theirs"
+    );
+  row.dataset.id=
+    docSnap.id;
+  row.dataset.sender=
+    data.sender||"";
+  /* ===================================================
+     GIF
+  =================================================== */
+  if(data.type==="gif"){
+    const sticker=
+      document.createElement(
+        "div"
+      );
+    sticker.className=
+      "gif-message";
+    const image=
+      document.createElement(
+        "img"
+      );
+    /*
+     * src ถูกกำหนดครั้งเดียวตอนสร้าง element
+     * ไม่เปลี่ยน src ทุกครั้งที่ Firestore update
+     */
+    image.src=
+      data.gif||"";
+    image.alt=
+      "GIF sticker";
+    image.loading=
+      "eager";
+    image.decoding=
+      "async";
+    image.setAttribute(
+      "draggable",
+      "false"
+    );
+    sticker.appendChild(
+      image
+    );
+    const clock=
+      document.createElement(
+        "div"
+      );
+    clock.className=
+      "message-time";
+    clock.textContent=
+      formatTime(
+        data.createdAt
+      );
+    sticker.appendChild(
+      clock
+    );
+    row.appendChild(
+      sticker
+    );
+    return row;
+  }
+  /* ===================================================
+     NORMAL TEXT
+  =================================================== */
+  const bubble=
+    document.createElement(
+      "div"
+    );
+  bubble.className=
+    "message-bubble";
+  bubble.textContent=
+    data.text||"";
+  const clock=
+    document.createElement(
+      "div"
+    );
+  clock.className=
+    "message-time";
+  clock.textContent=
+    formatTime(
+      data.createdAt
+    );
+  bubble.appendChild(
+    clock
+  );
+  row.appendChild(
+    bubble
+  );
+  return row;
+}
+/* =====================================================
+   CHAT DOM CACHE
+   จุดสำคัญ:
+   ไม่ล้าง messages.innerHTML ทุกครั้งที่ Firestore
+   มีการอัปเดต เพราะจะทำให้ GIF ถูกสร้างใหม่
+===================================================== */
+const renderedMessages=
+  new Map();
+let chatInitialized=
+  false;
+/* =====================================================
+   RENDER INITIAL CHAT
+===================================================== */
+function renderInitialChat(
   snapshot
 ){
-
-  const stick=
-    nearBottom();
-
-
   messages.innerHTML="";
-
-
+  renderedMessages.clear();
   if(snapshot.empty){
-
     messages.appendChild(
       empty
     );
-
     empty.style.display=
       "flex";
-
     updateScrollButton();
-
     return;
-
   }
-
-
+  empty.style.display=
+    "none";
   snapshot.forEach(
     docSnap=>{
-
-      const data=
-        docSnap.data();
-
-
       const row=
-        document.createElement(
-          "div"
+        createMessageRow(
+          docSnap
         );
-
-
-      row.className=
-        "message-row "+
-        (
-          data.sender==="me"
-            ?"mine"
-            :"theirs"
-        );
-
-
-      row.dataset.id=
-        docSnap.id;
-
-
-      row.dataset.sender=
-        data.sender||"";
-
-
-      /*
-       * GIF MESSAGE
-       */
-
-      if(data.type==="gif"){
-
-        const sticker=
-          document.createElement(
-            "div"
-          );
-
-        sticker.className=
-          "gif-message";
-
-
-        const image=
-          document.createElement(
-            "img"
-          );
-
-        image.src=
-          data.gif||"";
-
-        image.alt=
-          "GIF sticker";
-
-
-        sticker.appendChild(
-          image
-        );
-
-
-        const clock=
-          document.createElement(
-            "div"
-          );
-
-        clock.className=
-          "message-time";
-
-        clock.textContent=
-          formatTime(
-            data.createdAt
-          );
-
-
-        sticker.appendChild(
-          clock
-        );
-
-
-        row.appendChild(
-          sticker
-        );
-
-
-        messages.appendChild(
-          row
-        );
-
-        return;
-
-      }
-
-
-      /*
-       * NORMAL TEXT
-       */
-
-      const bubble=
-        document.createElement(
-          "div"
-        );
-
-
-      const clock=
-        document.createElement(
-          "div"
-        );
-
-
-      bubble.className=
-        "message-bubble";
-
-
-      bubble.textContent=
-        data.text||"";
-
-
-      clock.className=
-        "message-time";
-
-
-      clock.textContent=
-        formatTime(
-          data.createdAt
-        );
-
-
-      bubble.appendChild(
-        clock
+      renderedMessages.set(
+        docSnap.id,
+        row
       );
-
-
-      row.appendChild(
-        bubble
-      );
-
-
       messages.appendChild(
         row
       );
-
     }
   );
-
-
+  requestAnimationFrame(
+    ()=>scrollDown(false)
+  );
+  updateScrollButton();
+}
+/* =====================================================
+   UPDATE ONLY CHANGED MESSAGES
+   ทำให้ GIF เดิมไม่ถูกสร้างใหม่
+   และไม่กระพริบ/เริ่มโหลดใหม่ทุกครั้ง
+===================================================== */
+function applyChatChanges(
+  snapshot
+){
+  const stick=
+    nearBottom();
+  if(snapshot.empty){
+    messages.innerHTML="";
+    renderedMessages.clear();
+    messages.appendChild(
+      empty
+    );
+    empty.style.display=
+      "flex";
+    updateScrollButton();
+    return;
+  }
+  empty.style.display=
+    "none";
+  snapshot.docChanges().forEach(
+    change=>{
+      const id=
+        change.doc.id;
+      /* -----------------------------------------------
+         เพิ่มข้อความ
+      ------------------------------------------------ */
+      if(change.type==="added"){
+        /*
+         ถ้ามี element อยู่แล้ว
+         ไม่สร้าง GIF ซ้ำ
+        */
+        if(renderedMessages.has(id)){
+          return;
+        }
+        const row=
+          createMessageRow(
+            change.doc
+          );
+        renderedMessages.set(
+          id,
+          row
+        );
+        /*
+         ใช้ index จาก Firestore
+         เพื่อให้ลำดับตรงกับ createdAt
+        */
+        const nextDoc=
+          snapshot.docs[
+            change.newIndex+1
+          ];
+        if(nextDoc){
+          const nextRow=
+            renderedMessages.get(
+              nextDoc.id
+            );
+          if(nextRow){
+            messages.insertBefore(
+              row,
+              nextRow
+            );
+          }else{
+            messages.appendChild(
+              row
+            );
+          }
+        }else{
+          messages.appendChild(
+            row
+          );
+        }
+      }
+      /* -----------------------------------------------
+         แก้ไขข้อความ
+      ------------------------------------------------ */
+      if(change.type==="modified"){
+        const oldRow=
+          renderedMessages.get(id);
+        if(!oldRow){
+          const row=
+            createMessageRow(
+              change.doc
+            );
+          renderedMessages.set(
+            id,
+            row
+          );
+          messages.appendChild(
+            row
+          );
+          return;
+        }
+        /*
+         GIF ไม่ถูกสร้างใหม่
+         ถ้าเป็น GIF เดิม ให้คง element เดิมไว้
+        */
+        const newData=
+          change.doc.data();
+        const isGif=
+          newData.type==="gif";
+        const oldIsGif=
+          oldRow.querySelector(
+            ".gif-message"
+          );
+        if(isGif && oldIsGif){
+          const clock=
+            oldIsGif.querySelector(
+              ".message-time"
+            );
+          if(clock){
+            clock.textContent=
+              formatTime(
+                newData.createdAt
+              );
+          }
+          return;
+        }
+        /*
+         ข้อความที่เปลี่ยนจริง ๆ
+         ค่อยสร้างใหม่
+        */
+        const newRow=
+          createMessageRow(
+            change.doc
+          );
+        renderedMessages.set(
+          id,
+          newRow
+        );
+        oldRow.replaceWith(
+          newRow
+        );
+      }
+      /* -----------------------------------------------
+         ลบข้อความ
+      ------------------------------------------------ */
+      if(change.type==="removed"){
+        const row=
+          renderedMessages.get(id);
+        if(row){
+          row.remove();
+        }
+        renderedMessages.delete(id);
+      }
+    }
+  );
+  /*
+   * จัดลำดับ DOM ใหม่เฉพาะเมื่อจำเป็น
+   * โดยไม่สร้าง element ใหม่
+   */
+  const orderedRows=
+    snapshot.docs
+      .map(
+        item=>
+          renderedMessages.get(
+            item.id
+          )
+      )
+      .filter(Boolean);
+  orderedRows.forEach(
+    row=>{
+      messages.appendChild(
+        row
+      );
+    }
+  );
   if(stick){
-
     requestAnimationFrame(
       ()=>scrollDown(false)
     );
-
   }
-
-
   updateScrollButton();
-
 }
-
-
 /* =====================================================
    NORMAL CHAT QUERY
 ===================================================== */
-
 const chat=
   query(
     collection(
@@ -2746,110 +1853,70 @@ const chat=
       "asc"
     )
   );
-
-
 status.style.display=
   "block";
-
-
 onSnapshot(
   chat,
-
   snapshot=>{
-
     status.style.display=
       "none";
-
-    render(
+    if(!chatInitialized){
+      chatInitialized=true;
+      renderInitialChat(
+        snapshot
+      );
+      return;
+    }
+    applyChatChanges(
       snapshot
     );
-
   },
-
   error=>{
-
     console.error(
       "Firestore error:",
       error
     );
-
-
     status.textContent=
       "เชื่อมต่อแชทไม่ได้";
-
-
     status.style.display=
       "block";
-
   }
 );
-
-
 /* =====================================================
    BUBBLE VISUAL
 ===================================================== */
-
 function randomBetween(
   min,
   max
 ){
-
   return(
     Math.random()*
     (max-min)+
     min
   );
-
 }
-
-
 function showBubbleEffect(
   text
 ){
-
   if(!text)return;
-
-
   const el=
     document.createElement(
       "div"
     );
-
-
   el.className=
     "floating-bubble";
-
-
   el.textContent=
     text;
-
-
-  /*
-   * ขนาดสุ่ม
-   */
-
   el.style.fontSize=
     randomBetween(
       28,
       68
     )+"px";
-
-
-  /*
-   * จุดเริ่มต้น
-   */
-
   el.style.left=
     randomBetween(
       3,
       88
     )+"vw";
-
-
-  /*
-   * ลอยช้ามาก
-   */
-
   el.style.setProperty(
     "--bubble-duration",
     randomBetween(
@@ -2857,12 +1924,6 @@ function showBubbleEffect(
       15
     )+"s"
   );
-
-
-  /*
-   * ลอยเอียงซ้ายขวาเหมือนลูกโป่ง
-   */
-
   el.style.setProperty(
     "--drift-1",
     randomBetween(
@@ -2870,8 +1931,6 @@ function showBubbleEffect(
       50
     )+"px"
   );
-
-
   el.style.setProperty(
     "--drift-2",
     randomBetween(
@@ -2879,8 +1938,6 @@ function showBubbleEffect(
       100
     )+"px"
   );
-
-
   el.style.setProperty(
     "--drift-3",
     randomBetween(
@@ -2888,8 +1945,6 @@ function showBubbleEffect(
       140
     )+"px"
   );
-
-
   el.style.setProperty(
     "--drift-4",
     randomBetween(
@@ -2897,8 +1952,6 @@ function showBubbleEffect(
       190
     )+"px"
   );
-
-
   el.style.setProperty(
     "--rotate-start",
     randomBetween(
@@ -2906,8 +1959,6 @@ function showBubbleEffect(
       7
     )+"deg"
   );
-
-
   el.style.setProperty(
     "--rotate-1",
     randomBetween(
@@ -2915,8 +1966,6 @@ function showBubbleEffect(
       5
     )+"deg"
   );
-
-
   el.style.setProperty(
     "--rotate-2",
     randomBetween(
@@ -2924,8 +1973,6 @@ function showBubbleEffect(
       6
     )+"deg"
   );
-
-
   el.style.setProperty(
     "--rotate-3",
     randomBetween(
@@ -2933,8 +1980,6 @@ function showBubbleEffect(
       5
     )+"deg"
   );
-
-
   el.style.setProperty(
     "--rotate-end",
     randomBetween(
@@ -2942,25 +1987,19 @@ function showBubbleEffect(
       8
     )+"deg"
   );
-
-
   effectLayer.appendChild(
     el
   );
-
-
   setTimeout(
-    ()=>el.remove(),
+    ()=>{
+      el.remove();
+    },
     16000
   );
-
 }
-
-
 /* =====================================================
-   FIRESTORE EFFECTS
+   BUBBLE EFFECT FIRESTORE
 ===================================================== */
-
 const effects=
   query(
     collection(
@@ -2972,398 +2011,210 @@ const effects=
       "asc"
     )
   );
-
-
-let effectsReady=
-  false;
-
-
+let effectsReady=false;
 onSnapshot(
   effects,
-
   snapshot=>{
-
     /*
-     * ไม่เล่นเอฟเฟกต์เก่าตอนเปิดเว็บ
+     * ไม่เล่น Bubble เก่าตอนเปิดหน้า
      */
-
     if(!effectsReady){
-
-      effectsReady=
-        true;
-
+      effectsReady=true;
       return;
-
     }
-
-
     snapshot.docChanges().forEach(
       change=>{
-
         if(
           change.type!=="added"
         ){
-
           return;
-
         }
-
-
         const data=
           change.doc.data();
-
-
-        /*
-         * Bubble
-         */
-
         if(
           data.type==="bubble"
         ){
-
-          /*
-           * ลูกเดียวต่อข้อความที่ส่ง
-           * แต่แต่ละข้อความจะค่อย ๆ ลอย
-           * ทำให้หลายข้อความกลายเป็นหลายลูก
-           */
-
           showBubbleEffect(
             data.text||""
           );
-
         }
-
       }
     );
-
   },
-
   error=>{
-
     console.error(
-      "Effects Firestore error:",
+      "Effects error:",
       error
     );
-
   }
 );
-
-
-/* =====================================================
-   SEND NORMAL TEXT
-===================================================== */
-
-async function sendNormalMessage(
-  text
-){
-
-  await addDoc(
-    collection(
-      db,
-      "jaoka_chat"
-    ),
-    {
-
-      text:
-        text,
-
-      sender:
-        identity,
-
-      createdAt:
-        serverTimestamp()
-
-    }
-  );
-
-}
-
-
 /* =====================================================
    SEND BUBBLE
 ===================================================== */
-
 async function sendBubble(
   text
 ){
-
-  await addDoc(
-    collection(
-      db,
-      "jaoka_effects"
-    ),
-    {
-
-      type:
-        "bubble",
-
-      text:
-        text,
-
-      sender:
-        identity,
-
-      createdAt:
-        serverTimestamp()
-
-    }
-  );
-
+  if(!text.trim())return;
+  try{
+    await addDoc(
+      collection(
+        db,
+        "jaoka_effects"
+      ),
+      {
+        type:"bubble",
+        text:text.trim(),
+        sender:identity,
+        createdAt:serverTimestamp()
+      }
+    );
+  }catch(error){
+    console.error(
+      "Bubble error:",
+      error
+    );
+  }
 }
-
-
 /* =====================================================
-   SEND GIF AS CHAT STICKER
+   SEND GIF
 ===================================================== */
-
 async function sendGif(
   filename
 ){
-
-  await addDoc(
-    collection(
-      db,
-      "jaoka_chat"
-    ),
-    {
-
-      type:
-        "gif",
-
-      gif:
-        "./"+filename,
-
-      sender:
-        identity,
-
-      createdAt:
-        serverTimestamp()
-
-    }
-  );
-
+  if(!filename)return;
+  try{
+    await addDoc(
+      collection(
+        db,
+        "jaoka_chat"
+      ),
+      {
+        type:"gif",
+        gif:"./"+filename,
+        sender:identity,
+        createdAt:serverTimestamp()
+      }
+    );
+  }catch(error){
+    console.error(
+      "GIF send error:",
+      error
+    );
+    alert(
+      "ส่ง GIF ไม่สำเร็จ"
+    );
+  }
 }
-
-
 /* =====================================================
    GIF CLICK
 ===================================================== */
-
 gifGrid.addEventListener(
   "click",
-  async event=>{
-
+  event=>{
     const item=
       event.target.closest(
         ".gif-item"
       );
-
     if(!item)return;
-
-
     const filename=
       item.dataset.gif;
-
-
-    if(!filename)return;
-
-
-    try{
-
-      await sendGif(
-        filename
-      );
-
-      closeGifPicker();
-
-    }catch(error){
-
-      console.error(
-        "GIF send error:",
-        error
-      );
-
-      alert(
-        "ส่ง GIF ไม่สำเร็จ"
-      );
-
-    }
-
+    closeGifPicker();
+    /*
+     * ส่งทันทีเหมือนสติกเกอร์
+     */
+    sendGif(
+      filename
+    );
   }
 );
-
-
 /* =====================================================
-   SEND
+   SEND NORMAL MESSAGE
 ===================================================== */
-
 async function sendMessage(){
-
   const text=
-    input.value;
-
-
-  if(!text.trim()){
-
-    input.focus();
-
-    return;
-
-  }
-
-
-  send.disabled=
-    true;
-
-
+    input.value.trim();
+  if(!text)return;
+  send.disabled=true;
   try{
-
     /*
-     * BUBBLE
+     * Bubble mode
      */
-
     if(bubbleMode){
-
       await sendBubble(
         text
       );
-
-
-      input.value=
-        "";
-
-
-      resizeInput();
-
-
-      setBubbleMode(
-        false
-      );
-
-
+      input.value="";
+      input.style.height=
+        "auto";
+      setBubbleMode(false);
       input.focus();
-
-
       return;
-
     }
-
-
     /*
-     * NORMAL
+     * Normal text
      */
-
-    await sendNormalMessage(
-      text
+    await addDoc(
+      collection(
+        db,
+        "jaoka_chat"
+      ),
+      {
+        text:text,
+        sender:identity,
+        createdAt:serverTimestamp()
+      }
     );
-
-
-    input.value=
-      "";
-
-
-    resizeInput();
-
-
+    input.value="";
+    input.style.height=
+      "auto";
     input.focus();
-
-
-    setTimeout(
-      ()=>scrollDown(),
-      100
-    );
-
-
   }catch(error){
-
     console.error(
       "Send error:",
       error
     );
-
-
     alert(
-      "ส่งไม่สำเร็จ\n\n"+
-      "เช็ก Firestore Rules ก่อนนะ"
+      "ส่งข้อความไม่สำเร็จ"
     );
-
-
   }finally{
-
-    send.disabled=
-      false;
-
+    send.disabled=false;
   }
-
 }
-
-
+/* =====================================================
+   SEND BUTTON
+===================================================== */
 send.addEventListener(
   "click",
   sendMessage
 );
-
-
 /* =====================================================
    TEXTAREA
 ===================================================== */
-
-function resizeInput(){
-
-  input.style.height=
-    "auto";
-
-
-  input.style.height=
-    Math.min(
-      input.scrollHeight,
-      130
-    )+"px";
-
-}
-
-
 input.addEventListener(
   "input",
-  resizeInput
+  ()=>{
+    input.style.height=
+      "auto";
+    input.style.height=
+      Math.min(
+        input.scrollHeight,
+        130
+      )+"px";
+  }
 );
-
-
 input.addEventListener(
   "keydown",
   event=>{
-
     if(
-      event.key==="Enter"&&
-      (
-        event.ctrlKey||
-        event.metaKey
-      )
+      (event.ctrlKey||
+       event.metaKey)&&
+      event.key==="Enter"
     ){
-
       event.preventDefault();
-
       sendMessage();
-
     }
-
   }
 );
-
-
-/* =====================================================
-   INITIAL
-===================================================== */
-
-resizeInput();
-
-
-setTimeout(
-  ()=>scrollDown(false),
-  300
-);
-
 </script>
-
 </body>
 </html>
