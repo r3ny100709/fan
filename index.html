@@ -22,11 +22,13 @@
   padding:0;
 }
 
+
 html,
 body{
   width:100%;
   min-height:100%;
 }
+
 
 body{
 
@@ -121,8 +123,6 @@ body{
 }
 
 
-/* ลูกโป่งลอยช้า ๆ */
-
 @keyframes bubbleBalloon{
 
   0%{
@@ -143,9 +143,7 @@ body{
   }
 
   8%{
-
     opacity:.95;
-
   }
 
   25%{
@@ -591,26 +589,38 @@ body{
 
 /* =====================================================
    GIF STICKER MESSAGE
+   ไม่มีกรอบ / ไม่มีพื้นหลัง
 ===================================================== */
 
 .gif-message{
 
-  max-width:230px;
+  position:relative;
 
-  padding:7px;
+  width:max-content;
 
-  border-radius:20px;
+  max-width:160px;
 
-  background:
-    rgba(255,255,255,.78);
+  padding:0;
 
-  border:
-    2px solid
-    rgba(239,190,216,.65);
+  margin:0;
 
-  box-shadow:
-    0 5px 18px
-    rgba(130,100,145,.1);
+  background:transparent;
+
+  border:0;
+
+  border-radius:0;
+
+  box-shadow:none;
+
+  overflow:visible;
+
+  cursor:pointer;
+
+  user-select:none;
+
+  -webkit-user-select:none;
+
+  -webkit-touch-callout:none;
 
 }
 
@@ -619,15 +629,38 @@ body{
 
   display:block;
 
-  width:100%;
+  width:auto;
 
-  max-height:230px;
+  height:auto;
+
+  max-width:160px;
+
+  max-height:160px;
 
   object-fit:contain;
 
-  border-radius:14px;
+  background:transparent;
 
-  background:#fff;
+  border:0;
+
+  border-radius:0;
+
+  box-shadow:none;
+
+}
+
+
+/*
+ * เวลาอยู่ใต้ GIF เท่านั้น
+ */
+
+.gif-message .message-time{
+
+  margin-top:4px;
+
+  padding:0;
+
+  background:transparent;
 
 }
 
@@ -1507,8 +1540,23 @@ body{
   }
 
 
+  /* ===================================================
+     GIF เล็กลงบนมือถือ
+  =================================================== */
+
   .gif-message{
-    max-width:190px;
+
+    max-width:140px;
+
+  }
+
+
+  .gif-message img{
+
+    max-width:140px;
+
+    max-height:140px;
+
   }
 
 
@@ -2046,9 +2094,10 @@ GIFS.forEach(
     image.alt=
       "GIF";
 
-    image.loading=
-      "lazy";
 
+    /*
+     * ไม่ใช้ lazy loading
+     */
 
     button.appendChild(
       image
@@ -2600,9 +2649,9 @@ function render(
         data.sender||"";
 
 
-      /*
-       * GIF MESSAGE
-       */
+      /* =================================================
+         GIF MESSAGE
+      ================================================= */
 
       if(data.type==="gif"){
 
@@ -2626,6 +2675,12 @@ function render(
         image.alt=
           "GIF sticker";
 
+
+        /*
+         * ไม่มี loading
+         * ไม่มีกรอบ
+         * ไม่มีพื้นหลัง
+         */
 
         sticker.appendChild(
           image
@@ -2665,9 +2720,9 @@ function render(
       }
 
 
-      /*
-       * NORMAL TEXT
-       */
+      /* =================================================
+         NORMAL TEXT
+      ================================================= */
 
       const bubble=
         document.createElement(
@@ -2824,10 +2879,6 @@ function showBubbleEffect(
     text;
 
 
-  /*
-   * ขนาดสุ่ม
-   */
-
   el.style.fontSize=
     randomBetween(
       28,
@@ -2835,20 +2886,12 @@ function showBubbleEffect(
     )+"px";
 
 
-  /*
-   * จุดเริ่มต้น
-   */
-
   el.style.left=
     randomBetween(
       3,
       88
     )+"vw";
 
-
-  /*
-   * ลอยช้ามาก
-   */
 
   el.style.setProperty(
     "--bubble-duration",
@@ -2858,10 +2901,6 @@ function showBubbleEffect(
     )+"s"
   );
 
-
-  /*
-   * ลอยเอียงซ้ายขวาเหมือนลูกโป่ง
-   */
 
   el.style.setProperty(
     "--drift-1",
@@ -2983,10 +3022,6 @@ onSnapshot(
 
   snapshot=>{
 
-    /*
-     * ไม่เล่นเอฟเฟกต์เก่าตอนเปิดเว็บ
-     */
-
     if(!effectsReady){
 
       effectsReady=
@@ -3013,19 +3048,9 @@ onSnapshot(
           change.doc.data();
 
 
-        /*
-         * Bubble
-         */
-
         if(
           data.type==="bubble"
         ){
-
-          /*
-           * ลูกเดียวต่อข้อความที่ส่ง
-           * แต่แต่ละข้อความจะค่อย ๆ ลอย
-           * ทำให้หลายข้อความกลายเป็นหลายลูก
-           */
 
           showBubbleEffect(
             data.text||""
@@ -3218,9 +3243,9 @@ async function sendMessage(){
 
   try{
 
-    /*
-     * BUBBLE
-     */
+    /* =================================================
+       BUBBLE
+    ================================================= */
 
     if(bubbleMode){
 
@@ -3249,9 +3274,9 @@ async function sendMessage(){
     }
 
 
-    /*
-     * NORMAL
-     */
+    /* =================================================
+       NORMAL
+    ================================================= */
 
     await sendNormalMessage(
       text
