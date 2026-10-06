@@ -1,1939 +1,488 @@
 <!DOCTYPE html>
 <html lang="th">
-
 <head>
-
 <meta charset="UTF-8">
-
-<meta
-  name="viewport"
-  content="width=device-width, initial-scale=1.0, viewport-fit=cover"
->
-
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>Jaoka ♡</title>
 
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Itim&family=Mali:wght@400;500;600;700&display=swap');
 
-/* =====================================================
-   FONT
-===================================================== */
-
-@import url(
-  'https://fonts.googleapis.com/css2?family=Itim&family=Mali:wght@400;500;600;700&display=swap'
-);
-
-
-/* =====================================================
-   BASIC
-===================================================== */
-
-*{
-  box-sizing:border-box;
-  margin:0;
-  padding:0;
-}
-
-html,
-body{
-  width:100%;
-  min-height:100%;
-}
+*{box-sizing:border-box;margin:0;padding:0}
 
 body{
-
-  min-height:100vh;
-
-  display:flex;
-  align-items:center;
-  justify-content:center;
-
-  padding:20px;
-
-  overflow:hidden;
-
-  font-family:
-    "Mali",
-    sans-serif;
-
-  color:#69536f;
-
+  min-height:100vh;padding:20px;
+  display:flex;align-items:center;justify-content:center;
+  overflow:hidden;font-family:Mali,sans-serif;color:#69536f;
   background:
-
-    radial-gradient(
-      circle at 10% 12%,
-      rgba(255,255,255,.9) 0 3%,
-      transparent 4%
-    ),
-
-    radial-gradient(
-      circle at 90% 18%,
-      rgba(255,255,255,.75) 0 2.5%,
-      transparent 3.5%
-    ),
-
-    radial-gradient(
-      circle at 15% 88%,
-      rgba(255,255,255,.65) 0 2.5%,
-      transparent 3.5%
-    ),
-
-    linear-gradient(
-      135deg,
-      #ffd8eb,
-      #f7e1ff 48%,
-      #dceeff
-    );
-
+    radial-gradient(circle at 10% 12%,#fff 0 3%,transparent 4%),
+    radial-gradient(circle at 90% 18%,#ffffffc0 0 2.5%,transparent 3.5%),
+    radial-gradient(circle at 15% 88%,#ffffffa6 0 2.5%,transparent 3.5%),
+    linear-gradient(135deg,#ffd8eb,#f7e1ff 48%,#dceeff);
 }
-
-
-/* =====================================================
-   CHAT WINDOW
-===================================================== */
 
 .chat-window{
-
-  width:
-    min(
-      900px,
-      96vw
-    );
-
-  height:
-    min(
-      900px,
-      92vh
-    );
-
-  min-height:620px;
-
-  display:flex;
-  flex-direction:column;
-
-  overflow:hidden;
-
-  background:
-    rgba(255,255,255,.78);
-
-  border:
-    3px solid
-    rgba(255,255,255,.95);
-
-  border-radius:
-    30px;
-
-  box-shadow:
-
-    0 25px 80px
-    rgba(164,113,172,.25),
-
-    inset
-    0 0 0 2px
-    rgba(244,184,221,.5);
-
-  backdrop-filter:
-    blur(18px);
-
+  width:min(900px,96vw);height:min(900px,92vh);min-height:620px;
+  display:flex;flex-direction:column;overflow:hidden;
+  background:#ffffffc7;border:3px solid #fffffff2;border-radius:30px;
+  box-shadow:0 25px 80px #a471ac40,inset 0 0 0 2px #f4b8dd80;
+  backdrop-filter:blur(18px);
 }
-
-
-/* =====================================================
-   TOP BAR
-===================================================== */
 
 .top-bar{
-
-  flex-shrink:0;
-
-  min-height:76px;
-
-  padding:
-    10px
-    18px;
-
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-
-  background:
-
-    linear-gradient(
-      90deg,
-      #f8afd0,
-      #d0b9f2,
-      #adddf4
-    );
-
-  border-bottom:
-    2px solid
-    rgba(255,255,255,.75);
-
+  min-height:76px;padding:10px 18px;flex-shrink:0;
+  display:flex;align-items:center;justify-content:space-between;
+  background:linear-gradient(90deg,#f8afd0,#d0b9f2,#adddf4);
+  border-bottom:2px solid #ffffffbf;
 }
 
-
-/* =====================================================
-   PROFILE
-===================================================== */
-
-.profile{
-
-  display:flex;
-  align-items:center;
-
-  gap:12px;
-
-  min-width:0;
-
-}
-
+.profile{display:flex;align-items:center;gap:12px;min-width:0}
 
 .profile-image{
-
-  width:50px;
-  height:50px;
-
-  flex-shrink:0;
-
-  border-radius:50%;
-
-  object-fit:cover;
-
-  background:#ffd7e9;
-
-  border:
-    3px solid
-    rgba(255,255,255,.95);
-
-  box-shadow:
-    0 5px 15px
-    rgba(175,120,170,.2);
-
+  width:50px;height:50px;flex-shrink:0;border-radius:50%;
+  object-fit:cover;background:#ffd7e9;border:3px solid #fffffff2;
+  box-shadow:0 5px 15px #af78aa33;
 }
 
-
-.profile-info{
-
-  min-width:0;
-
-}
-
+.profile-info{min-width:0}
 
 .profile-name{
-
-  font-family:
-    "Itim",
-    cursive;
-
-  font-size:25px;
-
-  line-height:1;
-
-  color:#7d5d82;
-
+  border:0;background:none;padding:0;cursor:pointer;
+  font:25px/1 Itim,cursive;color:#7d5d82;
 }
 
+.profile-name:active{transform:scale(.96)}
 
 .profile-status{
-
-  display:flex;
-  align-items:center;
-
-  gap:6px;
-
-  margin-top:5px;
-
-  color:#8d718f;
-
-  font-size:12px;
-
+  display:flex;align-items:center;gap:6px;margin-top:5px;
+  color:#8d718f;font-size:12px;
 }
-
 
 .status-dot{
-
-  width:9px;
-  height:9px;
-
-  flex-shrink:0;
-
-  border-radius:50%;
-
-  background:#ff91bd;
-
-  box-shadow:
-    0 0 8px
-    rgba(255,145,189,.75);
-
+  width:9px;height:9px;flex-shrink:0;border-radius:50%;
+  background:#ff91bd;box-shadow:0 0 8px #ff91bdc0;
 }
 
-
-/* =====================================================
-   WINDOW DOTS
-===================================================== */
-
-.window-dots{
-
-  display:flex;
-
-  gap:7px;
-
-}
-
-
+.window-dots{display:flex;gap:7px}
 .window-dots span{
-
-  width:11px;
-  height:11px;
-
-  border-radius:50%;
-
-  background:
-    rgba(255,255,255,.82);
-
+  width:11px;height:11px;border-radius:50%;background:#ffffffd1;
 }
-
-
-/* =====================================================
-   CHAT AREA
-===================================================== */
 
 .chat-area{
-
-  position:relative;
-
-  flex:1;
-
-  min-height:0;
-
-  padding:
-    20px
-    18px;
-
-  background:
-
-    linear-gradient(
-      180deg,
-      rgba(255,247,252,.72),
-      rgba(244,246,255,.68)
-    );
-
+  position:relative;flex:1;min-height:0;padding:20px 18px;
+  background:linear-gradient(180deg,#fff7fcba,#f4f6ffad);
 }
-
-
-/* =====================================================
-   MESSAGES SCROLLER
-===================================================== */
 
 .messages{
-
-  width:100%;
-  height:100%;
-
-  overflow-y:auto;
-  overflow-x:hidden;
-
-  padding:
-    4px
-    12px
-    18px;
-
-  scroll-behavior:smooth;
-
-  overscroll-behavior:contain;
-
-  scrollbar-width:
-    thin;
-
-  scrollbar-color:
-    #e7a9c8
-    rgba(255,255,255,.45);
-
+  width:100%;height:100%;overflow-y:auto;overflow-x:hidden;
+  padding:4px 12px 18px;scroll-behavior:smooth;
+  overscroll-behavior:contain;scrollbar-width:thin;
+  scrollbar-color:#e7a9c8 #ffffff73;
 }
 
-
-/* Webkit scrollbar */
-
-.messages::-webkit-scrollbar{
-
-  width:9px;
-
-}
-
+.messages::-webkit-scrollbar{width:9px}
 .messages::-webkit-scrollbar-track{
-
-  background:
-    rgba(255,255,255,.45);
-
-  border-radius:20px;
-
+  background:#ffffff73;border-radius:20px
 }
-
 .messages::-webkit-scrollbar-thumb{
-
-  background:
-    linear-gradient(
-      #f1a6c8,
-      #bca9e8
-    );
-
-  border-radius:20px;
-
-  border:
-    2px solid
-    rgba(255,255,255,.5);
-
+  background:linear-gradient(#f1a6c8,#bca9e8);
+  border-radius:20px;border:2px solid #ffffff80;
 }
 
-
-/* =====================================================
-   MESSAGE ROW
-===================================================== */
-
-.message-row{
-
-  display:flex;
-
-  width:100%;
-
-  margin:
-    7px
-    0;
-
-}
-
-
-.message-row.mine{
-
-  justify-content:flex-start;
-
-}
-
-.message-row.theirs{
-
-  justify-content:flex-end;
-
-}
-
-
-/* =====================================================
-   BUBBLE
-===================================================== */
+.message-row{display:flex;width:100%;margin:7px 0}
+.message-row.mine{justify-content:flex-start}
+.message-row.theirs{justify-content:flex-end}
 
 .message-bubble{
-
-  max-width:
-    min(
-      72%,
-      600px
-    );
-
-  padding:
-    12px
-    16px;
-
-  border-radius:
-    20px;
-
-  line-height:
-    1.75;
-
-  font-size:
-    15px;
-
-  white-space:
-    pre-wrap;
-
-  word-break:
-    break-word;
-
-  overflow-wrap:
-    anywhere;
-
-  position:relative;
-
-  box-shadow:
-    0 4px 13px
-    rgba(130,100,145,.08);
-
+  max-width:min(72%,600px);padding:12px 16px;border-radius:20px;
+  line-height:1.75;font-size:15px;white-space:pre-wrap;
+  word-break:break-word;overflow-wrap:anywhere;
+  box-shadow:0 4px 13px #82649114;
 }
 
-
-/* =====================================================
-   OUR MESSAGE — PINK / LEFT
-===================================================== */
-
-.message-row.mine
-.message-bubble{
-
+.mine .message-bubble{
   color:#76576b;
-
-  background:
-
-    linear-gradient(
-      135deg,
-      #ffd1e5,
-      #f8c4df
-    );
-
-  border:
-    1px solid
-    rgba(239,155,193,.55);
-
-  border-bottom-left-radius:
-    6px;
-
+  background:linear-gradient(135deg,#ffd1e5,#f8c4df);
+  border:1px solid #ef9bc18c;border-bottom-left-radius:6px;
 }
 
-
-/* =====================================================
-   THEIR MESSAGE — BLUE / RIGHT
-===================================================== */
-
-.message-row.theirs
-.message-bubble{
-
+.theirs .message-bubble{
   color:#5b6475;
-
-  background:
-
-    linear-gradient(
-      135deg,
-      #d5ecff,
-      #c8e4fa
-    );
-
-  border:
-    1px solid
-    rgba(145,196,232,.55);
-
-  border-bottom-right-radius:
-    6px;
-
+  background:linear-gradient(135deg,#d5ecff,#c8e4fa);
+  border:1px solid #91c4e88c;border-bottom-right-radius:6px;
 }
 
-
-/* =====================================================
-   MESSAGE TIME
-===================================================== */
-
-.message-time{
-
-  margin-top:5px;
-
-  font-size:10px;
-
-  line-height:1.2;
-
-  opacity:.62;
-
-}
-
-
-.message-row.mine
-.message-time{
-
-  text-align:left;
-
-}
-
-.message-row.theirs
-.message-time{
-
-  text-align:right;
-
-}
-
-
-/* =====================================================
-   EMPTY CHAT
-===================================================== */
+.message-time{margin-top:5px;font-size:10px;line-height:1.2;opacity:.62}
+.mine .message-time{text-align:left}
+.theirs .message-time{text-align:right}
 
 .empty-chat{
-
-  width:100%;
-  height:100%;
-
-  display:flex;
-
-  align-items:center;
-  justify-content:center;
-
-  text-align:center;
-
-  color:#b99eb9;
-
-  font-size:14px;
-
-  line-height:1.8;
-
+  width:100%;height:100%;display:flex;align-items:center;
+  justify-content:center;text-align:center;color:#b99eb9;
+  font-size:14px;line-height:1.8;
 }
-
-
-.empty-chat span{
-
-  display:block;
-
-  font-size:38px;
-
-  margin-bottom:8px;
-
-}
-
-
-/* =====================================================
-   SCROLL TO BOTTOM
-===================================================== */
+.empty-chat span{display:block;font-size:38px;margin-bottom:8px}
 
 .scroll-bottom{
-
-  position:absolute;
-
-  right:25px;
-  bottom:25px;
-
-  width:43px;
-  height:43px;
-
-  display:flex;
-  align-items:center;
-  justify-content:center;
-
-  border:none;
-
-  border-radius:50%;
-
-  background:
-    rgba(255,255,255,.95);
-
-  color:#b77ca5;
-
-  font-size:19px;
-
-  cursor:pointer;
-
-  box-shadow:
-    0 6px 18px
-    rgba(130,100,145,.2);
-
-  opacity:0;
-
-  pointer-events:none;
-
-  transform:
-    translateY(8px);
-
-  transition:
-    .2s ease;
-
+  position:absolute;right:25px;bottom:25px;width:43px;height:43px;
+  display:flex;align-items:center;justify-content:center;
+  border:0;border-radius:50%;background:#fffffff2;color:#b77ca5;
+  font-size:19px;cursor:pointer;box-shadow:0 6px 18px #82649133;
+  opacity:0;pointer-events:none;transform:translateY(8px);transition:.2s;
 }
-
-
-.scroll-bottom.show{
-
-  opacity:1;
-
-  pointer-events:auto;
-
-  transform:
-    translateY(0);
-
-}
-
-
-.scroll-bottom:hover{
-
-  transform:
-    translateY(-2px);
-
-}
-
-
-/* =====================================================
-   INPUT AREA
-===================================================== */
+.scroll-bottom.show{opacity:1;pointer-events:auto;transform:translateY(0)}
 
 .input-area{
-
-  flex-shrink:0;
-
-  padding:
-    13px
-    16px
-    15px;
-
-  background:
-    rgba(255,255,255,.83);
-
-  border-top:
-    2px solid
-    rgba(255,255,255,.9);
-
+  flex-shrink:0;padding:13px 16px 15px;background:#ffffffd4;
+  border-top:2px solid #ffffffe6;
 }
 
-
-/* =====================================================
-   IDENTITY SELECTOR
-===================================================== */
-
-.identity-row{
-
-  display:flex;
-
-  align-items:center;
-
-  justify-content:space-between;
-
-  gap:10px;
-
-  margin-bottom:8px;
-
-  padding:
-    0
-    3px;
-
-}
-
-
-.identity-label{
-
-  color:#aa8baa;
-
-  font-size:11px;
-
-}
-
-
-.identity-buttons{
-
-  display:flex;
-
-  gap:5px;
-
-}
-
-
-.identity-button{
-
-  border:none;
-
-  padding:
-    4px
-    10px;
-
-  border-radius:20px;
-
-  font-family:
-    "Mali",
-    sans-serif;
-
-  font-size:11px;
-
-  color:#9d7d9e;
-
-  background:
-    rgba(245,230,245,.8);
-
-  cursor:pointer;
-
-  transition:.2s ease;
-
-}
-
-
-.identity-button.active{
-
-  color:#fff;
-
-  background:
-    linear-gradient(
-      100deg,
-      #ee9fc4,
-      #b8a1e6
-    );
-
-  box-shadow:
-    0 3px 8px
-    rgba(190,130,180,.2);
-
-}
-
-
-/* =====================================================
-   INPUT BOX
-===================================================== */
-
-.input-box{
-
-  display:flex;
-
-  align-items:flex-end;
-
-  gap:9px;
-
-}
-
+.input-box{display:flex;align-items:flex-end;gap:9px}
 
 .message-input{
-
-  flex:1;
-
-  min-width:0;
-
-  min-height:48px;
-  max-height:130px;
-
-  resize:none;
-
-  padding:
-    12px
-    16px;
-
-  border:
-    2px solid
-    #efd6e7;
-
-  border-radius:
-    21px;
-
-  outline:none;
-
-  background:
-    #fffafd;
-
-  color:#66566b;
-
-  font-family:
-    "Mali",
-    sans-serif;
-
-  font-size:14px;
-
-  line-height:1.65;
-
-  overflow-y:auto;
-
-  transition:.2s ease;
-
+  flex:1;min-width:0;min-height:48px;max-height:130px;resize:none;
+  padding:12px 16px;border:2px solid #efd6e7;border-radius:21px;
+  outline:0;background:#fffafd;color:#66566b;font:14px/1.65 Mali;
+  overflow-y:auto;transition:.2s;
 }
-
-
-.message-input::placeholder{
-
-  color:#c3a9c1;
-
-}
-
-
+.message-input::placeholder{color:#c3a9c1}
 .message-input:focus{
-
-  border-color:
-    #dfa7c9;
-
-  background:#fff;
-
-  box-shadow:
-    0 0 0 4px
-    rgba(223,167,201,.12);
-
+  border-color:#dfa7c9;background:#fff;
+  box-shadow:0 0 0 4px #dfa7c91f;
 }
-
-
-/* =====================================================
-   SEND BUTTON
-===================================================== */
 
 .send-button{
-
-  width:52px;
-  height:48px;
-
-  flex-shrink:0;
-
-  border:none;
-
-  border-radius:19px;
-
-  cursor:pointer;
-
-  display:flex;
-
-  align-items:center;
-  justify-content:center;
-
-  font-size:20px;
-
-  color:#fff;
-
-  background:
-
-    linear-gradient(
-      135deg,
-      #f39fc4,
-      #b99fe7
-    );
-
-  box-shadow:
-    0 6px 15px
-    rgba(188,132,190,.25);
-
-  transition:.2s ease;
-
+  width:52px;height:48px;flex-shrink:0;border:0;border-radius:19px;
+  cursor:pointer;display:flex;align-items:center;justify-content:center;
+  font-size:20px;color:#fff;
+  background:linear-gradient(135deg,#f39fc4,#b99fe7);
+  box-shadow:0 6px 15px #bc84be40;transition:.2s;
 }
-
-
-.send-button:hover{
-
-  transform:
-    translateY(-2px);
-
-  box-shadow:
-    0 8px 18px
-    rgba(188,132,190,.35);
-
-}
-
-
-.send-button:active{
-
-  transform:
-    scale(.95);
-
-}
-
-
-.send-button:disabled{
-
-  opacity:.55;
-
-  cursor:wait;
-
-}
-
-
-/* =====================================================
-   LOADING
-===================================================== */
+.send-button:hover{transform:translateY(-2px)}
+.send-button:active{transform:scale(.95)}
+.send-button:disabled{opacity:.55;cursor:wait}
 
 .connection-status{
-
-  position:absolute;
-
-  top:12px;
-  left:50%;
-
-  transform:
-    translateX(-50%);
-
-  z-index:5;
-
-  padding:
-    6px
-    13px;
-
-  border-radius:20px;
-
-  background:
-    rgba(255,255,255,.92);
-
-  color:#a980a4;
-
-  font-size:10px;
-
-  box-shadow:
-    0 4px 15px
-    rgba(130,100,145,.12);
-
-  display:none;
-
+  position:absolute;top:12px;left:50%;transform:translateX(-50%);
+  z-index:5;padding:6px 13px;border-radius:20px;
+  background:#fffffff0;color:#a980a4;font-size:10px;
+  box-shadow:0 4px 15px #8264911f;display:none;
 }
 
-
-/* =====================================================
-   MOBILE
-===================================================== */
-
-@media (max-width:600px){
-
-  body{
-
-    padding:8px;
-
-  }
-
+@media(max-width:600px){
+  body{padding:8px}
   .chat-window{
-
-    width:100%;
-
-    height:
-      calc(
-        100vh - 16px
-      );
-
-    min-height:
-      500px;
-
-    border-radius:
-      23px;
-
+    width:100%;height:calc(100vh - 16px);
+    min-height:500px;border-radius:23px
   }
-
-  .top-bar{
-
-    min-height:68px;
-
-    padding:
-      8px
-      13px;
-
-  }
-
-  .profile-image{
-
-    width:43px;
-    height:43px;
-
-  }
-
-  .profile-name{
-
-    font-size:22px;
-
-  }
-
-  .profile-status{
-
-    font-size:10px;
-
-  }
-
-  .chat-area{
-
-    padding:
-      12px
-      8px;
-
-  }
-
-  .messages{
-
-    padding:
-      3px
-      6px
-      15px;
-
-  }
-
-  .message-bubble{
-
-    max-width:
-      82%;
-
-    font-size:
-      14px;
-
-    padding:
-      10px
-      13px;
-
-    line-height:
-      1.7;
-
-  }
-
-  .input-area{
-
-    padding:
-      10px
-      10px
-      11px;
-
-  }
-
-  .identity-label{
-
-    font-size:10px;
-
-  }
-
-  .message-input{
-
-    font-size:14px;
-
-  }
-
-  .send-button{
-
-    width:48px;
-    height:47px;
-
-  }
-
-  .scroll-bottom{
-
-    right:18px;
-    bottom:18px;
-
-    width:40px;
-    height:40px;
-
-  }
-
+  .top-bar{min-height:68px;padding:8px 13px}
+  .profile-image{width:43px;height:43px}
+  .profile-name{font-size:22px}
+  .profile-status{font-size:10px}
+  .chat-area{padding:12px 8px}
+  .messages{padding:3px 6px 15px}
+  .message-bubble{max-width:82%;font-size:14px;padding:10px 13px;line-height:1.7}
+  .input-area{padding:10px}
+  .message-input{font-size:14px}
+  .send-button{width:48px;height:47px}
+  .scroll-bottom{right:18px;bottom:18px;width:40px;height:40px}
 }
 
-
-/* =====================================================
-   REDUCED MOTION
-===================================================== */
-
-@media (prefers-reduced-motion:reduce){
-
-  *{
-
-    scroll-behavior:auto !important;
-
-    transition:none !important;
-
-  }
-
+@media(prefers-reduced-motion:reduce){
+  *{scroll-behavior:auto!important;transition:none!important}
 }
-
 </style>
-
 </head>
-
 
 <body>
 
-
 <main class="chat-window">
 
+<header class="top-bar">
+  <div class="profile">
+    <img class="profile-image"
+      src="./EF49275A-74C1-46A1-AECC-04F296D98CB0.gif"
+      alt="Jaoka">
 
-  <!-- ===================================================
-       HEADER
-  ==================================================== -->
+    <div class="profile-info">
+      <button class="profile-name" id="profileName">Jaoka</button>
 
-  <header class="top-bar">
-
-    <div class="profile">
-
-      <img
-        class="profile-image"
-        src="./EF49275A-74C1-46A1-AECC-04F296D98CB0.gif"
-        alt="Jaoka"
-      >
-
-      <div class="profile-info">
-
-        <div class="profile-name">
-          Jaoka
-        </div>
-
-        <div class="profile-status">
-
-          <span class="status-dot"></span>
-
-          <span>
-            obsessed
-          </span>
-
-        </div>
-
+      <div class="profile-status">
+        <span class="status-dot"></span>
+        <span>obsessed</span>
       </div>
-
     </div>
+  </div>
 
+  <div class="window-dots">
+    <span></span><span></span><span></span>
+  </div>
+</header>
 
-    <div class="window-dots">
+<section class="chat-area">
 
-      <span></span>
-      <span></span>
-      <span></span>
+  <div class="connection-status" id="connectionStatus">
+    กำลังเชื่อมต่อ...
+  </div>
 
+  <div class="messages" id="messages">
+    <div class="empty-chat" id="emptyChat">
+      <div><span>♡</span>เริ่มคุยกันตรงนี้นะ</div>
     </div>
+  </div>
 
-  </header>
+  <button class="scroll-bottom" id="scrollBottom"
+    type="button" aria-label="ไปข้อความล่าสุด">↓</button>
 
+</section>
 
-  <!-- ===================================================
-       CHAT
-  ==================================================== -->
+<footer class="input-area">
+  <div class="input-box">
 
-  <section class="chat-area">
+    <textarea
+      id="messageInput"
+      class="message-input"
+      maxlength="3000"
+      rows="1"
+      placeholder="พิมพ์ข้อความ..."
+    ></textarea>
 
-    <div
-      class="connection-status"
-      id="connectionStatus"
-    >
-      กำลังเชื่อมต่อ...
-    </div>
-
-
-    <div
-      class="messages"
-      id="messages"
-    >
-
-      <div
-        class="empty-chat"
-        id="emptyChat"
-      >
-
-        <div>
-
-          <span>♡</span>
-
-          เริ่มคุยกันตรงนี้นะ
-
-        </div>
-
-      </div>
-
-    </div>
-
-
-    <button
-      class="scroll-bottom"
-      id="scrollBottom"
+    <button class="send-button"
+      id="sendButton"
       type="button"
-      title="ไปข้อความล่าสุด"
-      aria-label="ไปข้อความล่าสุด"
-    >
-      ↓
-    </button>
+      aria-label="ส่งข้อความ">♡</button>
 
-  </section>
-
-
-  <!-- ===================================================
-       INPUT
-  ==================================================== -->
-
-  <footer class="input-area">
-
-
-    <div class="identity-row">
-
-      <div
-        class="identity-label"
-        id="identityLabel"
-      >
-        กำลังส่งในชื่อ: เรา
-      </div>
-
-
-      <div class="identity-buttons">
-
-        <button
-          type="button"
-          class="identity-button active"
-          id="meButton"
-        >
-          เรา
-        </button>
-
-        <button
-          type="button"
-          class="identity-button"
-          id="themButton"
-        >
-          เขา
-        </button>
-
-      </div>
-
-    </div>
-
-
-    <div class="input-box">
-
-      <textarea
-        id="messageInput"
-        class="message-input"
-        maxlength="3000"
-        rows="1"
-        placeholder="พิมพ์ข้อความ..."
-      ></textarea>
-
-
-      <button
-        type="button"
-        class="send-button"
-        id="sendButton"
-        aria-label="ส่งข้อความ"
-      >
-        ♡
-      </button>
-
-    </div>
-
-  </footer>
-
+  </div>
+</footer>
 
 </main>
 
-
 <script type="module">
 
+import{initializeApp}
+from"https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
 
-/* =====================================================
-   FIREBASE
-===================================================== */
-
-import {
-  initializeApp
-}
-from
-  "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+import{
+  getFirestore,collection,addDoc,query,orderBy,
+  onSnapshot,serverTimestamp
+}from"https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 
 
-import {
-  getFirestore,
-  collection,
-  addDoc,
-  query,
-  orderBy,
-  onSnapshot,
-  serverTimestamp
-}
-from
-  "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
-
-
-const firebaseConfig = {
-
-  apiKey:
-    "AIzaSyBkxDeR-IgljHiFbczQOlvUDtoz7z5xxh4",
-
-  authDomain:
-    "jaokanjump.firebaseapp.com",
-
-  projectId:
-    "jaokanjump",
-
-  storageBucket:
-    "jaokanjump.firebasestorage.app",
-
-  messagingSenderId:
-    "137877435934",
-
-  appId:
-    "1:137877435934:web:3160d245dd411917e2200f",
-
-  measurementId:
-    "G-1HQ7045XKF"
-
+const firebaseConfig={
+  apiKey:"AIzaSyBkxDeR-IgljHiFbczQOlvUDtoz7z5xxh4",
+  authDomain:"jaokanjump.firebaseapp.com",
+  projectId:"jaokanjump",
+  storageBucket:"jaokanjump.firebasestorage.app",
+  messagingSenderId:"137877435934",
+  appId:"1:137877435934:web:3160d245dd411917e2200f",
+  measurementId:"G-1HQ7045XKF"
 };
 
+const db=getFirestore(initializeApp(firebaseConfig));
 
-const app =
-  initializeApp(firebaseConfig);
-
-
-const db =
-  getFirestore(app);
-
-
-/* =====================================================
-   ELEMENTS
-===================================================== */
-
-const messagesBox =
-  document.getElementById("messages");
-
-const input =
-  document.getElementById("messageInput");
-
-const sendButton =
-  document.getElementById("sendButton");
-
-const scrollBottom =
-  document.getElementById("scrollBottom");
-
-const emptyChat =
-  document.getElementById("emptyChat");
-
-const connectionStatus =
-  document.getElementById("connectionStatus");
-
-const meButton =
-  document.getElementById("meButton");
-
-const themButton =
-  document.getElementById("themButton");
-
-const identityLabel =
-  document.getElementById("identityLabel");
+const messages=document.getElementById("messages");
+const input=document.getElementById("messageInput");
+const send=document.getElementById("sendButton");
+const down=document.getElementById("scrollBottom");
+const empty=document.getElementById("emptyChat");
+const status=document.getElementById("connectionStatus");
+const name=document.getElementById("profileName");
 
 
-/* =====================================================
+/* =========================================
    IDENTITY
-===================================================== */
 
-/*
-   แต่ละเครื่องจำได้เองว่าเป็นใคร
+   เริ่มต้น = แฟน
+   กด Jaoka = เรา
+   กดอีกครั้ง = แฟน
+========================================= */
 
-   เครื่องของเรา:
-   "me"
+const KEY="jaoka_chat_identity";
 
-   เครื่องของเขา:
-   "them"
+let identity=localStorage.getItem(KEY)||"them";
 
-   ถ้าเปิดครั้งแรกจะเป็น "me"
-*/
-
-const IDENTITY_KEY =
-  "jaoka_chat_identity";
-
-let identity =
-  localStorage.getItem(IDENTITY_KEY) || "me";
+name.addEventListener("click",()=>{
+  identity=identity==="them"?"me":"them";
+  localStorage.setItem(KEY,identity);
+});
 
 
-function updateIdentityUI(){
-
-  const isMe =
-    identity === "me";
-
-
-  meButton.classList.toggle(
-    "active",
-    isMe
-  );
-
-
-  themButton.classList.toggle(
-    "active",
-    !isMe
-  );
-
-
-  identityLabel.textContent =
-    isMe
-      ? "กำลังส่งในชื่อ: เรา"
-      : "กำลังส่งในชื่อ: เขา";
-
-}
-
-
-meButton.addEventListener(
-  "click",
-  () => {
-
-    identity = "me";
-
-    localStorage.setItem(
-      IDENTITY_KEY,
-      identity
-    );
-
-    updateIdentityUI();
-
-  }
-);
-
-
-themButton.addEventListener(
-  "click",
-  () => {
-
-    identity = "them";
-
-    localStorage.setItem(
-      IDENTITY_KEY,
-      identity
-    );
-
-    updateIdentityUI();
-
-  }
-);
-
-
-updateIdentityUI();
-
-
-/* =====================================================
+/* =========================================
    HELPERS
-===================================================== */
+========================================= */
 
-function formatTime(timestamp){
+const nearBottom=()=>(
+  messages.scrollHeight-messages.scrollTop-messages.clientHeight<120
+);
 
-  if(!timestamp){
-    return "";
-  }
-
-
-  let date;
-
-
-  try{
-
-    date =
-      timestamp.toDate
-        ? timestamp.toDate()
-        : new Date(timestamp);
-
-  }catch{
-
-    return "";
-
-  }
-
-
-  return date.toLocaleTimeString(
-    "th-TH",
-    {
-      hour:"2-digit",
-      minute:"2-digit"
-    }
-  );
-
-}
-
-
-/* =====================================================
-   SCROLL
-===================================================== */
-
-function isNearBottom(){
-
-  const distance =
-    messagesBox.scrollHeight
-    -
-    messagesBox.scrollTop
-    -
-    messagesBox.clientHeight;
-
-
-  return distance < 120;
-
-}
-
-
-function scrollToBottom(
-  smooth = true
-){
-
-  messagesBox.scrollTo({
-
-    top:
-      messagesBox.scrollHeight,
-
-    behavior:
-      smooth
-        ? "smooth"
-        : "auto"
-
+const scrollDown=(smooth=true)=>{
+  messages.scrollTo({
+    top:messages.scrollHeight,
+    behavior:smooth?"smooth":"auto"
   });
+};
 
-}
+const time=t=>{
+  if(!t)return"";
+  try{
+    const d=t.toDate?t.toDate():new Date(t);
+    return d.toLocaleTimeString("th-TH",{
+      hour:"2-digit",minute:"2-digit"
+    });
+  }catch{return""}
+};
 
+const updateDown=()=>{
+  down.classList.toggle("show",!nearBottom());
+};
 
-function updateScrollButton(){
-
-  if(isNearBottom()){
-
-    scrollBottom.classList.remove(
-      "show"
-    );
-
-  }else{
-
-    scrollBottom.classList.add(
-      "show"
-    );
-
-  }
-
-}
+messages.addEventListener("scroll",updateDown);
+down.addEventListener("click",()=>scrollDown());
 
 
-messagesBox.addEventListener(
-  "scroll",
-  updateScrollButton
-);
+/* =========================================
+   RENDER
+========================================= */
 
+function render(snapshot){
 
-scrollBottom.addEventListener(
-  "click",
-  () => {
+  const stick=nearBottom();
 
-    scrollToBottom(true);
-
-  }
-);
-
-
-/* =====================================================
-   RENDER MESSAGE
-===================================================== */
-
-function renderMessages(
-  snapshot
-){
-
-  const shouldStick =
-    isNearBottom();
-
-
-  messagesBox.innerHTML = "";
-
+  messages.innerHTML="";
 
   if(snapshot.empty){
-
-    messagesBox.appendChild(
-      emptyChat
-    );
-
-    emptyChat.style.display =
-      "flex";
-
-    updateScrollButton();
-
+    messages.appendChild(empty);
+    empty.style.display="flex";
+    updateDown();
     return;
-
   }
 
+  snapshot.forEach(doc=>{
 
-  snapshot.forEach(
-    (docSnap) => {
+    const data=doc.data();
+    const row=document.createElement("div");
+    const bubble=document.createElement("div");
+    const clock=document.createElement("div");
 
-      const data =
-        docSnap.data();
+    row.className=
+      "message-row "+
+      (data.sender==="me"?"mine":"theirs");
 
+    bubble.className="message-bubble";
+    bubble.textContent=data.text||"";
 
-      const row =
-        document.createElement(
-          "div"
-        );
+    clock.className="message-time";
+    clock.textContent=time(data.createdAt);
 
+    bubble.appendChild(clock);
+    row.appendChild(bubble);
+    messages.appendChild(row);
+  });
 
-      const isMine =
-        data.sender === "me";
+  if(stick)requestAnimationFrame(()=>scrollDown(false));
 
-
-      row.className =
-        "message-row "
-        +
-        (
-          isMine
-            ? "mine"
-            : "theirs"
-        );
-
-
-      const bubble =
-        document.createElement(
-          "div"
-        );
-
-
-      bubble.className =
-        "message-bubble";
-
-
-      /*
-         ใช้ textContent + pre-wrap
-         เพื่อให้ข้อความหลายบรรทัด
-         และช่องว่างปลอดภัย
-      */
-
-      bubble.textContent =
-        data.text || "";
-
-
-      const time =
-        document.createElement(
-          "div"
-        );
-
-
-      time.className =
-        "message-time";
-
-
-      time.textContent =
-        formatTime(
-          data.createdAt
-        );
-
-
-      bubble.appendChild(
-        time
-      );
-
-
-      row.appendChild(
-        bubble
-      );
-
-
-      messagesBox.appendChild(
-        row
-      );
-
-    }
-  );
-
-
-  if(shouldStick){
-
-    requestAnimationFrame(
-      () => scrollToBottom(false)
-    );
-
-  }
-
-
-  updateScrollButton();
-
+  updateDown();
 }
 
 
-/* =====================================================
-   REALTIME FIRESTORE
-===================================================== */
+/* =========================================
+   FIRESTORE REALTIME
+========================================= */
 
-const messagesQuery =
-  query(
-    collection(
-      db,
-      "jaoka_chat"
-    ),
-    orderBy(
-      "createdAt",
-      "asc"
-    )
-  );
-
-
-connectionStatus.style.display =
-  "block";
-
-
-onSnapshot(
-
-  messagesQuery,
-
-  (snapshot) => {
-
-    connectionStatus.style.display =
-      "none";
-
-    renderMessages(
-      snapshot
-    );
-
-  },
-
-  (error) => {
-
-    console.error(
-      "Firestore error:",
-      error
-    );
-
-
-    connectionStatus.textContent =
-      "เชื่อมต่อแชทไม่ได้";
-
-
-    connectionStatus.style.display =
-      "block";
-
-  }
-
+const chat=query(
+  collection(db,"jaoka_chat"),
+  orderBy("createdAt","asc")
 );
 
+status.style.display="block";
 
-/* =====================================================
-   SEND MESSAGE
-===================================================== */
+onSnapshot(chat,snapshot=>{
+  status.style.display="none";
+  render(snapshot);
+},error=>{
+  console.error(error);
+  status.textContent="เชื่อมต่อแชทไม่ได้";
+  status.style.display="block";
+});
+
+
+/* =========================================
+   SEND
+========================================= */
 
 async function sendMessage(){
 
-  const text =
-    input.value;
+  const text=input.value;
 
-
-  if(
-    text.trim().length === 0
-  ){
-
+  if(!text.trim()){
     input.focus();
-
     return;
-
   }
 
-
-  if(
-    text.length > 3000
-  ){
-
-    alert(
-      "ข้อความยาวเกิน 3000 ตัวอักษรนะ"
-    );
-
-    return;
-
-  }
-
-
-  sendButton.disabled =
-    true;
-
+  send.disabled=true;
 
   try{
 
-    await addDoc(
+    await addDoc(collection(db,"jaoka_chat"),{
+      text,
+      sender:identity,
+      createdAt:serverTimestamp()
+    });
 
-      collection(
-        db,
-        "jaoka_chat"
-      ),
-
-      {
-
-        text:
-          text,
-
-        sender:
-          identity,
-
-        createdAt:
-          serverTimestamp()
-
-      }
-
-    );
-
-
-    input.value = "";
-
-    resizeInput();
-
+    input.value="";
+    resize();
     input.focus();
 
-
-    /*
-       หลังส่งให้กลับไปข้อความล่าสุด
-    */
-
-    setTimeout(
-      () => scrollToBottom(true),
-      100
-    );
-
+    setTimeout(()=>scrollDown(),100);
 
   }catch(error){
 
-    console.error(
-      "Send error:",
-      error
-    );
-
+    console.error(error);
 
     alert(
-      "ส่งข้อความไม่สำเร็จ\n\n"
-      +
+      "ส่งข้อความไม่สำเร็จ\n\n"+
       "เช็ก Firestore Rules ก่อนนะ"
     );
 
   }finally{
-
-    sendButton.disabled =
-      false;
-
+    send.disabled=false;
   }
-
 }
 
-
-sendButton.addEventListener(
-  "click",
-  sendMessage
-);
+send.addEventListener("click",sendMessage);
 
 
-/* =====================================================
+/* =========================================
    TEXTAREA
-===================================================== */
+========================================= */
 
-function resizeInput(){
+function resize(){
 
-  input.style.height =
-    "auto";
+  input.style.height="auto";
 
-
-  const height =
-    Math.min(
-      input.scrollHeight,
-      130
-    );
-
-
-  input.style.height =
-    height + "px";
-
+  input.style.height=
+    Math.min(input.scrollHeight,130)+"px";
 }
 
+input.addEventListener("input",resize);
 
-input.addEventListener(
-  "input",
-  resizeInput
-);
+input.addEventListener("keydown",e=>{
 
-
-/*
-   Enter = ขึ้นบรรทัดใหม่
-
-   Shift + Enter = ขึ้นบรรทัดใหม่เหมือนกัน
-
-   Ctrl / Command + Enter = ส่ง
-*/
-
-input.addEventListener(
-  "keydown",
-  (event) => {
-
-    if(
-      event.key === "Enter"
-      &&
-      (
-        event.ctrlKey
-        ||
-        event.metaKey
-      )
-    ){
-
-      event.preventDefault();
-
-      sendMessage();
-
-    }
-
+  if(
+    e.key==="Enter" &&
+    (e.ctrlKey||e.metaKey)
+  ){
+    e.preventDefault();
+    sendMessage();
   }
-);
 
+});
 
-/* =====================================================
-   INITIAL
-===================================================== */
+resize();
 
-resizeInput();
-
-setTimeout(
-  () => {
-
-    scrollToBottom(false);
-
-  },
-  300
-);
-
+setTimeout(()=>scrollDown(false),300);
 
 </script>
-
 
 </body>
 </html>
