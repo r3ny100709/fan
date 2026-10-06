@@ -48,8 +48,6 @@ body{
 
   color:#69536f;
 
-  /* พื้นหลัง GIF ด้านนอกกรอบแชท */
-
   background-image:
     linear-gradient(
       rgba(255,255,255,.08),
@@ -65,10 +63,274 @@ body{
 
 
 /* =====================================================
+   FULL SCREEN EFFECT LAYER
+===================================================== */
+
+.effect-layer{
+
+  position:fixed;
+
+  inset:0;
+
+  z-index:1000;
+
+  pointer-events:none;
+
+  overflow:hidden;
+
+}
+
+
+/* =====================================================
+   BUBBLE EFFECT
+===================================================== */
+
+.floating-bubble{
+
+  position:absolute;
+
+  bottom:-120px;
+
+  max-width:80vw;
+
+  padding:8px 18px;
+
+  color:#72aee8;
+
+  font-family:
+    Mali,
+    sans-serif;
+
+  font-weight:700;
+
+  line-height:1.2;
+
+  text-align:center;
+
+  white-space:pre-wrap;
+
+  word-break:break-word;
+
+  text-shadow:
+    0 2px 5px rgba(255,255,255,.95),
+    0 0 10px rgba(114,174,232,.55),
+    0 0 22px rgba(114,174,232,.3);
+
+  filter:
+    drop-shadow(
+      0 5px 10px
+      rgba(90,130,190,.15)
+    );
+
+  animation:
+    bubbleFloat
+    var(--bubble-duration)
+    cubic-bezier(.2,.7,.2,1)
+    forwards;
+
+}
+
+
+@keyframes bubbleFloat{
+
+  0%{
+
+    transform:
+      translate3d(
+        0,
+        0,
+        0
+      )
+      rotate(
+        var(--bubble-rotate-start)
+      )
+      scale(.72);
+
+    opacity:0;
+
+  }
+
+  10%{
+
+    opacity:1;
+
+  }
+
+  35%{
+
+    transform:
+      translate3d(
+        var(--bubble-drift-1),
+        -32vh,
+        0
+      )
+      rotate(
+        var(--bubble-rotate-mid)
+      )
+      scale(1);
+
+    opacity:1;
+
+  }
+
+  70%{
+
+    transform:
+      translate3d(
+        var(--bubble-drift-2),
+        -72vh,
+        0
+      )
+      rotate(
+        var(--bubble-rotate-end)
+      )
+      scale(1.04);
+
+    opacity:.92;
+
+  }
+
+  100%{
+
+    transform:
+      translate3d(
+        var(--bubble-drift-3),
+        -125vh,
+        0
+      )
+      rotate(
+        var(--bubble-rotate-end)
+      )
+      scale(1.08);
+
+    opacity:0;
+
+  }
+
+}
+
+
+/* =====================================================
+   GIF EFFECT
+===================================================== */
+
+.floating-gif{
+
+  position:absolute;
+
+  width:var(--gif-size);
+
+  height:var(--gif-size);
+
+  object-fit:contain;
+
+  user-select:none;
+
+  -webkit-user-select:none;
+
+  filter:
+    drop-shadow(
+      0 8px 16px
+      rgba(80,60,100,.22)
+    );
+
+  animation:
+    gifFloat
+    var(--gif-duration)
+    ease-out
+    forwards;
+
+}
+
+
+@keyframes gifFloat{
+
+  0%{
+
+    transform:
+      translate3d(
+        0,
+        20px,
+        0
+      )
+      rotate(
+        var(--gif-rotate-start)
+      )
+      scale(.45);
+
+    opacity:0;
+
+  }
+
+  12%{
+
+    opacity:1;
+
+  }
+
+  30%{
+
+    transform:
+      translate3d(
+        var(--gif-drift-1),
+        -15px,
+        0
+      )
+      rotate(
+        var(--gif-rotate-mid)
+      )
+      scale(1.05);
+
+    opacity:1;
+
+  }
+
+  70%{
+
+    transform:
+      translate3d(
+        var(--gif-drift-2),
+        -100px,
+        0
+      )
+      rotate(
+        var(--gif-rotate-end)
+      )
+      scale(1);
+
+    opacity:.95;
+
+  }
+
+  100%{
+
+    transform:
+      translate3d(
+        var(--gif-drift-3),
+        -190px,
+        0
+      )
+      rotate(
+        var(--gif-rotate-end)
+      )
+      scale(.9);
+
+    opacity:0;
+
+  }
+
+}
+
+
+/* =====================================================
    CHAT WINDOW
 ===================================================== */
 
 .chat-window{
+
+  position:relative;
+
+  z-index:1;
 
   width:min(900px,96vw);
 
@@ -117,9 +379,6 @@ body{
 
   display:flex;
   align-items:center;
-
-  /* ไม่มี justify-between แล้ว
-     เพราะเอาจุด 3 จุดออก */
 
   background-image:
     linear-gradient(
@@ -621,6 +880,8 @@ body{
 
 .input-area{
 
+  position:relative;
+
   flex-shrink:0;
 
   padding:13px 16px 15px;
@@ -704,6 +965,228 @@ body{
 
 
 /* =====================================================
+   BUBBLE MODE INPUT
+===================================================== */
+
+.message-input.bubble-mode{
+
+  color:#72aee8;
+
+  border-color:#9ec9ee;
+
+  background:#f8fcff;
+
+  box-shadow:
+    0 0 0 4px
+    rgba(114,174,232,.1);
+
+}
+
+
+.message-input.bubble-mode::placeholder{
+
+  color:#9abddd;
+
+}
+
+
+/* =====================================================
+   EFFECT BUTTON
+===================================================== */
+
+.effect-button{
+
+  width:48px;
+  height:48px;
+
+  flex-shrink:0;
+
+  border:
+    2px solid
+    rgba(241,171,204,.55);
+
+  border-radius:19px;
+
+  cursor:pointer;
+
+  display:flex;
+
+  align-items:center;
+  justify-content:center;
+
+  font-size:20px;
+
+  color:#d47da8;
+
+  background:
+    linear-gradient(
+      135deg,
+      #fff5fa,
+      #ffe4ef
+    );
+
+  box-shadow:
+    0 6px 15px
+    rgba(241,154,194,.18);
+
+  transition:.2s;
+
+}
+
+
+.effect-button:hover{
+
+  transform:translateY(-2px);
+
+}
+
+
+.effect-button:active{
+
+  transform:scale(.95);
+
+}
+
+
+.effect-button.active{
+
+  color:#72aee8;
+
+  border-color:#9ec9ee;
+
+  background:
+    linear-gradient(
+      135deg,
+      #edf8ff,
+      #d9efff
+    );
+
+}
+
+
+/* =====================================================
+   EFFECT MENU
+===================================================== */
+
+.effect-menu{
+
+  position:absolute;
+
+  right:75px;
+
+  bottom:72px;
+
+  width:170px;
+
+  padding:8px;
+
+  border:
+    1px solid
+    rgba(239,190,216,.75);
+
+  border-radius:19px;
+
+  background:
+    rgba(255,250,253,.96);
+
+  box-shadow:
+    0 15px 35px
+    rgba(115,80,125,.2);
+
+  backdrop-filter:blur(16px);
+
+  transform:
+    translateY(8px)
+    scale(.96);
+
+  opacity:0;
+
+  pointer-events:none;
+
+  transition:.18s ease;
+
+  z-index:20;
+
+}
+
+
+.effect-menu.open{
+
+  transform:
+    translateY(0)
+    scale(1);
+
+  opacity:1;
+
+  pointer-events:auto;
+
+}
+
+
+.effect-choice{
+
+  width:100%;
+
+  min-height:48px;
+
+  border:0;
+
+  border-radius:14px;
+
+  background:transparent;
+
+  color:#775c78;
+
+  font:
+    14px Mali,
+    sans-serif;
+
+  text-align:left;
+
+  padding:8px 13px;
+
+  cursor:pointer;
+
+  transition:.15s;
+
+}
+
+
+.effect-choice:hover{
+
+  background:#fff0f7;
+
+}
+
+
+.effect-choice:active{
+
+  transform:scale(.97);
+
+}
+
+
+.effect-choice .choice-icon{
+
+  display:inline-flex;
+
+  width:30px;
+
+  height:30px;
+
+  align-items:center;
+  justify-content:center;
+
+  margin-right:8px;
+
+  border-radius:10px;
+
+  background:#fff;
+
+}
+
+
+/* =====================================================
    SEND BUTTON
 ===================================================== */
 
@@ -728,8 +1211,6 @@ body{
   font-size:20px;
 
   color:#ffffff;
-
-  /* ชมพูอ่อน */
 
   background:
     linear-gradient(
@@ -773,6 +1254,266 @@ body{
   opacity:.55;
 
   cursor:wait;
+
+}
+
+
+/* =====================================================
+   GIF MODAL
+===================================================== */
+
+.gif-modal{
+
+  position:fixed;
+
+  inset:0;
+
+  z-index:2000;
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:center;
+
+  padding:18px;
+
+  background:
+    rgba(70,45,75,.32);
+
+  backdrop-filter:blur(7px);
+
+  opacity:0;
+
+  pointer-events:none;
+
+  transition:.2s;
+
+}
+
+
+.gif-modal.open{
+
+  opacity:1;
+
+  pointer-events:auto;
+
+}
+
+
+.gif-picker{
+
+  width:min(620px,94vw);
+
+  max-height:min(760px,88vh);
+
+  display:flex;
+
+  flex-direction:column;
+
+  overflow:hidden;
+
+  border:
+    2px solid
+    rgba(255,255,255,.95);
+
+  border-radius:27px;
+
+  background:
+    rgba(255,250,253,.96);
+
+  box-shadow:
+    0 25px 80px
+    rgba(80,50,90,.3);
+
+  transform:
+    translateY(12px)
+    scale(.97);
+
+  transition:.2s;
+
+}
+
+
+.gif-modal.open .gif-picker{
+
+  transform:
+    translateY(0)
+    scale(1);
+
+}
+
+
+.gif-header{
+
+  flex-shrink:0;
+
+  min-height:64px;
+
+  padding:12px 16px 12px 20px;
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:space-between;
+
+  border-bottom:
+    1px solid
+    rgba(231,199,219,.8);
+
+}
+
+
+.gif-title{
+
+  font:
+    24px/1
+    Itim,
+    cursive;
+
+  color:#795d7d;
+
+}
+
+
+.gif-close{
+
+  width:40px;
+  height:40px;
+
+  border:0;
+
+  border-radius:50%;
+
+  background:#fff0f7;
+
+  color:#b7779c;
+
+  font-size:21px;
+
+  cursor:pointer;
+
+}
+
+
+.gif-close:active{
+
+  transform:scale(.92);
+
+}
+
+
+/* =====================================================
+   GIF GRID
+===================================================== */
+
+.gif-grid{
+
+  flex:1;
+
+  min-height:0;
+
+  overflow-y:auto;
+
+  overflow-x:hidden;
+
+  padding:14px;
+
+  display:grid;
+
+  grid-template-columns:
+    repeat(4,minmax(0,1fr));
+
+  gap:10px;
+
+  scrollbar-width:thin;
+
+  scrollbar-color:
+    #e4b2cb
+    transparent;
+
+}
+
+
+.gif-grid::-webkit-scrollbar{
+
+  width:8px;
+
+}
+
+
+.gif-grid::-webkit-scrollbar-thumb{
+
+  background:#e4b2cb;
+
+  border-radius:20px;
+
+}
+
+
+.gif-item{
+
+  width:100%;
+
+  aspect-ratio:1/1;
+
+  padding:4px;
+
+  border:
+    2px solid
+    rgba(235,191,215,.6);
+
+  border-radius:17px;
+
+  background:#fff;
+
+  cursor:pointer;
+
+  overflow:hidden;
+
+  transition:.16s;
+
+}
+
+
+.gif-item:hover{
+
+  transform:translateY(-2px);
+
+  border-color:#efa8ca;
+
+  box-shadow:
+    0 7px 18px
+    rgba(225,145,190,.2);
+
+}
+
+
+.gif-item:active{
+
+  transform:scale(.94);
+
+}
+
+
+.gif-item img{
+
+  width:100%;
+  height:100%;
+
+  display:block;
+
+  object-fit:contain;
+
+  border-radius:12px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #fff7fb,
+      #f7f5ff
+    );
 
 }
 
@@ -903,9 +1644,17 @@ body{
   }
 
 
-  .message-input{
+  .input-box{
 
-    font-size:14px;
+    gap:6px;
+
+  }
+
+
+  .effect-button{
+
+    width:46px;
+    height:47px;
 
   }
 
@@ -915,6 +1664,61 @@ body{
     width:48px;
 
     height:47px;
+
+  }
+
+
+  .effect-menu{
+
+    right:63px;
+
+    bottom:70px;
+
+  }
+
+
+  .gif-modal{
+
+    padding:10px;
+
+  }
+
+
+  .gif-picker{
+
+    width:100%;
+
+    max-height:90vh;
+
+    border-radius:23px;
+
+  }
+
+
+  .gif-grid{
+
+    grid-template-columns:
+      repeat(4,minmax(0,1fr));
+
+    gap:7px;
+
+    padding:10px;
+
+  }
+
+
+  .gif-item{
+
+    border-radius:13px;
+
+    padding:3px;
+
+  }
+
+
+  .gif-item img{
+
+    border-radius:9px;
 
   }
 
@@ -934,13 +1738,31 @@ body{
 }
 
 
+@media(min-width:601px){
+
+  .gif-grid{
+
+    grid-template-columns:
+      repeat(5,minmax(0,1fr));
+
+  }
+
+}
+
+
 @media(prefers-reduced-motion:reduce){
 
   *{
 
     scroll-behavior:auto!important;
-
     transition:none!important;
+
+  }
+
+  .floating-bubble,
+  .floating-gif{
+
+    animation:none!important;
 
   }
 
@@ -952,6 +1774,66 @@ body{
 
 
 <body>
+
+
+<!-- =====================================================
+     EFFECT LAYER
+===================================================== -->
+
+<div
+  class="effect-layer"
+  id="effectLayer"
+></div>
+
+
+<!-- =====================================================
+     GIF PICKER
+===================================================== -->
+
+<div
+  class="gif-modal"
+  id="gifModal"
+  aria-hidden="true"
+>
+
+  <div
+    class="gif-picker"
+    role="dialog"
+    aria-modal="true"
+    aria-label="เลือก GIF"
+  >
+
+    <div class="gif-header">
+
+      <div class="gif-title">
+        GIF ♡
+      </div>
+
+      <button
+        class="gif-close"
+        id="gifClose"
+        type="button"
+        aria-label="ปิด"
+      >
+        ×
+      </button>
+
+    </div>
+
+
+    <div
+      class="gif-grid"
+      id="gifGrid"
+    ></div>
+
+  </div>
+
+</div>
+
+
+<!-- =====================================================
+     CHAT
+===================================================== -->
 
 <main class="chat-window">
 
@@ -1040,7 +1922,48 @@ body{
 
 <footer class="input-area">
 
+
+  <!-- EFFECT MENU -->
+
+  <div
+    class="effect-menu"
+    id="effectMenu"
+  >
+
+    <button
+      class="effect-choice"
+      id="bubbleChoice"
+      type="button"
+    >
+
+      <span class="choice-icon">
+        💬
+      </span>
+
+      Bubble
+
+    </button>
+
+
+    <button
+      class="effect-choice"
+      id="gifChoice"
+      type="button"
+    >
+
+      <span class="choice-icon">
+        🎞️
+      </span>
+
+      GIF
+
+    </button>
+
+  </div>
+
+
   <div class="input-box">
+
 
     <textarea
       id="messageInput"
@@ -1050,6 +1973,23 @@ body{
       placeholder="พิมพ์ข้อความ..."
     ></textarea>
 
+
+    <!-- EFFECT BUTTON -->
+
+    <button
+      class="effect-button"
+      id="effectButton"
+      type="button"
+      aria-label="เอฟเฟกต์"
+      aria-expanded="false"
+    >
+
+      💬
+
+    </button>
+
+
+    <!-- SEND -->
 
     <button
       class="send-button"
@@ -1150,6 +2090,124 @@ const status=
 const name=
   document.getElementById("profileName");
 
+const effectButton=
+  document.getElementById("effectButton");
+
+const effectMenu=
+  document.getElementById("effectMenu");
+
+const bubbleChoice=
+  document.getElementById("bubbleChoice");
+
+const gifChoice=
+  document.getElementById("gifChoice");
+
+const gifModal=
+  document.getElementById("gifModal");
+
+const gifClose=
+  document.getElementById("gifClose");
+
+const gifGrid=
+  document.getElementById("gifGrid");
+
+const effectLayer=
+  document.getElementById("effectLayer");
+
+
+/* =====================================================
+   GIF LIST
+===================================================== */
+
+const GIFS=[
+
+  "F0280B5F-414D-4E63-9776-0E6FA8AEC484.gif",
+
+  "0E38CDD5-E3E6-491C-BA81-A571178EA94F.gif",
+
+  "4E0B7F36-3FFA-4AA3-B34E-7DE6B491087D.gif",
+
+  "36BE8E1F-5D2A-41C1-88ED-BB06B317B1E8.gif",
+
+  "9073500A-3021-44B6-898A-F1C12D3991C9.gif",
+
+  "6C364063-E7D5-4F82-8FC6-7A546C33F8F7.gif",
+
+  "E33C8953-F043-45DA-806C-31C1F10DDB15.gif",
+
+  "27A91E52-BE14-46FA-9C1E-0E9C2D47CAC6.gif",
+
+  "0A070562-E429-455F-B499-C0A58BF6D1D2.gif",
+
+  "770F0F17-522A-4C17-933F-33C0B018F986.gif",
+
+  "17006637-8B8D-4BA0-8BA9-A8114BA2BABB.gif",
+
+  "DD5D00EF-C597-41C3-802A-BF5136CEE3CD.gif",
+
+  "3046D882-C2E3-473F-A2A7-6E45E787F6EE.gif",
+
+  "BE24008A-9234-47FB-8B2C-1339D268E5B8.gif",
+
+  "E16D343A-1C4B-46E6-A937-894AF26FFF22.gif"
+
+];
+
+
+/* =====================================================
+   BUILD GIF PICKER
+===================================================== */
+
+GIFS.forEach(
+  filename=>{
+
+    const button=
+      document.createElement(
+        "button"
+      );
+
+    button.type=
+      "button";
+
+    button.className=
+      "gif-item";
+
+    button.dataset.gif=
+      filename;
+
+    button.setAttribute(
+      "aria-label",
+      "เลือก GIF"
+    );
+
+
+    const image=
+      document.createElement(
+        "img"
+      );
+
+    image.src=
+      "./"+filename;
+
+    image.alt=
+      "GIF";
+
+    image.loading=
+      "lazy";
+
+
+    button.appendChild(
+      image
+    );
+
+
+    gifGrid.appendChild(
+      button
+    );
+
+  }
+);
+
 
 /* =====================================================
    IDENTITY
@@ -1178,6 +2236,208 @@ name.addEventListener(
       IDENTITY_KEY,
       identity
     );
+
+  }
+);
+
+
+/* =====================================================
+   EFFECT MODE
+===================================================== */
+
+let bubbleMode=
+  false;
+
+
+function setBubbleMode(
+  enabled
+){
+
+  bubbleMode=
+    enabled;
+
+  input.classList.toggle(
+    "bubble-mode",
+    bubbleMode
+  );
+
+  effectButton.classList.toggle(
+    "active",
+    bubbleMode
+  );
+
+  input.placeholder=
+    bubbleMode
+      ?"พิมพ์ข้อความ Bubble..."
+      :"พิมพ์ข้อความ...";
+
+}
+
+
+function closeEffectMenu(){
+
+  effectMenu.classList.remove(
+    "open"
+  );
+
+  effectButton.classList.remove(
+    "active"
+  );
+
+  effectButton.setAttribute(
+    "aria-expanded",
+    "false"
+  );
+
+}
+
+
+effectButton.addEventListener(
+  "click",
+  event=>{
+
+    event.stopPropagation();
+
+    const open=
+      effectMenu.classList.toggle(
+        "open"
+      );
+
+    effectButton.setAttribute(
+      "aria-expanded",
+      String(open)
+    );
+
+    if(
+      !open &&
+      !bubbleMode
+    ){
+
+      effectButton.classList.remove(
+        "active"
+      );
+
+    }
+
+    if(open){
+
+      effectButton.classList.add(
+        "active"
+      );
+
+    }
+
+  }
+);
+
+
+bubbleChoice.addEventListener(
+  "click",
+  ()=>{
+
+    setBubbleMode(true);
+
+    closeEffectMenu();
+
+    input.focus();
+
+  }
+);
+
+
+/* =====================================================
+   GIF MODAL
+===================================================== */
+
+function openGifPicker(){
+
+  closeEffectMenu();
+
+  gifModal.classList.add(
+    "open"
+  );
+
+  gifModal.setAttribute(
+    "aria-hidden",
+    "false"
+  );
+
+}
+
+
+function closeGifPicker(){
+
+  gifModal.classList.remove(
+    "open"
+  );
+
+  gifModal.setAttribute(
+    "aria-hidden",
+    "true"
+  );
+
+}
+
+
+gifChoice.addEventListener(
+  "click",
+  openGifPicker
+);
+
+
+gifClose.addEventListener(
+  "click",
+  closeGifPicker
+);
+
+
+gifModal.addEventListener(
+  "click",
+  event=>{
+
+    if(
+      event.target===
+      gifModal
+    ){
+
+      closeGifPicker();
+
+    }
+
+  }
+);
+
+
+document.addEventListener(
+  "keydown",
+  event=>{
+
+    if(
+      event.key==="Escape"
+    ){
+
+      closeEffectMenu();
+
+      closeGifPicker();
+
+    }
+
+  }
+);
+
+
+document.addEventListener(
+  "pointerdown",
+  event=>{
+
+    if(
+      !effectMenu.contains(event.target)&&
+      event.target!==effectButton
+    ){
+
+      closeEffectMenu();
+
+    }
 
   }
 );
@@ -1271,7 +2531,6 @@ down.addEventListener(
 
 /* =====================================================
    LONG PRESS DELETE
-   ลบได้ทั้งฝั่งซ้ายและขวา
 ===================================================== */
 
 const HOLD_TIME=5000;
@@ -1439,7 +2698,7 @@ messages.addEventListener(
 
 
 /* =====================================================
-   RENDER
+   RENDER CHAT
 ===================================================== */
 
 function render(
@@ -1562,7 +2821,7 @@ function render(
 
 
 /* =====================================================
-   FIRESTORE
+   FIRESTORE CHAT
 ===================================================== */
 
 const chat=
@@ -1616,7 +2875,501 @@ onSnapshot(
 
 
 /* =====================================================
-   SEND
+   EFFECT RENDER
+===================================================== */
+
+function randomBetween(
+  min,
+  max
+){
+
+  return(
+    Math.random()*
+    (max-min)+
+    min
+  );
+
+}
+
+
+function showBubbleEffect(
+  text
+){
+
+  if(!text)return;
+
+
+  const el=
+    document.createElement(
+      "div"
+    );
+
+
+  el.className=
+    "floating-bubble";
+
+
+  el.textContent=
+    text;
+
+
+  const size=
+    randomBetween(
+      28,
+      68
+    );
+
+
+  el.style.fontSize=
+    size+"px";
+
+
+  el.style.left=
+    randomBetween(
+      5,
+      82
+    )+"vw";
+
+
+  el.style.setProperty(
+    "--bubble-duration",
+    randomBetween(
+      5,
+      8
+    )+"s"
+  );
+
+
+  el.style.setProperty(
+    "--bubble-drift-1",
+    randomBetween(
+      -80,
+      80
+    )+"px"
+  );
+
+
+  el.style.setProperty(
+    "--bubble-drift-2",
+    randomBetween(
+      -120,
+      120
+    )+"px"
+  );
+
+
+  el.style.setProperty(
+    "--bubble-drift-3",
+    randomBetween(
+      -160,
+      160
+    )+"px"
+  );
+
+
+  el.style.setProperty(
+    "--bubble-rotate-start",
+    randomBetween(
+      -8,
+      8
+    )+"deg"
+  );
+
+
+  el.style.setProperty(
+    "--bubble-rotate-mid",
+    randomBetween(
+      -5,
+      5
+    )+"deg"
+  );
+
+
+  el.style.setProperty(
+    "--bubble-rotate-end",
+    randomBetween(
+      -8,
+      8
+    )+"deg"
+  );
+
+
+  effectLayer.appendChild(
+    el
+  );
+
+
+  setTimeout(
+    ()=>el.remove(),
+    9000
+  );
+
+}
+
+
+function showGifEffect(
+  filename
+){
+
+  if(!filename)return;
+
+
+  const el=
+    document.createElement(
+      "img"
+    );
+
+
+  el.className=
+    "floating-gif";
+
+
+  el.src=
+    filename.startsWith("./")
+      ?filename
+      :"./"+filename;
+
+
+  el.alt=
+    "";
+
+
+  el.style.left=
+    randomBetween(
+      5,
+      82
+    )+"vw";
+
+
+  el.style.top=
+    randomBetween(
+      15,
+      72
+    )+"vh";
+
+
+  el.style.setProperty(
+    "--gif-size",
+    randomBetween(
+      100,
+      220
+    )+"px"
+  );
+
+
+  el.style.setProperty(
+    "--gif-duration",
+    randomBetween(
+      2.8,
+      4.5
+    )+"s"
+  );
+
+
+  el.style.setProperty(
+    "--gif-drift-1",
+    randomBetween(
+      -35,
+      35
+    )+"px"
+  );
+
+
+  el.style.setProperty(
+    "--gif-drift-2",
+    randomBetween(
+      -70,
+      70
+    )+"px"
+  );
+
+
+  el.style.setProperty(
+    "--gif-drift-3",
+    randomBetween(
+      -110,
+      110
+    )+"px"
+  );
+
+
+  el.style.setProperty(
+    "--gif-rotate-start",
+    randomBetween(
+      -12,
+      12
+    )+"deg"
+  );
+
+
+  el.style.setProperty(
+    "--gif-rotate-mid",
+    randomBetween(
+      -7,
+      7
+    )+"deg"
+  );
+
+
+  el.style.setProperty(
+    "--gif-rotate-end",
+    randomBetween(
+      -12,
+      12
+    )+"deg"
+  );
+
+
+  effectLayer.appendChild(
+    el
+  );
+
+
+  setTimeout(
+    ()=>el.remove(),
+    5500
+  );
+
+}
+
+
+/* =====================================================
+   FIRESTORE EFFECTS
+   เอฟเฟกต์ใหม่เท่านั้น
+   ไม่เล่นของเก่าตอนเปิดหน้า
+===================================================== */
+
+const effects=
+  query(
+    collection(
+      db,
+      "jaoka_effects"
+    ),
+    orderBy(
+      "createdAt",
+      "asc"
+    )
+  );
+
+
+let effectsReady=
+  false;
+
+
+onSnapshot(
+  effects,
+
+  snapshot=>{
+
+    if(!effectsReady){
+
+      effectsReady=
+        true;
+
+      return;
+
+    }
+
+
+    snapshot.docChanges().forEach(
+      change=>{
+
+        if(
+          change.type!=="added"
+        ){
+
+          return;
+
+        }
+
+
+        const data=
+          change.doc.data();
+
+
+        if(
+          data.type==="bubble"
+        ){
+
+          showBubbleEffect(
+            data.text||""
+          );
+
+        }
+
+
+        if(
+          data.type==="gif"
+        ){
+
+          showGifEffect(
+            data.gif||""
+          );
+
+        }
+
+      }
+    );
+
+  },
+
+  error=>{
+
+    console.error(
+      "Effects Firestore error:",
+      error
+    );
+
+  }
+);
+
+
+/* =====================================================
+   SEND NORMAL MESSAGE
+===================================================== */
+
+async function sendNormalMessage(
+  text
+){
+
+  await addDoc(
+    collection(
+      db,
+      "jaoka_chat"
+    ),
+    {
+
+      text:
+        text,
+
+      sender:
+        identity,
+
+      createdAt:
+        serverTimestamp()
+
+    }
+  );
+
+}
+
+
+/* =====================================================
+   SEND BUBBLE
+===================================================== */
+
+async function sendBubble(
+  text
+){
+
+  await addDoc(
+    collection(
+      db,
+      "jaoka_effects"
+    ),
+    {
+
+      type:
+        "bubble",
+
+      text:
+        text,
+
+      sender:
+        identity,
+
+      createdAt:
+        serverTimestamp()
+
+    }
+  );
+
+}
+
+
+/* =====================================================
+   SEND GIF
+===================================================== */
+
+async function sendGif(
+  filename
+){
+
+  await addDoc(
+    collection(
+      db,
+      "jaoka_effects"
+    ),
+    {
+
+      type:
+        "gif",
+
+      gif:
+        "./"+filename,
+
+      sender:
+        identity,
+
+      createdAt:
+        serverTimestamp()
+
+    }
+  );
+
+}
+
+
+/* =====================================================
+   GIF CLICK
+===================================================== */
+
+gifGrid.addEventListener(
+  "click",
+  async event=>{
+
+    const item=
+      event.target.closest(
+        ".gif-item"
+      );
+
+    if(!item)return;
+
+
+    const filename=
+      item.dataset.gif;
+
+
+    if(!filename)return;
+
+
+    try{
+
+      await sendGif(
+        filename
+      );
+
+      closeGifPicker();
+
+    }catch(error){
+
+      console.error(
+        "GIF send error:",
+        error
+      );
+
+      alert(
+        "ส่ง GIF ไม่สำเร็จ"
+      );
+
+    }
+
+  }
+);
+
+
+/* =====================================================
+   SEND BUTTON
 ===================================================== */
 
 async function sendMessage(){
@@ -1640,32 +3393,37 @@ async function sendMessage(){
 
   try{
 
-    await addDoc(
-      collection(
-        db,
-        "jaoka_chat"
-      ),
-      {
+    if(bubbleMode){
 
-        text:
-          text,
+      await sendBubble(
+        text
+      );
 
-        sender:
-          identity,
+      input.value=
+        "";
 
-        createdAt:
-          serverTimestamp()
+      resizeInput();
 
-      }
+      setBubbleMode(
+        false
+      );
+
+      input.focus();
+
+      return;
+
+    }
+
+
+    await sendNormalMessage(
+      text
     );
 
 
     input.value=
       "";
 
-
     resizeInput();
-
 
     input.focus();
 
@@ -1685,7 +3443,7 @@ async function sendMessage(){
 
 
     alert(
-      "ส่งข้อความไม่สำเร็จ\n\n"+
+      "ส่งไม่สำเร็จ\n\n"+
       "เช็ก Firestore Rules ก่อนนะ"
     );
 
