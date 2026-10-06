@@ -1,729 +1,1939 @@
-<!DOCTYPE html>
+    แต่ละเครื่องเลือกได้ว่าเป็น เรา หรือ เขา และจำตัวเลือกไว้ในเครื่องนั้น<!DOCTYPE html>
 <html lang="th">
+
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>♡</title>
+
+<meta charset="UTF-8">
+
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+>
+
+<title>Jaoka ♡</title>
+
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Itim&family=Mali:wght@400;500;600;700&display=swap');
-*{box-sizing:border-box;margin:0;padding:0}
-body{min-height:100vh;font-family:"Mali",sans-serif;background:
-radial-gradient(circle at 12% 15%,rgba(255,255,255,.85) 0 4%,transparent 5%),
-radial-gradient(circle at 88% 20%,rgba(255,255,255,.7) 0 3%,transparent 4%),
-radial-gradient(circle at 20% 85%,rgba(255,255,255,.55) 0 3%,transparent 4%),
-linear-gradient(135deg,#ffd8eb,#f8e0ff 48%,#dceeff);
-color:#69536f;display:flex;align-items:center;justify-content:center;padding:20px;overflow-x:hidden}
 
-/* MAIN WINDOW */
-.game-window{width:min(94%,760px);min-height:680px;background:rgba(255,255,255,.75);border:3px solid rgba(255,255,255,.95);border-radius:30px;box-shadow:0 25px 70px rgba(164,113,172,.25),inset 0 0 0 2px rgba(244,184,221,.5);backdrop-filter:blur(15px);overflow:hidden;position:relative}
-.window-bar{height:58px;padding:0 20px;background:linear-gradient(90deg,#f7a9cc,#c9b2f3,#a9d9f5);display:flex;align-items:center;justify-content:flex-end;border-bottom:2px solid rgba(255,255,255,.7)}
-.window-buttons{display:flex;gap:7px}
-.window-buttons span{width:12px;height:12px;border-radius:50%;background:rgba(255,255,255,.85)}
+/* =====================================================
+   FONT
+===================================================== */
 
-/* HOME */
-.screen{min-height:620px;padding:45px 35px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;animation:fadeIn .5s ease}
-.avatar{width:105px;height:105px;border-radius:50%;background:linear-gradient(145deg,#ffb5d5,#c8b5f4);border:5px solid #fff;box-shadow:0 10px 25px rgba(176,126,184,.25);display:flex;align-items:center;justify-content:center;font-size:50px;margin-bottom:20px;position:relative}
-.avatar::after{content:"♡";position:absolute;right:-8px;top:-12px;font-size:26px;color:#ff8fc1}
-.hello{font-family:"Itim",cursive;font-size:clamp(29px,6vw,46px);color:#9a669e;margin-bottom:18px;line-height:1.25}
-.message{max-width:580px;font-size:18px;line-height:2;color:#79667e;margin-bottom:30px}
-.start-button{border:none;cursor:pointer;font-family:"Mali",sans-serif;font-size:20px;font-weight:600;color:#fff;padding:14px 40px;border-radius:50px;background:linear-gradient(100deg,#f49ac3,#bca0ed);box-shadow:0 8px 20px rgba(192,128,190,.3);transition:.25s ease}
-.start-button:hover{transform:translateY(-3px) scale(1.03);box-shadow:0 12px 25px rgba(192,128,190,.4)}
-.start-button:active{transform:scale(.97)}
+@import url(
+  'https://fonts.googleapis.com/css2?family=Itim&family=Mali:wght@400;500;600;700&display=swap'
+);
 
-/* BLOG */
-.blog-screen{display:none;padding:28px;min-height:620px;animation:slideIn .5s ease}
-.blog-header{display:flex;align-items:center;justify-content:space-between;gap:15px;margin-bottom:22px}
-.blog-title{font-family:"Itim",cursive;font-size:clamp(28px,5vw,37px);color:#9a669e}
-.date{color:#a987ad;font-size:14px;background:rgba(255,255,255,.75);padding:8px 14px;border-radius:20px;white-space:nowrap}
-.jaoka-message{background:linear-gradient(135deg,#fff5fa,#f7f0ff);border:2px solid #fff;border-radius:20px;padding:17px 20px;margin-bottom:20px;box-shadow:0 6px 18px rgba(177,129,179,.12);position:relative}
-.jaoka-message::before{content:"";position:absolute;left:20px;bottom:-9px;width:17px;height:17px;background:#fff5fa;border-right:2px solid #fff;border-bottom:2px solid #fff;transform:rotate(45deg)}
-.jaoka-name{color:#e68bb5;font-weight:700;font-size:14px;margin-bottom:5px}
-.jaoka-text{color:#725e76;line-height:1.7}
 
-/* JOURNAL */
-.journal{background:rgba(255,255,255,.9);border:2px solid #f3d5e8;border-radius:24px;padding:22px;box-shadow:0 10px 30px rgba(163,118,169,.12)}
-.journal-label{display:flex;align-items:center;gap:8px;color:#9c72a0;font-size:16px;font-weight:600;margin-bottom:12px}
-textarea{width:100%;min-height:260px;resize:vertical;border:2px dashed #e8c9e3;border-radius:17px;padding:18px;outline:none;background:#fffafd;color:#68576d;font-family:"Mali",sans-serif;font-size:16px;line-height:1.8;transition:.2s}
-textarea::placeholder{color:#c4a9c3;opacity:1}
-textarea:focus{border-color:#cba6e7;background:#fff;box-shadow:0 0 0 4px rgba(203,166,231,.12)}
-.journal-footer{display:flex;justify-content:space-between;align-items:center;margin-top:15px;gap:10px}
-.hint{font-size:15px;color:#b196b5}
-.save-button{border:none;cursor:pointer;font-family:"Mali",sans-serif;color:#fff;font-weight:600;padding:11px 23px;border-radius:30px;background:linear-gradient(100deg,#efa0c4,#b99ce9);transition:.25s}
-.save-button:hover{transform:translateY(-2px)}
-.save-button:disabled{opacity:.6;cursor:wait;transform:none}
-.back-button{margin-top:18px;border:none;background:transparent;color:#a17fa7;font-family:"Mali",sans-serif;cursor:pointer;font-size:14px}
-.back-button:hover{color:#e28ab4}
+/* =====================================================
+   BASIC
+===================================================== */
 
-/* MAIL */
-.mail-section{margin-top:28px;background:rgba(255,255,255,.72);border:2px solid rgba(255,255,255,.9);border-radius:24px;padding:20px;box-shadow:0 8px 25px rgba(150,110,160,.1)}
-.mail-title{font-family:"Itim",cursive;color:#9a669e;font-size:30px;text-align:center;margin-bottom:18px}
-.letters-list{display:flex;flex-direction:column;gap:12px}
-.empty-mail{text-align:center;color:#b69ab9;padding:25px;font-size:14px}
-.letter-card{display:flex;align-items:center;gap:15px;width:100%;cursor:pointer;text-align:left;font-family:"Mali",sans-serif;background:linear-gradient(135deg,#fff7fb,#f5efff);border:2px solid #f4d9ea;border-radius:18px;padding:15px;position:relative;z-index:2;margin:0;transition:transform .25s ease,box-shadow .25s ease}
-.letter-card:hover{transform:translateY(-2px);box-shadow:0 7px 20px rgba(170,120,175,.15)}
-.letter-icon{width:50px;height:40px;display:flex;align-items:center;justify-content:center;font-size:27px;flex-shrink:0}
-.letter-info{min-width:0;flex:1}
-.letter-preview{color:#715f76;font-size:14px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.letter-time{color:#b19ab4;font-size:11px;margin-top:4px}
-
-/* SWIPE */
-.letter-swipe-wrapper{position:relative;overflow:hidden;border-radius:18px;margin-bottom:12px}
-.letter-actions{position:absolute;right:0;top:0;height:100%;display:flex;align-items:center;gap:8px;padding:8px;transform:translateX(100%);transition:transform .25s ease;background:rgba(255,255,255,.65)}
-.letter-swipe-wrapper.swiped .letter-actions{transform:translateX(0)}
-.letter-swipe-wrapper.swiped .letter-card{transform:translateX(-145px)}
-.letter-action{width:52px;height:52px;border:none;border-radius:15px;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:22px;transition:.2s ease;box-shadow:0 4px 10px rgba(100,70,110,.12)}
-.delete-action{background:#f6aeb7;color:#fff}
-.delete-action:hover{background:#ef919d;transform:scale(1.05)}
-.edit-action{background:#a9d9f2;color:#fff}
-.edit-action:hover{background:#8fcbe9;transform:scale(1.05)}
-
-/* MODALS */
-.edit-modal,.letter-modal{display:none;position:fixed;inset:0;background:rgba(94,68,103,.25);backdrop-filter:blur(7px);align-items:center;justify-content:center;padding:20px}
-.edit-modal{z-index:250}
-.letter-modal{z-index:100}
-.edit-box{width:min(650px,95vw);background:linear-gradient(145deg,#fffafd,#faf4ff);border:4px solid #d9edf7;border-radius:28px;padding:25px;box-shadow:0 25px 70px rgba(100,70,110,.25);animation:modalIn .3s ease}
-.edit-title{font-family:"Itim",cursive;color:#79a9c1;font-size:30px;margin-bottom:15px}
-.edit-box textarea{min-height:250px;width:100%;border:2px dashed #b9dced;background:#fff}
-.edit-buttons{display:flex;justify-content:flex-end;gap:10px;margin-top:15px}
-.cancel-edit{border:none;background:#eadfeb;color:#907899;padding:10px 20px;border-radius:20px;font-family:"Mali",sans-serif;cursor:pointer}
-.save-edit{border:none;background:#a9d9f2;color:#fff;padding:10px 22px;border-radius:20px;font-family:"Mali",sans-serif;cursor:pointer}
-.save-edit:hover{background:#8fcbe9}
-.letter-box{width:min(700px,95vw);max-height:90vh;overflow-y:auto;background:linear-gradient(145deg,#fffafd,#faf4ff);border:4px solid #f5d9ea;border-radius:28px;padding:27px;box-shadow:0 25px 70px rgba(100,70,110,.25);animation:modalIn .3s ease}
-.letter-box-header{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:18px}
-.letter-box-title{font-family:"Itim",cursive;font-size:31px;color:#9a669e}
-.close-letter{border:none;width:35px;height:35px;border-radius:50%;cursor:pointer;color:#a77aa7;background:#f6e3f1;font-size:18px}
-.letter-meta{padding:12px 15px;border-radius:15px;background:#fff0f7;color:#a27ea3;font-size:13px;margin-bottom:18px;line-height:1.8}
-.letter-content{background:#fff;border:2px solid #f2deeb;border-radius:18px;padding:20px;min-height:150px;white-space:pre-wrap;overflow-wrap:anywhere;line-height:1.9;color:#645668;font-size:16px;margin-bottom:20px}
-.delete-letter{border:none;cursor:pointer;font-family:"Mali",sans-serif;background:#f4b2c7;color:#fff;padding:9px 17px;border-radius:20px;font-size:13px;margin-bottom:20px}
-.delete-letter:hover{background:#ec91ae}
-
-/* COMMENTS */
-.comments-title{font-family:"Itim",cursive;color:#9b6fa0;font-size:26px;margin-bottom:12px}
-.comments-list{display:flex;flex-direction:column;gap:10px;margin-bottom:15px}
-.comment-item{background:#fff;border:1px solid #efddea;border-radius:15px;padding:12px 15px}
-.comment-time{color:#b49bb6;font-size:10px;margin-bottom:4px}
-.comment-content{white-space:pre-wrap;overflow-wrap:anywhere;line-height:1.7;color:#685a6c;font-size:14px}
-.no-comments{color:#b7a2b8;font-size:13px;margin-bottom:15px}
-.comment-area{display:flex;gap:8px;align-items:flex-end}
-.comment-area textarea{min-height:70px;height:70px;resize:vertical;padding:12px;font-size:14px;flex:1}
-.comment-button{border:none;cursor:pointer;background:linear-gradient(100deg,#efa0c4,#b99ce9);color:#fff;font-family:"Mali",sans-serif;padding:11px 18px;border-radius:20px;white-space:nowrap}
-
-/* ENVELOPE */
-.envelope-animation{display:none;position:fixed;inset:0;z-index:200;pointer-events:none}
-.flying-envelope{position:absolute;left:50%;bottom:25%;transform:translate(-50%,0) scale(1);font-size:65px;filter:drop-shadow(0 8px 12px rgba(120,80,130,.2))}
-@keyframes flyToMail{
-0%{opacity:0;transform:translate(-50%,100px) scale(.5) rotate(-8deg)}
-15%{opacity:1}
-45%{transform:translate(-50%,-20px) scale(1.1) rotate(7deg)}
-70%{transform:translate(-50%,-100px) scale(1) rotate(-4deg)}
-100%{opacity:0;transform:translate(-50%,-270px) scale(.35) rotate(8deg)}}
-
-/* SAVED POPUP */
-.saved-note{display:none;position:fixed;inset:0;background:rgba(91,65,100,.2);backdrop-filter:blur(5px);align-items:center;justify-content:center;z-index:150}
-.saved-box{width:min(88%,400px);padding:30px;background:#fff;border:4px solid #f6d9eb;border-radius:28px;text-align:center;box-shadow:0 20px 60px rgba(100,70,110,.25);animation:modalIn .3s ease}
-.saved-box .heart{font-size:45px;margin-bottom:10px}
-.saved-box h2{font-family:"Itim",cursive;font-size:30px;color:#a06ba2;margin-bottom:10px}
-.saved-box p{line-height:1.8;color:#78637c;margin-bottom:20px}
-.close-popup{border:none;background:#e99bc0;color:#fff;border-radius:30px;padding:10px 28px;font-family:"Mali",sans-serif;cursor:pointer}
-
-/* STATUS BANNER (ใหม่: แจ้งเตือนเมื่อเชื่อมต่อไม่ได้) */
-.status-banner{display:none;margin-bottom:16px;padding:10px 14px;border-radius:14px;background:#fff0f3;border:2px solid #f6c3cf;color:#b5586f;font-size:13px;line-height:1.7}
-
-/* ANIMATIONS */
-@keyframes fadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
-@keyframes slideIn{from{opacity:0;transform:translateX(20px)}to{opacity:1;transform:translateX(0)}}
-@keyframes modalIn{from{opacity:0;transform:scale(.9) translateY(15px)}to{opacity:1;transform:scale(1) translateY(0)}}
-
-/* MOBILE */
-@media (max-width:600px){
-body{padding:10px}
-.game-window{width:100%;min-height:90vh;border-radius:24px}
-.screen{padding:35px 20px;min-height:calc(90vh - 58px)}
-.blog-screen{padding:22px 15px}
-.blog-header{align-items:flex-start;flex-direction:column}
-.date{font-size:11px}
-textarea{min-height:230px}
-.journal-footer{align-items:stretch;flex-direction:column}
-.save-button{width:100%}
-.letter-box{padding:20px}
-.comment-area{flex-direction:column}
-.comment-area textarea{width:100%}
-.comment-button{width:100%}
-.letter-actions{gap:5px;padding:6px}
-.letter-action{width:48px;height:48px}
-.letter-swipe-wrapper.swiped .letter-card{transform:translateX(-130px)}
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
 }
+
+html,
+body{
+  width:100%;
+  min-height:100%;
+}
+
+body{
+
+  min-height:100vh;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  padding:20px;
+
+  overflow:hidden;
+
+  font-family:
+    "Mali",
+    sans-serif;
+
+  color:#69536f;
+
+  background:
+
+    radial-gradient(
+      circle at 10% 12%,
+      rgba(255,255,255,.9) 0 3%,
+      transparent 4%
+    ),
+
+    radial-gradient(
+      circle at 90% 18%,
+      rgba(255,255,255,.75) 0 2.5%,
+      transparent 3.5%
+    ),
+
+    radial-gradient(
+      circle at 15% 88%,
+      rgba(255,255,255,.65) 0 2.5%,
+      transparent 3.5%
+    ),
+
+    linear-gradient(
+      135deg,
+      #ffd8eb,
+      #f7e1ff 48%,
+      #dceeff
+    );
+
+}
+
+
+/* =====================================================
+   CHAT WINDOW
+===================================================== */
+
+.chat-window{
+
+  width:
+    min(
+      900px,
+      96vw
+    );
+
+  height:
+    min(
+      900px,
+      92vh
+    );
+
+  min-height:620px;
+
+  display:flex;
+  flex-direction:column;
+
+  overflow:hidden;
+
+  background:
+    rgba(255,255,255,.78);
+
+  border:
+    3px solid
+    rgba(255,255,255,.95);
+
+  border-radius:
+    30px;
+
+  box-shadow:
+
+    0 25px 80px
+    rgba(164,113,172,.25),
+
+    inset
+    0 0 0 2px
+    rgba(244,184,221,.5);
+
+  backdrop-filter:
+    blur(18px);
+
+}
+
+
+/* =====================================================
+   TOP BAR
+===================================================== */
+
+.top-bar{
+
+  flex-shrink:0;
+
+  min-height:76px;
+
+  padding:
+    10px
+    18px;
+
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+
+  background:
+
+    linear-gradient(
+      90deg,
+      #f8afd0,
+      #d0b9f2,
+      #adddf4
+    );
+
+  border-bottom:
+    2px solid
+    rgba(255,255,255,.75);
+
+}
+
+
+/* =====================================================
+   PROFILE
+===================================================== */
+
+.profile{
+
+  display:flex;
+  align-items:center;
+
+  gap:12px;
+
+  min-width:0;
+
+}
+
+
+.profile-image{
+
+  width:50px;
+  height:50px;
+
+  flex-shrink:0;
+
+  border-radius:50%;
+
+  object-fit:cover;
+
+  background:#ffd7e9;
+
+  border:
+    3px solid
+    rgba(255,255,255,.95);
+
+  box-shadow:
+    0 5px 15px
+    rgba(175,120,170,.2);
+
+}
+
+
+.profile-info{
+
+  min-width:0;
+
+}
+
+
+.profile-name{
+
+  font-family:
+    "Itim",
+    cursive;
+
+  font-size:25px;
+
+  line-height:1;
+
+  color:#7d5d82;
+
+}
+
+
+.profile-status{
+
+  display:flex;
+  align-items:center;
+
+  gap:6px;
+
+  margin-top:5px;
+
+  color:#8d718f;
+
+  font-size:12px;
+
+}
+
+
+.status-dot{
+
+  width:9px;
+  height:9px;
+
+  flex-shrink:0;
+
+  border-radius:50%;
+
+  background:#ff91bd;
+
+  box-shadow:
+    0 0 8px
+    rgba(255,145,189,.75);
+
+}
+
+
+/* =====================================================
+   WINDOW DOTS
+===================================================== */
+
+.window-dots{
+
+  display:flex;
+
+  gap:7px;
+
+}
+
+
+.window-dots span{
+
+  width:11px;
+  height:11px;
+
+  border-radius:50%;
+
+  background:
+    rgba(255,255,255,.82);
+
+}
+
+
+/* =====================================================
+   CHAT AREA
+===================================================== */
+
+.chat-area{
+
+  position:relative;
+
+  flex:1;
+
+  min-height:0;
+
+  padding:
+    20px
+    18px;
+
+  background:
+
+    linear-gradient(
+      180deg,
+      rgba(255,247,252,.72),
+      rgba(244,246,255,.68)
+    );
+
+}
+
+
+/* =====================================================
+   MESSAGES SCROLLER
+===================================================== */
+
+.messages{
+
+  width:100%;
+  height:100%;
+
+  overflow-y:auto;
+  overflow-x:hidden;
+
+  padding:
+    4px
+    12px
+    18px;
+
+  scroll-behavior:smooth;
+
+  overscroll-behavior:contain;
+
+  scrollbar-width:
+    thin;
+
+  scrollbar-color:
+    #e7a9c8
+    rgba(255,255,255,.45);
+
+}
+
+
+/* Webkit scrollbar */
+
+.messages::-webkit-scrollbar{
+
+  width:9px;
+
+}
+
+.messages::-webkit-scrollbar-track{
+
+  background:
+    rgba(255,255,255,.45);
+
+  border-radius:20px;
+
+}
+
+.messages::-webkit-scrollbar-thumb{
+
+  background:
+    linear-gradient(
+      #f1a6c8,
+      #bca9e8
+    );
+
+  border-radius:20px;
+
+  border:
+    2px solid
+    rgba(255,255,255,.5);
+
+}
+
+
+/* =====================================================
+   MESSAGE ROW
+===================================================== */
+
+.message-row{
+
+  display:flex;
+
+  width:100%;
+
+  margin:
+    7px
+    0;
+
+}
+
+
+.message-row.mine{
+
+  justify-content:flex-start;
+
+}
+
+.message-row.theirs{
+
+  justify-content:flex-end;
+
+}
+
+
+/* =====================================================
+   BUBBLE
+===================================================== */
+
+.message-bubble{
+
+  max-width:
+    min(
+      72%,
+      600px
+    );
+
+  padding:
+    12px
+    16px;
+
+  border-radius:
+    20px;
+
+  line-height:
+    1.75;
+
+  font-size:
+    15px;
+
+  white-space:
+    pre-wrap;
+
+  word-break:
+    break-word;
+
+  overflow-wrap:
+    anywhere;
+
+  position:relative;
+
+  box-shadow:
+    0 4px 13px
+    rgba(130,100,145,.08);
+
+}
+
+
+/* =====================================================
+   OUR MESSAGE — PINK / LEFT
+===================================================== */
+
+.message-row.mine
+.message-bubble{
+
+  color:#76576b;
+
+  background:
+
+    linear-gradient(
+      135deg,
+      #ffd1e5,
+      #f8c4df
+    );
+
+  border:
+    1px solid
+    rgba(239,155,193,.55);
+
+  border-bottom-left-radius:
+    6px;
+
+}
+
+
+/* =====================================================
+   THEIR MESSAGE — BLUE / RIGHT
+===================================================== */
+
+.message-row.theirs
+.message-bubble{
+
+  color:#5b6475;
+
+  background:
+
+    linear-gradient(
+      135deg,
+      #d5ecff,
+      #c8e4fa
+    );
+
+  border:
+    1px solid
+    rgba(145,196,232,.55);
+
+  border-bottom-right-radius:
+    6px;
+
+}
+
+
+/* =====================================================
+   MESSAGE TIME
+===================================================== */
+
+.message-time{
+
+  margin-top:5px;
+
+  font-size:10px;
+
+  line-height:1.2;
+
+  opacity:.62;
+
+}
+
+
+.message-row.mine
+.message-time{
+
+  text-align:left;
+
+}
+
+.message-row.theirs
+.message-time{
+
+  text-align:right;
+
+}
+
+
+/* =====================================================
+   EMPTY CHAT
+===================================================== */
+
+.empty-chat{
+
+  width:100%;
+  height:100%;
+
+  display:flex;
+
+  align-items:center;
+  justify-content:center;
+
+  text-align:center;
+
+  color:#b99eb9;
+
+  font-size:14px;
+
+  line-height:1.8;
+
+}
+
+
+.empty-chat span{
+
+  display:block;
+
+  font-size:38px;
+
+  margin-bottom:8px;
+
+}
+
+
+/* =====================================================
+   SCROLL TO BOTTOM
+===================================================== */
+
+.scroll-bottom{
+
+  position:absolute;
+
+  right:25px;
+  bottom:25px;
+
+  width:43px;
+  height:43px;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  border:none;
+
+  border-radius:50%;
+
+  background:
+    rgba(255,255,255,.95);
+
+  color:#b77ca5;
+
+  font-size:19px;
+
+  cursor:pointer;
+
+  box-shadow:
+    0 6px 18px
+    rgba(130,100,145,.2);
+
+  opacity:0;
+
+  pointer-events:none;
+
+  transform:
+    translateY(8px);
+
+  transition:
+    .2s ease;
+
+}
+
+
+.scroll-bottom.show{
+
+  opacity:1;
+
+  pointer-events:auto;
+
+  transform:
+    translateY(0);
+
+}
+
+
+.scroll-bottom:hover{
+
+  transform:
+    translateY(-2px);
+
+}
+
+
+/* =====================================================
+   INPUT AREA
+===================================================== */
+
+.input-area{
+
+  flex-shrink:0;
+
+  padding:
+    13px
+    16px
+    15px;
+
+  background:
+    rgba(255,255,255,.83);
+
+  border-top:
+    2px solid
+    rgba(255,255,255,.9);
+
+}
+
+
+/* =====================================================
+   IDENTITY SELECTOR
+===================================================== */
+
+.identity-row{
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:space-between;
+
+  gap:10px;
+
+  margin-bottom:8px;
+
+  padding:
+    0
+    3px;
+
+}
+
+
+.identity-label{
+
+  color:#aa8baa;
+
+  font-size:11px;
+
+}
+
+
+.identity-buttons{
+
+  display:flex;
+
+  gap:5px;
+
+}
+
+
+.identity-button{
+
+  border:none;
+
+  padding:
+    4px
+    10px;
+
+  border-radius:20px;
+
+  font-family:
+    "Mali",
+    sans-serif;
+
+  font-size:11px;
+
+  color:#9d7d9e;
+
+  background:
+    rgba(245,230,245,.8);
+
+  cursor:pointer;
+
+  transition:.2s ease;
+
+}
+
+
+.identity-button.active{
+
+  color:#fff;
+
+  background:
+    linear-gradient(
+      100deg,
+      #ee9fc4,
+      #b8a1e6
+    );
+
+  box-shadow:
+    0 3px 8px
+    rgba(190,130,180,.2);
+
+}
+
+
+/* =====================================================
+   INPUT BOX
+===================================================== */
+
+.input-box{
+
+  display:flex;
+
+  align-items:flex-end;
+
+  gap:9px;
+
+}
+
+
+.message-input{
+
+  flex:1;
+
+  min-width:0;
+
+  min-height:48px;
+  max-height:130px;
+
+  resize:none;
+
+  padding:
+    12px
+    16px;
+
+  border:
+    2px solid
+    #efd6e7;
+
+  border-radius:
+    21px;
+
+  outline:none;
+
+  background:
+    #fffafd;
+
+  color:#66566b;
+
+  font-family:
+    "Mali",
+    sans-serif;
+
+  font-size:14px;
+
+  line-height:1.65;
+
+  overflow-y:auto;
+
+  transition:.2s ease;
+
+}
+
+
+.message-input::placeholder{
+
+  color:#c3a9c1;
+
+}
+
+
+.message-input:focus{
+
+  border-color:
+    #dfa7c9;
+
+  background:#fff;
+
+  box-shadow:
+    0 0 0 4px
+    rgba(223,167,201,.12);
+
+}
+
+
+/* =====================================================
+   SEND BUTTON
+===================================================== */
+
+.send-button{
+
+  width:52px;
+  height:48px;
+
+  flex-shrink:0;
+
+  border:none;
+
+  border-radius:19px;
+
+  cursor:pointer;
+
+  display:flex;
+
+  align-items:center;
+  justify-content:center;
+
+  font-size:20px;
+
+  color:#fff;
+
+  background:
+
+    linear-gradient(
+      135deg,
+      #f39fc4,
+      #b99fe7
+    );
+
+  box-shadow:
+    0 6px 15px
+    rgba(188,132,190,.25);
+
+  transition:.2s ease;
+
+}
+
+
+.send-button:hover{
+
+  transform:
+    translateY(-2px);
+
+  box-shadow:
+    0 8px 18px
+    rgba(188,132,190,.35);
+
+}
+
+
+.send-button:active{
+
+  transform:
+    scale(.95);
+
+}
+
+
+.send-button:disabled{
+
+  opacity:.55;
+
+  cursor:wait;
+
+}
+
+
+/* =====================================================
+   LOADING
+===================================================== */
+
+.connection-status{
+
+  position:absolute;
+
+  top:12px;
+  left:50%;
+
+  transform:
+    translateX(-50%);
+
+  z-index:5;
+
+  padding:
+    6px
+    13px;
+
+  border-radius:20px;
+
+  background:
+    rgba(255,255,255,.92);
+
+  color:#a980a4;
+
+  font-size:10px;
+
+  box-shadow:
+    0 4px 15px
+    rgba(130,100,145,.12);
+
+  display:none;
+
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media (max-width:600px){
+
+  body{
+
+    padding:8px;
+
+  }
+
+  .chat-window{
+
+    width:100%;
+
+    height:
+      calc(
+        100vh - 16px
+      );
+
+    min-height:
+      500px;
+
+    border-radius:
+      23px;
+
+  }
+
+  .top-bar{
+
+    min-height:68px;
+
+    padding:
+      8px
+      13px;
+
+  }
+
+  .profile-image{
+
+    width:43px;
+    height:43px;
+
+  }
+
+  .profile-name{
+
+    font-size:22px;
+
+  }
+
+  .profile-status{
+
+    font-size:10px;
+
+  }
+
+  .chat-area{
+
+    padding:
+      12px
+      8px;
+
+  }
+
+  .messages{
+
+    padding:
+      3px
+      6px
+      15px;
+
+  }
+
+  .message-bubble{
+
+    max-width:
+      82%;
+
+    font-size:
+      14px;
+
+    padding:
+      10px
+      13px;
+
+    line-height:
+      1.7;
+
+  }
+
+  .input-area{
+
+    padding:
+      10px
+      10px
+      11px;
+
+  }
+
+  .identity-label{
+
+    font-size:10px;
+
+  }
+
+  .message-input{
+
+    font-size:14px;
+
+  }
+
+  .send-button{
+
+    width:48px;
+    height:47px;
+
+  }
+
+  .scroll-bottom{
+
+    right:18px;
+    bottom:18px;
+
+    width:40px;
+    height:40px;
+
+  }
+
+}
+
+
+/* =====================================================
+   REDUCED MOTION
+===================================================== */
+
+@media (prefers-reduced-motion:reduce){
+
+  *{
+
+    scroll-behavior:auto !important;
+
+    transition:none !important;
+
+  }
+
+}
+
 </style>
+
 </head>
+
 
 <body>
 
-<main class="game-window">
 
-  <div class="window-bar">
-    <div class="window-buttons"><span></span><span></span><span></span></div>
-  </div>
+<main class="chat-window">
 
-  <!-- HOME -->
-  <section class="screen" id="homeScreen">
-    <div class="avatar">🐷</div>
-    <h1 class="hello">ไอ่หมูอ่วน วันนี้เป็นอะไรอีกแล้วล่ะ 🐷😡</h1>
-    <p class="message">
-      แหมๆ วันนี้มีเรื่องเล่าให้อีกละเด้ พิมพ์ทิ้งไว้เลย เดะเค้ามาอ่าน หรือถ้าเค้าทำตัวไม่ดี ที่รักก็มาบอกในนี้ได้น่าา 🥹
-    </p>
-    <button class="start-button" onclick="openJournal()">คลิ้ก ๆๆๆ ♡</button>
+
+  <!-- ===================================================
+       HEADER
+  ==================================================== -->
+
+  <header class="top-bar">
+
+    <div class="profile">
+
+      <img
+        class="profile-image"
+        src="./EF49275A-74C1-46A1-AECC-04F296D98CB0.gif"
+        alt="Jaoka"
+      >
+
+      <div class="profile-info">
+
+        <div class="profile-name">
+          Jaoka
+        </div>
+
+        <div class="profile-status">
+
+          <span class="status-dot"></span>
+
+          <span>
+            obsessed
+          </span>
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <div class="window-dots">
+
+      <span></span>
+      <span></span>
+      <span></span>
+
+    </div>
+
+  </header>
+
+
+  <!-- ===================================================
+       CHAT
+  ==================================================== -->
+
+  <section class="chat-area">
+
+    <div
+      class="connection-status"
+      id="connectionStatus"
+    >
+      กำลังเชื่อมต่อ...
+    </div>
+
+
+    <div
+      class="messages"
+      id="messages"
+    >
+
+      <div
+        class="empty-chat"
+        id="emptyChat"
+      >
+
+        <div>
+
+          <span>♡</span>
+
+          เริ่มคุยกันตรงนี้นะ
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <button
+      class="scroll-bottom"
+      id="scrollBottom"
+      type="button"
+      title="ไปข้อความล่าสุด"
+      aria-label="ไปข้อความล่าสุด"
+    >
+      ↓
+    </button>
+
   </section>
 
-  <!-- BLOG -->
-  <section class="blog-screen" id="blogScreen">
 
-    <div class="blog-header">
-      <h1 class="blog-title">วันนี้เธอเป็นงัยมั่งง ♡</h1>
-      <div class="date" id="todayDate"></div>
-    </div>
+  <!-- ===================================================
+       INPUT
+  ==================================================== -->
 
-    <div class="status-banner" id="statusBanner"></div>
+  <footer class="input-area">
 
-    <div class="jaoka-message">
-      <div class="jaoka-name">เจ้าขา ♡</div>
-      <div class="jaoka-text" id="jaokaMessage"></div>
-    </div>
 
-    <div class="journal">
-      <div class="journal-label">จั้มเป็นไงมั่งง อยากให้พี่แก้ตรงไหนมั้ย หรือมีเรื่องที่น่าสนใจ</div>
+    <div class="identity-row">
 
-      <textarea id="journalText" maxlength="2000" placeholder="เขียนตรงนี้เย้ยย"></textarea>
-
-      <div class="journal-footer">
-        <div class="hint">หมู ๆ 🐽</div>
-        <button class="save-button" id="saveButton" onclick="saveJournal()">เก็บเรื่องนี้ไว้ ♡</button>
+      <div
+        class="identity-label"
+        id="identityLabel"
+      >
+        กำลังส่งในชื่อ: เรา
       </div>
-    </div>
 
-    <div class="mail-section">
-      <div class="mail-title">💌 จดหมาย</div>
-      <div class="letters-list" id="lettersList">
-        <div class="empty-mail">ยังไม่มีจดหมายเย้ยย ♡</div>
+
+      <div class="identity-buttons">
+
+        <button
+          type="button"
+          class="identity-button active"
+          id="meButton"
+        >
+          เรา
+        </button>
+
+        <button
+          type="button"
+          class="identity-button"
+          id="themButton"
+        >
+          เขา
+        </button>
+
       </div>
+
     </div>
 
-    <button class="back-button" onclick="goHome()">← กลับไปหน้าหลัก</button>
 
-  </section>
+    <div class="input-box">
+
+      <textarea
+        id="messageInput"
+        class="message-input"
+        maxlength="3000"
+        rows="1"
+        placeholder="พิมพ์ข้อความ..."
+      ></textarea>
+
+
+      <button
+        type="button"
+        class="send-button"
+        id="sendButton"
+        aria-label="ส่งข้อความ"
+      >
+        ♡
+      </button>
+
+    </div>
+
+  </footer>
+
 
 </main>
 
-<!-- ENVELOPE ANIMATION -->
-<div class="envelope-animation" id="envelopeAnimation">
-  <div class="flying-envelope" id="flyingEnvelope">💌</div>
-</div>
-
-<!-- SAVED POPUP -->
-<div class="saved-note" id="savedPopup">
-  <div class="saved-box">
-    <div class="heart">💗</div>
-    <h2>ส่งจดหมายแล้วนะ</h2>
-    <p>เรื่องที่เขียนมา<br>ถูกส่งไปอยู่ใน "จดหมาย" แล้วนะ ♡</p>
-    <button class="close-popup" onclick="closePopup()">โอเค ♡</button>
-  </div>
-</div>
-
-<!-- LETTER READER -->
-<div class="letter-modal" id="letterModal">
-  <div class="letter-box">
-
-    <div class="letter-box-header">
-      <h2 class="letter-box-title">💌 จดหมาย</h2>
-      <button class="close-letter" onclick="closeLetter()">×</button>
-    </div>
-
-    <div class="letter-meta" id="letterMeta"></div>
-    <div class="letter-content" id="letterContent"></div>
-
-    <button class="delete-letter" onclick="deleteCurrentLetter()">🗑 ลบจดหมาย</button>
-
-    <h3 class="comments-title">comment</h3>
-    <div class="comments-list" id="commentsList"></div>
-
-    <div class="comment-area">
-      <textarea id="commentText" maxlength="2000" placeholder="เขียน comment ตรงนี้เย้ยย"></textarea>
-      <button class="comment-button" onclick="addComment()">ตอบกลับ ♡</button>
-    </div>
-
-  </div>
-</div>
-
-<!-- EDIT MODAL -->
-<div class="edit-modal" id="editModal">
-  <div class="edit-box">
-    <h2 class="edit-title">✏️ แก้ไขจดหมาย</h2>
-    <textarea id="editLetterText" maxlength="2000" placeholder="เขียนตรงนี้เย้ยย"></textarea>
-    <div class="edit-buttons">
-      <button class="cancel-edit" onclick="closeEditModal()">ยกเลิก</button>
-      <button class="save-edit" onclick="saveEditedLetter()">บันทึกการแก้ไข ♡</button>
-    </div>
-  </div>
-</div>
 
 <script type="module">
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
-  import { getFirestore, collection, addDoc, onSnapshot, deleteDoc, doc, updateDoc, arrayUnion, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+
+
+/* =====================================================
+   FIREBASE
+===================================================== */
+
+import {
+  initializeApp
+}
+from
+  "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+
+
+import {
+  getFirestore,
+  collection,
+  addDoc,
+  query,
+  orderBy,
+  onSnapshot,
+  serverTimestamp
+}
+from
+  "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+
 
 const firebaseConfig = {
-  apiKey: "AIzaSyBkxDeR-IgljHiFbczQOlvUDtoz7z5xxh4",
-  authDomain: "jaokanjump.firebaseapp.com",
-  projectId: "jaokanjump",
-  storageBucket: "jaokanjump.firebasestorage.app",
-  messagingSenderId: "137877435934",
-  appId: "1:137877435934:web:3160d245dd411917e2200f",
-  measurementId: "G-1HQ7045XKF"
+
+  apiKey:
+    "AIzaSyBkxDeR-IgljHiFbczQOlvUDtoz7z5xxh4",
+
+  authDomain:
+    "jaokanjump.firebaseapp.com",
+
+  projectId:
+    "jaokanjump",
+
+  storageBucket:
+    "jaokanjump.firebasestorage.app",
+
+  messagingSenderId:
+    "137877435934",
+
+  appId:
+    "1:137877435934:web:3160d245dd411917e2200f",
+
+  measurementId:
+    "G-1HQ7045XKF"
+
 };
 
-  const configMissing = Object.values(firebaseConfig).some(v => String(v).includes("ใส่ของจริง"));
 
-  let db = null;
-  if (!configMissing) {
-    const app = initializeApp(firebaseConfig);
-    db = getFirestore(app);
-  }
+const app =
+  initializeApp(firebaseConfig);
 
-  let lettersCache = [];
-  let currentLetterId = null;
-  let editingLetterId = null;
 
-  const jaokaMessages = [
-    "วันนี้เค้าทำตัวไม่ดีรึเปล่า มาบอกได้นะ",
-    "วันนี้มีอะไรอยากเล่าไหม",
-    "วันนี้เหนื่อยตรงไหนมาบ้าง เล่าให้เค้าฟังได้นะ",
-    "มีอะไรที่อยากให้เจ้าขารู้เกี่ยวกับวันนี้ไหม",
-    "วันนี้เป็นยังไงบ้าง เล่าให้เค้าฟังหน่อยได้ไหม",
-    "มีเรื่องอะไรที่ยังค้างอยู่ในใจรึเปล่า",
-    "วันนี้มีอะไรทำให้ยิ้มได้บ้างไหม",
-    "ถ้าวันนี้ไม่โอเค ก็เล่าให้เค้าฟังได้นะ",
-    "วันนี้อยากให้เค้าแก้อะไรตรงไหน บอกเค้าได้เลยนะ",
-    "มีอะไรที่อยากระบายออกมาบ้างไหม",
-    "วันนี้เค้าดูแลเราดีพอรึยังนะ",
-    "ถ้ามีอะไรอยากพูดกับเค้า พิมพ์ตรงนี้ได้เลยนะ ♡"
-  ];
+const db =
+  getFirestore(app);
 
-  /* ==================================================
-     STATUS BANNER (แสดงสาเหตุเมื่อเชื่อมต่อไม่ได้)
-  ================================================== */
-  function showStatus(msg) {
-    const el = document.getElementById("statusBanner");
-    if (!msg) { el.style.display = "none"; return; }
-    el.textContent = msg;
-    el.style.display = "block";
-  }
 
-  function explainError(err) {
-    const code = err && err.code ? err.code : "";
-    if (code === "permission-denied") return "เชื่อมต่อได้แต่ถูกบล็อกโดย Firestore Rules (permission-denied) → ไปตั้ง Rules ใน Firebase Console ให้อนุญาต read, write ที่ collection letters";
-    if (code === "unavailable") return "ติดต่อฐานข้อมูลไม่ได้ (unavailable) → เช็คอินเทอร์เน็ต หรือยังไม่ได้กด Create database ใน Firestore";
-    if (code === "failed-precondition" || code === "not-found") return "ยังไม่ได้สร้าง Firestore Database → ไป Firebase Console > Firestore Database > Create database";
-    return "เชื่อมต่อฐานข้อมูลไม่ได้: " + (code || err);
-  }
+/* =====================================================
+   ELEMENTS
+===================================================== */
 
-  /* ==================================================
-     REAL-TIME LISTENER
-  ================================================== */
-  if (configMissing) {
-    showStatus("ยังไม่ได้ใส่ค่า Firebase Config ในไฟล์ (ตรงคำว่า ใส่ของจริง) ข้อความจะยังไม่ถูกบันทึกออนไลน์");
-  } else {
-    onSnapshot(
-      collection(db, "letters"),
-      (snapshot) => {
-        showStatus("");
-        const loaded = [];
-        snapshot.forEach((docSnap) => {
-          const data = docSnap.data();
-          const ms = data.createdAt ? data.createdAt.toMillis() : Date.now();
-          loaded.push({
-            id: docSnap.id,
-            content: data.content || "",
-            createdAt: new Date(ms).toISOString(),
-            comments: data.comments || [],
-            timestampValue: ms
-          });
-        });
+const messagesBox =
+  document.getElementById("messages");
 
-        loaded.sort((a, b) => b.timestampValue - a.timestampValue);
-        lettersCache = loaded;
-        renderLetters();
+const input =
+  document.getElementById("messageInput");
 
-        if (currentLetterId) {
-          const active = lettersCache.find(l => l.id === currentLetterId);
-          if (active) renderComments(active);
-          else closeLetter();
-        }
-      },
-      (err) => {
-        console.error("Firestore error:", err);
-        showStatus(explainError(err));
-      }
+const sendButton =
+  document.getElementById("sendButton");
+
+const scrollBottom =
+  document.getElementById("scrollBottom");
+
+const emptyChat =
+  document.getElementById("emptyChat");
+
+const connectionStatus =
+  document.getElementById("connectionStatus");
+
+const meButton =
+  document.getElementById("meButton");
+
+const themButton =
+  document.getElementById("themButton");
+
+const identityLabel =
+  document.getElementById("identityLabel");
+
+
+/* =====================================================
+   IDENTITY
+===================================================== */
+
+/*
+   แต่ละเครื่องจำได้เองว่าเป็นใคร
+
+   เครื่องของเรา:
+   "me"
+
+   เครื่องของเขา:
+   "them"
+
+   ถ้าเปิดครั้งแรกจะเป็น "me"
+*/
+
+const IDENTITY_KEY =
+  "jaoka_chat_identity";
+
+let identity =
+  localStorage.getItem(IDENTITY_KEY) || "me";
+
+
+function updateIdentityUI(){
+
+  const isMe =
+    identity === "me";
+
+
+  meButton.classList.toggle(
+    "active",
+    isMe
+  );
+
+
+  themButton.classList.toggle(
+    "active",
+    !isMe
+  );
+
+
+  identityLabel.textContent =
+    isMe
+      ? "กำลังส่งในชื่อ: เรา"
+      : "กำลังส่งในชื่อ: เขา";
+
+}
+
+
+meButton.addEventListener(
+  "click",
+  () => {
+
+    identity = "me";
+
+    localStorage.setItem(
+      IDENTITY_KEY,
+      identity
     );
+
+    updateIdentityUI();
+
+  }
+);
+
+
+themButton.addEventListener(
+  "click",
+  () => {
+
+    identity = "them";
+
+    localStorage.setItem(
+      IDENTITY_KEY,
+      identity
+    );
+
+    updateIdentityUI();
+
+  }
+);
+
+
+updateIdentityUI();
+
+
+/* =====================================================
+   HELPERS
+===================================================== */
+
+function formatTime(timestamp){
+
+  if(!timestamp){
+    return "";
   }
 
-  /* ==================================================
-     OPEN JOURNAL / HOME
-  ================================================== */
-  window.openJournal = function () {
-    document.getElementById("homeScreen").style.display = "none";
-    document.getElementById("blogScreen").style.display = "block";
 
-    const i = Math.floor(Math.random() * jaokaMessages.length);
-    document.getElementById("jaokaMessage").textContent = jaokaMessages[i];
+  let date;
 
-    setDate();
-    renderLetters();
 
-    setTimeout(() => document.getElementById("journalText").focus(), 400);
-  };
+  try{
 
-  window.goHome = function () {
-    document.getElementById("blogScreen").style.display = "none";
-    document.getElementById("homeScreen").style.display = "flex";
-  };
+    date =
+      timestamp.toDate
+        ? timestamp.toDate()
+        : new Date(timestamp);
 
-  /* ==================================================
-     DATE + TIME
-  ================================================== */
-  function setDate() {
-    const now = new Date();
-    const dateText = now.toLocaleDateString("th-TH", { weekday: "long", day: "numeric", month: "long", year: "numeric" });
-    const timeText = now.toLocaleTimeString("th-TH", { hour: "2-digit", minute: "2-digit", second: "2-digit" });
-    document.getElementById("todayDate").textContent = dateText + " · " + timeText + " น.";
+  }catch{
+
+    return "";
+
   }
 
-  function formatDateTime(isoString) {
-    if (!isoString) return "";
-    const date = new Date(isoString);
-    const dateText = date.toLocaleDateString("th-TH", { weekday: "long", day: "numeric", month: "long", year: "numeric" });
-    const timeText = date.toLocaleTimeString("th-TH", { hour: "2-digit", minute: "2-digit", second: "2-digit" });
-    return dateText + " เวลา " + timeText + " น.";
-  }
 
-  /* ==================================================
-     DRAFT AUTO-SAVE (พิมพ์ค้างไว้ รีเฟรชแล้วไม่หาย)
-  ================================================== */
-  const DRAFT_KEY = "jaoka_draft";
-  const journalBox = document.getElementById("journalText");
+  return date.toLocaleTimeString(
+    "th-TH",
+    {
+      hour:"2-digit",
+      minute:"2-digit"
+    }
+  );
 
-  try { journalBox.value = localStorage.getItem(DRAFT_KEY) || ""; } catch (e) {}
+}
 
-  journalBox.addEventListener("input", () => {
-    try { localStorage.setItem(DRAFT_KEY, journalBox.value); } catch (e) {}
+
+/* =====================================================
+   SCROLL
+===================================================== */
+
+function isNearBottom(){
+
+  const distance =
+    messagesBox.scrollHeight
+    -
+    messagesBox.scrollTop
+    -
+    messagesBox.clientHeight;
+
+
+  return distance < 120;
+
+}
+
+
+function scrollToBottom(
+  smooth = true
+){
+
+  messagesBox.scrollTo({
+
+    top:
+      messagesBox.scrollHeight,
+
+    behavior:
+      smooth
+        ? "smooth"
+        : "auto"
+
   });
 
-  /* ==================================================
-     SAVE JOURNAL (ส่งขึ้นออนไลน์)
-  ================================================== */
-  window.saveJournal = async function () {
-    const textarea = document.getElementById("journalText");
-    const button = document.getElementById("saveButton");
-    const text = textarea.value;
+}
 
-    if (text.trim().length === 0) { textarea.focus(); return; }
-    if (text.length > 2000) { alert("ข้อความยาวเกิน 2000 ตัวอักษรนะ 🐽"); return; }
 
-    if (!db) { alert("ยังไม่ได้ใส่ค่า Firebase Config ในไฟล์นะ"); return; }
+function updateScrollButton(){
 
-    button.disabled = true;
-    try {
-      await addDoc(collection(db, "letters"), {
-        content: text,
-        createdAt: serverTimestamp(),
-        comments: []
-      });
+  if(isNearBottom()){
 
-      textarea.value = "";
-      try { localStorage.removeItem(DRAFT_KEY); } catch (e) {}
+    scrollBottom.classList.remove(
+      "show"
+    );
 
-      playEnvelopeAnimation();
-      setTimeout(() => {
-        document.getElementById("savedPopup").style.display = "flex";
-      }, 1850);
-    } catch (e) {
-      console.error("Error adding document: ", e);
-      alert("ส่งจดหมายไม่สำเร็จ\n\n" + explainError(e) + "\n\n(ข้อความที่พิมพ์ยังอยู่ ไม่หายนะ)");
-    } finally {
-      button.disabled = false;
-    }
-  };
+  }else{
 
-  /* ==================================================
-     ENVELOPE ANIMATION
-  ================================================== */
-  function playEnvelopeAnimation() {
-    const animation = document.getElementById("envelopeAnimation");
-    const envelope = document.getElementById("flyingEnvelope");
+    scrollBottom.classList.add(
+      "show"
+    );
 
-    envelope.style.animation = "none";
-    void envelope.offsetWidth;
-    envelope.style.animation = "flyToMail 1.8s cubic-bezier(.2,.8,.3,1) forwards";
-
-    animation.style.display = "block";
-    setTimeout(() => { animation.style.display = "none"; }, 1900);
   }
 
-  /* ==================================================
-     RENDER LETTERS
-  ================================================== */
-  function renderLetters() {
-    const list = document.getElementById("lettersList");
-    list.innerHTML = "";
+}
 
-    if (lettersCache.length === 0) {
-      list.innerHTML = `<div class="empty-mail">ยังไม่มีจดหมายเย้ยย ♡</div>`;
-      return;
-    }
 
-    lettersCache.forEach(letter => {
-      const wrapper = document.createElement("div");
-      wrapper.className = "letter-swipe-wrapper";
+messagesBox.addEventListener(
+  "scroll",
+  updateScrollButton
+);
 
-      const actions = document.createElement("div");
-      actions.className = "letter-actions";
 
-      const editButton = document.createElement("button");
-      editButton.className = "letter-action edit-action";
-      editButton.textContent = "✏";
-      editButton.title = "แก้ไข";
-      editButton.onclick = (event) => { event.stopPropagation(); openEditModal(letter.id); };
+scrollBottom.addEventListener(
+  "click",
+  () => {
 
-      const deleteButton = document.createElement("button");
-      deleteButton.className = "letter-action delete-action";
-      deleteButton.textContent = "🗑️";
-      deleteButton.title = "ลบ";
-      deleteButton.onclick = (event) => { event.stopPropagation(); deleteLetterById(letter.id); };
+    scrollToBottom(true);
 
-      actions.appendChild(editButton);
-      actions.appendChild(deleteButton);
+  }
+);
 
-      const button = document.createElement("button");
-      button.className = "letter-card";
-      button.onclick = () => {
-        if (wrapper.classList.contains("swiped")) { wrapper.classList.remove("swiped"); return; }
-        openLetter(letter.id);
-      };
 
-      const icon = document.createElement("div");
-      icon.className = "letter-icon";
-      icon.textContent = "💌";
+/* =====================================================
+   RENDER MESSAGE
+===================================================== */
 
-      const info = document.createElement("div");
-      info.className = "letter-info";
+function renderMessages(
+  snapshot
+){
 
-      const preview = document.createElement("div");
-      preview.className = "letter-preview";
-      preview.textContent = letter.content;
+  const shouldStick =
+    isNearBottom();
 
-      const time = document.createElement("div");
-      time.className = "letter-time";
-      time.textContent = formatDateTime(letter.createdAt);
 
-      info.appendChild(preview);
-      info.appendChild(time);
-      button.appendChild(icon);
-      button.appendChild(info);
+  messagesBox.innerHTML = "";
 
-      wrapper.appendChild(actions);
-      wrapper.appendChild(button);
-      list.appendChild(wrapper);
 
-      /* Touch swipe (แก้บั๊ก: รีเซ็ต currentX ทุกครั้งที่เริ่มแตะ) */
-      let startX = 0, currentX = 0, isDragging = false;
+  if(snapshot.empty){
 
-      button.addEventListener("touchstart", (event) => {
-        startX = event.touches[0].clientX;
-        currentX = startX;
-        isDragging = true;
-      }, { passive: true });
+    messagesBox.appendChild(
+      emptyChat
+    );
 
-      button.addEventListener("touchmove", (event) => {
-        if (!isDragging) return;
-        currentX = event.touches[0].clientX;
-        const distance = currentX - startX;
-        if (distance < -20) {
-          button.style.transform = `translateX(${Math.max(distance, -145)}px)`;
-        }
-      }, { passive: true });
+    emptyChat.style.display =
+      "flex";
 
-      button.addEventListener("touchend", () => {
-        isDragging = false;
-        const distance = currentX - startX;
-        if (distance < -60) wrapper.classList.add("swiped");
-        else wrapper.classList.remove("swiped");
-        button.style.transform = "";
-      });
-    });
+    updateScrollButton();
+
+    return;
+
   }
 
-  /* ==================================================
-     OPEN / CLOSE LETTER
-  ================================================== */
-  window.openLetter = function (id) {
-    const letter = lettersCache.find(item => item.id === id);
-    if (!letter) return;
 
-    currentLetterId = id;
-    document.getElementById("letterMeta").textContent = "ส่งมาเมื่อ " + formatDateTime(letter.createdAt);
-    document.getElementById("letterContent").textContent = letter.content;
-    document.getElementById("commentText").value = "";
+  snapshot.forEach(
+    (docSnap) => {
 
-    renderComments(letter);
-    document.getElementById("letterModal").style.display = "flex";
-  };
+      const data =
+        docSnap.data();
 
-  window.closeLetter = function () {
-    document.getElementById("letterModal").style.display = "none";
-    currentLetterId = null;
-  };
 
-  /* ==================================================
-     COMMENTS
-  ================================================== */
-  function renderComments(letter) {
-    const list = document.getElementById("commentsList");
-    list.innerHTML = "";
+      const row =
+        document.createElement(
+          "div"
+        );
 
-    if (!letter.comments || letter.comments.length === 0) {
-      list.innerHTML = `<div class="no-comments">ยังไม่มี comment ♡</div>`;
-      return;
+
+      const isMine =
+        data.sender === "me";
+
+
+      row.className =
+        "message-row "
+        +
+        (
+          isMine
+            ? "mine"
+            : "theirs"
+        );
+
+
+      const bubble =
+        document.createElement(
+          "div"
+        );
+
+
+      bubble.className =
+        "message-bubble";
+
+
+      /*
+         ใช้ textContent + pre-wrap
+         เพื่อให้ข้อความหลายบรรทัด
+         และช่องว่างปลอดภัย
+      */
+
+      bubble.textContent =
+        data.text || "";
+
+
+      const time =
+        document.createElement(
+          "div"
+        );
+
+
+      time.className =
+        "message-time";
+
+
+      time.textContent =
+        formatTime(
+          data.createdAt
+        );
+
+
+      bubble.appendChild(
+        time
+      );
+
+
+      row.appendChild(
+        bubble
+      );
+
+
+      messagesBox.appendChild(
+        row
+      );
+
     }
+  );
 
-    letter.comments.forEach(comment => {
-      const item = document.createElement("div");
-      item.className = "comment-item";
 
-      const time = document.createElement("div");
-      time.className = "comment-time";
-      time.textContent = comment.createdAt;
+  if(shouldStick){
 
-      const content = document.createElement("div");
-      content.className = "comment-content";
-      content.textContent = comment.content;
+    requestAnimationFrame(
+      () => scrollToBottom(false)
+    );
 
-      item.appendChild(time);
-      item.appendChild(content);
-      list.appendChild(item);
-    });
   }
 
-  window.addComment = async function () {
-    if (!currentLetterId || !db) return;
 
-    const textarea = document.getElementById("commentText");
-    const text = textarea.value;
+  updateScrollButton();
 
-    if (text.trim().length === 0) { textarea.focus(); return; }
-    if (text.length > 2000) { alert("comment ยาวเกิน 2000 ตัวอักษรนะ 🐽"); return; }
+}
 
-    try {
-      const timeNow = new Date().toLocaleString("th-TH", { timeZone: "Asia/Bangkok" });
-      await updateDoc(doc(db, "letters", currentLetterId), {
-        comments: arrayUnion({ content: text, createdAt: timeNow })
-      });
-      textarea.value = "";
-    } catch (e) {
-      console.error("Error adding comment: ", e);
-      alert("ส่ง comment ไม่สำเร็จ\n\n" + explainError(e));
+
+/* =====================================================
+   REALTIME FIRESTORE
+===================================================== */
+
+const messagesQuery =
+  query(
+    collection(
+      db,
+      "jaoka_chat"
+    ),
+    orderBy(
+      "createdAt",
+      "asc"
+    )
+  );
+
+
+connectionStatus.style.display =
+  "block";
+
+
+onSnapshot(
+
+  messagesQuery,
+
+  (snapshot) => {
+
+    connectionStatus.style.display =
+      "none";
+
+    renderMessages(
+      snapshot
+    );
+
+  },
+
+  (error) => {
+
+    console.error(
+      "Firestore error:",
+      error
+    );
+
+
+    connectionStatus.textContent =
+      "เชื่อมต่อแชทไม่ได้";
+
+
+    connectionStatus.style.display =
+      "block";
+
+  }
+
+);
+
+
+/* =====================================================
+   SEND MESSAGE
+===================================================== */
+
+async function sendMessage(){
+
+  const text =
+    input.value;
+
+
+  if(
+    text.trim().length === 0
+  ){
+
+    input.focus();
+
+    return;
+
+  }
+
+
+  if(
+    text.length > 3000
+  ){
+
+    alert(
+      "ข้อความยาวเกิน 3000 ตัวอักษรนะ"
+    );
+
+    return;
+
+  }
+
+
+  sendButton.disabled =
+    true;
+
+
+  try{
+
+    await addDoc(
+
+      collection(
+        db,
+        "jaoka_chat"
+      ),
+
+      {
+
+        text:
+          text,
+
+        sender:
+          identity,
+
+        createdAt:
+          serverTimestamp()
+
+      }
+
+    );
+
+
+    input.value = "";
+
+    resizeInput();
+
+    input.focus();
+
+
+    /*
+       หลังส่งให้กลับไปข้อความล่าสุด
+    */
+
+    setTimeout(
+      () => scrollToBottom(true),
+      100
+    );
+
+
+  }catch(error){
+
+    console.error(
+      "Send error:",
+      error
+    );
+
+
+    alert(
+      "ส่งข้อความไม่สำเร็จ\n\n"
+      +
+      "เช็ก Firestore Rules ก่อนนะ"
+    );
+
+  }finally{
+
+    sendButton.disabled =
+      false;
+
+  }
+
+}
+
+
+sendButton.addEventListener(
+  "click",
+  sendMessage
+);
+
+
+/* =====================================================
+   TEXTAREA
+===================================================== */
+
+function resizeInput(){
+
+  input.style.height =
+    "auto";
+
+
+  const height =
+    Math.min(
+      input.scrollHeight,
+      130
+    );
+
+
+  input.style.height =
+    height + "px";
+
+}
+
+
+input.addEventListener(
+  "input",
+  resizeInput
+);
+
+
+/*
+   Enter = ขึ้นบรรทัดใหม่
+
+   Shift + Enter = ขึ้นบรรทัดใหม่เหมือนกัน
+
+   Ctrl / Command + Enter = ส่ง
+*/
+
+input.addEventListener(
+  "keydown",
+  (event) => {
+
+    if(
+      event.key === "Enter"
+      &&
+      (
+        event.ctrlKey
+        ||
+        event.metaKey
+      )
+    ){
+
+      event.preventDefault();
+
+      sendMessage();
+
     }
-  };
 
-  /* ==================================================
-     DELETE
-  ================================================== */
-  const confirmText = "แน่ใจนะว่าจะลบจดหมายนี้?\n\ncomment ทั้งหมดในจดหมายนี้จะถูกลบไปด้วย";
+  }
+);
 
-  window.deleteCurrentLetter = async function () {
-    if (!currentLetterId || !db) return;
-    if (!confirm(confirmText)) return;
 
-    try {
-      await deleteDoc(doc(db, "letters", currentLetterId));
-      closeLetter();
-    } catch (e) {
-      console.error("Error deleting document: ", e);
-      alert("ลบไม่สำเร็จ\n\n" + explainError(e));
-    }
-  };
+/* =====================================================
+   INITIAL
+===================================================== */
 
-  window.deleteLetterById = async function (id) {
-    if (!db) return;
-    if (!confirm(confirmText)) return;
+resizeInput();
 
-    try {
-      await deleteDoc(doc(db, "letters", id));
-      if (currentLetterId === id) closeLetter();
-    } catch (e) {
-      console.error("Error deleting document: ", e);
-      alert("ลบไม่สำเร็จ\n\n" + explainError(e));
-    }
-  };
+setTimeout(
+  () => {
 
-  /* ==================================================
-     EDIT
-  ================================================== */
-  window.openEditModal = function (id) {
-    const letter = lettersCache.find(item => item.id === id);
-    if (!letter) return;
+    scrollToBottom(false);
 
-    editingLetterId = id;
-    document.getElementById("editLetterText").value = letter.content;
-    document.getElementById("editModal").style.display = "flex";
-    setTimeout(() => document.getElementById("editLetterText").focus(), 100);
-  };
+  },
+  300
+);
 
-  window.saveEditedLetter = async function () {
-    if (!editingLetterId || !db) return;
 
-    const textarea = document.getElementById("editLetterText");
-    const newText = textarea.value;
-
-    if (newText.trim().length === 0) { textarea.focus(); return; }
-    if (newText.length > 2000) { alert("ข้อความยาวเกิน 2000 ตัวอักษรนะ 🐽"); return; }
-
-    try {
-      await updateDoc(doc(db, "letters", editingLetterId), { content: newText });
-      closeEditModal();
-    } catch (e) {
-      console.error("Error updating document: ", e);
-      alert("แก้ไขไม่สำเร็จ\n\n" + explainError(e));
-    }
-  };
-
-  window.closeEditModal = function () {
-    document.getElementById("editModal").style.display = "none";
-    editingLetterId = null;
-  };
-
-  window.closePopup = function () {
-    document.getElementById("savedPopup").style.display = "none";
-  };
-
-  /* ==================================================
-     EVENTS
-  ================================================== */
-  document.getElementById("letterModal").addEventListener("click", function (event) {
-    if (event.target === this) closeLetter();
-  });
-
-  document.getElementById("editModal").addEventListener("click", function (event) {
-    if (event.target === this) closeEditModal();
-  });
-
-  document.addEventListener("keydown", function (event) {
-    if (event.key === "Escape") {
-      closeLetter();
-      closePopup();
-      closeEditModal();
-    }
-  });
-
-  setDate();
-  setInterval(setDate, 1000);
 </script>
+
 
 </body>
 </html>
