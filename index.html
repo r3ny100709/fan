@@ -16,10 +16,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Itim&family=Mali:wght@400;500;600;700&display=swap');
 
 
-/* =====================================================
-   BASIC
-===================================================== */
-
 *{
   box-sizing:border-box;
   margin:0;
@@ -63,7 +59,7 @@ body{
 
 
 /* =====================================================
-   FULL SCREEN EFFECT LAYER
+   BUBBLE EFFECT LAYER
 ===================================================== */
 
 .effect-layer{
@@ -82,28 +78,26 @@ body{
 
 
 /* =====================================================
-   BUBBLE EFFECT
+   FLOATING BUBBLE
 ===================================================== */
 
 .floating-bubble{
 
   position:absolute;
 
-  bottom:-120px;
+  bottom:-150px;
 
-  max-width:80vw;
+  max-width:75vw;
 
-  padding:8px 18px;
+  padding:9px 20px;
 
-  color:#72aee8;
+  color:#74afe8;
 
-  font-family:
-    Mali,
-    sans-serif;
+  font-family:Mali,sans-serif;
 
   font-weight:700;
 
-  line-height:1.2;
+  line-height:1.25;
 
   text-align:center;
 
@@ -114,24 +108,22 @@ body{
   text-shadow:
     0 2px 5px rgba(255,255,255,.95),
     0 0 10px rgba(114,174,232,.55),
-    0 0 22px rgba(114,174,232,.3);
+    0 0 24px rgba(114,174,232,.28);
 
-  filter:
-    drop-shadow(
-      0 5px 10px
-      rgba(90,130,190,.15)
-    );
+  opacity:0;
 
   animation:
-    bubbleFloat
+    bubbleBalloon
     var(--bubble-duration)
-    cubic-bezier(.2,.7,.2,1)
+    linear
     forwards;
 
 }
 
 
-@keyframes bubbleFloat{
+/* ลูกโป่งลอยช้า ๆ */
+
+@keyframes bubbleBalloon{
 
   0%{
 
@@ -142,7 +134,7 @@ body{
         0
       )
       rotate(
-        var(--bubble-rotate-start)
+        var(--rotate-start)
       )
       scale(.72);
 
@@ -150,170 +142,75 @@ body{
 
   }
 
-  10%{
-
-    opacity:1;
-
-  }
-
-  35%{
-
-    transform:
-      translate3d(
-        var(--bubble-drift-1),
-        -32vh,
-        0
-      )
-      rotate(
-        var(--bubble-rotate-mid)
-      )
-      scale(1);
-
-    opacity:1;
-
-  }
-
-  70%{
-
-    transform:
-      translate3d(
-        var(--bubble-drift-2),
-        -72vh,
-        0
-      )
-      rotate(
-        var(--bubble-rotate-end)
-      )
-      scale(1.04);
-
-    opacity:.92;
-
-  }
-
-  100%{
-
-    transform:
-      translate3d(
-        var(--bubble-drift-3),
-        -125vh,
-        0
-      )
-      rotate(
-        var(--bubble-rotate-end)
-      )
-      scale(1.08);
-
-    opacity:0;
-
-  }
-
-}
-
-
-/* =====================================================
-   GIF EFFECT
-===================================================== */
-
-.floating-gif{
-
-  position:absolute;
-
-  width:var(--gif-size);
-
-  height:var(--gif-size);
-
-  object-fit:contain;
-
-  user-select:none;
-
-  -webkit-user-select:none;
-
-  filter:
-    drop-shadow(
-      0 8px 16px
-      rgba(80,60,100,.22)
-    );
-
-  animation:
-    gifFloat
-    var(--gif-duration)
-    ease-out
-    forwards;
-
-}
-
-
-@keyframes gifFloat{
-
-  0%{
-
-    transform:
-      translate3d(
-        0,
-        20px,
-        0
-      )
-      rotate(
-        var(--gif-rotate-start)
-      )
-      scale(.45);
-
-    opacity:0;
-
-  }
-
-  12%{
-
-    opacity:1;
-
-  }
-
-  30%{
-
-    transform:
-      translate3d(
-        var(--gif-drift-1),
-        -15px,
-        0
-      )
-      rotate(
-        var(--gif-rotate-mid)
-      )
-      scale(1.05);
-
-    opacity:1;
-
-  }
-
-  70%{
-
-    transform:
-      translate3d(
-        var(--gif-drift-2),
-        -100px,
-        0
-      )
-      rotate(
-        var(--gif-rotate-end)
-      )
-      scale(1);
+  8%{
 
     opacity:.95;
 
   }
 
+  25%{
+
+    transform:
+      translate3d(
+        var(--drift-1),
+        -22vh,
+        0
+      )
+      rotate(
+        var(--rotate-1)
+      )
+      scale(1);
+
+    opacity:1;
+
+  }
+
+  50%{
+
+    transform:
+      translate3d(
+        var(--drift-2),
+        -48vh,
+        0
+      )
+      rotate(
+        var(--rotate-2)
+      )
+      scale(1.02);
+
+    opacity:.98;
+
+  }
+
+  75%{
+
+    transform:
+      translate3d(
+        var(--drift-3),
+        -75vh,
+        0
+      )
+      rotate(
+        var(--rotate-3)
+      )
+      scale(1.04);
+
+    opacity:.82;
+
+  }
+
   100%{
 
     transform:
       translate3d(
-        var(--gif-drift-3),
-        -190px,
+        var(--drift-4),
+        -125vh,
         0
       )
       rotate(
-        var(--gif-rotate-end)
+        var(--rotate-end)
       )
-      scale(.9);
+      scale(1.08);
 
     opacity:0;
 
@@ -439,9 +336,7 @@ body{
 
 
 .profile-info{
-
   min-width:0;
-
 }
 
 
@@ -470,9 +365,7 @@ body{
 
 
 .profile-name:active{
-
   transform:scale(.96);
-
 }
 
 
@@ -559,9 +452,7 @@ body{
 
 
 .messages::-webkit-scrollbar{
-
   width:9px;
-
 }
 
 
@@ -593,7 +484,7 @@ body{
 
 
 /* =====================================================
-   MESSAGE
+   MESSAGE ROW
 ===================================================== */
 
 .message-row{
@@ -608,18 +499,18 @@ body{
 
 
 .message-row.mine{
-
   justify-content:flex-start;
-
 }
 
 
 .message-row.theirs{
-
   justify-content:flex-end;
-
 }
 
+
+/* =====================================================
+   NORMAL MESSAGE
+===================================================== */
 
 .message-bubble{
 
@@ -698,6 +589,53 @@ body{
 }
 
 
+/* =====================================================
+   GIF STICKER MESSAGE
+===================================================== */
+
+.gif-message{
+
+  max-width:230px;
+
+  padding:7px;
+
+  border-radius:20px;
+
+  background:
+    rgba(255,255,255,.78);
+
+  border:
+    2px solid
+    rgba(239,190,216,.65);
+
+  box-shadow:
+    0 5px 18px
+    rgba(130,100,145,.1);
+
+}
+
+
+.gif-message img{
+
+  display:block;
+
+  width:100%;
+
+  max-height:230px;
+
+  object-fit:contain;
+
+  border-radius:14px;
+
+  background:#fff;
+
+}
+
+
+/* =====================================================
+   MESSAGE TIME
+===================================================== */
+
 .message-time{
 
   margin-top:5px;
@@ -712,16 +650,12 @@ body{
 
 
 .mine .message-time{
-
   text-align:left;
-
 }
 
 
 .theirs .message-time{
-
   text-align:right;
-
 }
 
 
@@ -729,7 +663,8 @@ body{
    LONG PRESS DELETE
 ===================================================== */
 
-.message-bubble.holding{
+.message-bubble.holding,
+.gif-message.holding{
 
   transform:scale(.97);
 
@@ -738,7 +673,8 @@ body{
 }
 
 
-.message-bubble.holding::after{
+.message-bubble.holding::after,
+.gif-message.holding::after{
 
   content:"";
 
@@ -945,9 +881,7 @@ body{
 
 
 .message-input::placeholder{
-
   color:#c3a9c1;
-
 }
 
 
@@ -965,7 +899,7 @@ body{
 
 
 /* =====================================================
-   BUBBLE MODE INPUT
+   BUBBLE MODE
 ===================================================== */
 
 .message-input.bubble-mode{
@@ -984,9 +918,7 @@ body{
 
 
 .message-input.bubble-mode::placeholder{
-
   color:#9abddd;
-
 }
 
 
@@ -1035,16 +967,12 @@ body{
 
 
 .effect-button:hover{
-
   transform:translateY(-2px);
-
 }
 
 
 .effect-button:active{
-
   transform:scale(.95);
-
 }
 
 
@@ -1147,22 +1075,11 @@ body{
 
   cursor:pointer;
 
-  transition:.15s;
-
 }
 
 
 .effect-choice:hover{
-
   background:#fff0f7;
-
-}
-
-
-.effect-choice:active{
-
-  transform:scale(.97);
-
 }
 
 
@@ -1171,7 +1088,6 @@ body{
   display:inline-flex;
 
   width:30px;
-
   height:30px;
 
   align-items:center;
@@ -1187,7 +1103,7 @@ body{
 
 
 /* =====================================================
-   SEND BUTTON
+   SEND
 ===================================================== */
 
 .send-button{
@@ -1243,23 +1159,18 @@ body{
 
 
 .send-button:active{
-
   transform:scale(.95);
-
 }
 
 
 .send-button:disabled{
-
   opacity:.55;
-
   cursor:wait;
-
 }
 
 
 /* =====================================================
-   GIF MODAL
+   GIF PICKER
 ===================================================== */
 
 .gif-modal{
@@ -1273,7 +1184,6 @@ body{
   display:flex;
 
   align-items:center;
-
   justify-content:center;
 
   padding:18px;
@@ -1325,21 +1235,6 @@ body{
   box-shadow:
     0 25px 80px
     rgba(80,50,90,.3);
-
-  transform:
-    translateY(12px)
-    scale(.97);
-
-  transition:.2s;
-
-}
-
-
-.gif-modal.open .gif-picker{
-
-  transform:
-    translateY(0)
-    scale(1);
 
 }
 
@@ -1397,17 +1292,6 @@ body{
 }
 
 
-.gif-close:active{
-
-  transform:scale(.92);
-
-}
-
-
-/* =====================================================
-   GIF GRID
-===================================================== */
-
 .gif-grid{
 
   flex:1;
@@ -1437,9 +1321,7 @@ body{
 
 
 .gif-grid::-webkit-scrollbar{
-
   width:8px;
-
 }
 
 
@@ -1491,9 +1373,7 @@ body{
 
 
 .gif-item:active{
-
   transform:scale(.94);
-
 }
 
 
@@ -1519,7 +1399,7 @@ body{
 
 
 /* =====================================================
-   CONNECTION STATUS
+   CONNECTION
 ===================================================== */
 
 .connection-status{
@@ -1560,9 +1440,7 @@ body{
 @media(max-width:600px){
 
   body{
-
     padding:8px;
-
   }
 
 
@@ -1597,30 +1475,22 @@ body{
 
 
   .profile-name{
-
     font-size:22px;
-
   }
 
 
   .profile-status{
-
     font-size:10px;
-
   }
 
 
   .chat-area{
-
     padding:12px 8px;
-
   }
 
 
   .messages{
-
     padding:3px 6px 15px;
-
   }
 
 
@@ -1637,17 +1507,18 @@ body{
   }
 
 
+  .gif-message{
+    max-width:190px;
+  }
+
+
   .input-area{
-
     padding:10px;
-
   }
 
 
   .input-box{
-
     gap:6px;
-
   }
 
 
@@ -1662,7 +1533,6 @@ body{
   .send-button{
 
     width:48px;
-
     height:47px;
 
   }
@@ -1678,9 +1548,7 @@ body{
 
 
   .gif-modal{
-
     padding:10px;
-
   }
 
 
@@ -1717,20 +1585,16 @@ body{
 
 
   .gif-item img{
-
     border-radius:9px;
-
   }
 
 
   .scroll-bottom{
 
     right:18px;
-
     bottom:18px;
 
     width:40px;
-
     height:40px;
 
   }
@@ -1759,11 +1623,8 @@ body{
 
   }
 
-  .floating-bubble,
-  .floating-gif{
-
+  .floating-bubble{
     animation:none!important;
-
   }
 
 }
@@ -1777,7 +1638,7 @@ body{
 
 
 <!-- =====================================================
-     EFFECT LAYER
+     BUBBLE EFFECT LAYER
 ===================================================== -->
 
 <div
@@ -1923,8 +1784,6 @@ body{
 <footer class="input-area">
 
 
-  <!-- EFFECT MENU -->
-
   <div
     class="effect-menu"
     id="effectMenu"
@@ -1964,7 +1823,6 @@ body{
 
   <div class="input-box">
 
-
     <textarea
       id="messageInput"
       class="message-input"
@@ -1973,8 +1831,6 @@ body{
       placeholder="พิมพ์ข้อความ..."
     ></textarea>
 
-
-    <!-- EFFECT BUTTON -->
 
     <button
       class="effect-button"
@@ -1988,8 +1844,6 @@ body{
 
     </button>
 
-
-    <!-- SEND -->
 
     <button
       class="send-button"
@@ -2280,14 +2134,18 @@ function closeEffectMenu(){
     "open"
   );
 
-  effectButton.classList.remove(
-    "active"
-  );
-
   effectButton.setAttribute(
     "aria-expanded",
     "false"
   );
+
+  if(!bubbleMode){
+
+    effectButton.classList.remove(
+      "active"
+    );
+
+  }
 
 }
 
@@ -2308,20 +2166,15 @@ effectButton.addEventListener(
       String(open)
     );
 
-    if(
-      !open &&
-      !bubbleMode
-    ){
-
-      effectButton.classList.remove(
-        "active"
-      );
-
-    }
-
     if(open){
 
       effectButton.classList.add(
+        "active"
+      );
+
+    }else if(!bubbleMode){
+
+      effectButton.classList.remove(
         "active"
       );
 
@@ -2539,8 +2392,6 @@ let holdTimer=null;
 
 let holdBubble=null;
 
-let holdPointer=null;
-
 
 function cancelHold(){
 
@@ -2564,9 +2415,6 @@ function cancelHold(){
     holdBubble=null;
 
   }
-
-
-  holdPointer=null;
 
 }
 
@@ -2593,9 +2441,6 @@ function startHold(
   holdBubble=
     bubble;
 
-  holdPointer=
-    event.pointerId;
-
 
   bubble.classList.add(
     "holding"
@@ -2607,7 +2452,6 @@ function startHold(
       async()=>{
 
         holdTimer=null;
-
 
         bubble.classList.remove(
           "holding"
@@ -2640,8 +2484,6 @@ function startHold(
 
         holdBubble=null;
 
-        holdPointer=null;
-
       },
       HOLD_TIME
     );
@@ -2655,7 +2497,7 @@ messages.addEventListener(
 
     const bubble=
       event.target.closest(
-        ".message-bubble"
+        ".message-bubble,.gif-message"
       );
 
     if(!bubble)return;
@@ -2741,18 +2583,6 @@ function render(
         );
 
 
-      const bubble=
-        document.createElement(
-          "div"
-        );
-
-
-      const clock=
-        document.createElement(
-          "div"
-        );
-
-
       row.className=
         "message-row "+
         (
@@ -2768,6 +2598,87 @@ function render(
 
       row.dataset.sender=
         data.sender||"";
+
+
+      /*
+       * GIF MESSAGE
+       */
+
+      if(data.type==="gif"){
+
+        const sticker=
+          document.createElement(
+            "div"
+          );
+
+        sticker.className=
+          "gif-message";
+
+
+        const image=
+          document.createElement(
+            "img"
+          );
+
+        image.src=
+          data.gif||"";
+
+        image.alt=
+          "GIF sticker";
+
+
+        sticker.appendChild(
+          image
+        );
+
+
+        const clock=
+          document.createElement(
+            "div"
+          );
+
+        clock.className=
+          "message-time";
+
+        clock.textContent=
+          formatTime(
+            data.createdAt
+          );
+
+
+        sticker.appendChild(
+          clock
+        );
+
+
+        row.appendChild(
+          sticker
+        );
+
+
+        messages.appendChild(
+          row
+        );
+
+        return;
+
+      }
+
+
+      /*
+       * NORMAL TEXT
+       */
+
+      const bubble=
+        document.createElement(
+          "div"
+        );
+
+
+      const clock=
+        document.createElement(
+          "div"
+        );
 
 
       bubble.className=
@@ -2821,7 +2732,7 @@ function render(
 
 
 /* =====================================================
-   FIRESTORE CHAT
+   NORMAL CHAT QUERY
 ===================================================== */
 
 const chat=
@@ -2875,7 +2786,7 @@ onSnapshot(
 
 
 /* =====================================================
-   EFFECT RENDER
+   BUBBLE VISUAL
 ===================================================== */
 
 function randomBetween(
@@ -2913,197 +2824,83 @@ function showBubbleEffect(
     text;
 
 
-  const size=
+  /*
+   * ขนาดสุ่ม
+   */
+
+  el.style.fontSize=
     randomBetween(
       28,
       68
-    );
+    )+"px";
 
 
-  el.style.fontSize=
-    size+"px";
-
+  /*
+   * จุดเริ่มต้น
+   */
 
   el.style.left=
     randomBetween(
-      5,
-      82
+      3,
+      88
     )+"vw";
 
+
+  /*
+   * ลอยช้ามาก
+   */
 
   el.style.setProperty(
     "--bubble-duration",
     randomBetween(
-      5,
-      8
+      9,
+      15
     )+"s"
   );
 
 
+  /*
+   * ลอยเอียงซ้ายขวาเหมือนลูกโป่ง
+   */
+
   el.style.setProperty(
-    "--bubble-drift-1",
+    "--drift-1",
     randomBetween(
-      -80,
-      80
+      -50,
+      50
     )+"px"
   );
 
 
   el.style.setProperty(
-    "--bubble-drift-2",
+    "--drift-2",
     randomBetween(
-      -120,
-      120
+      -100,
+      100
     )+"px"
   );
 
 
   el.style.setProperty(
-    "--bubble-drift-3",
+    "--drift-3",
     randomBetween(
-      -160,
-      160
+      -140,
+      140
     )+"px"
   );
 
 
   el.style.setProperty(
-    "--bubble-rotate-start",
+    "--drift-4",
     randomBetween(
-      -8,
-      8
-    )+"deg"
-  );
-
-
-  el.style.setProperty(
-    "--bubble-rotate-mid",
-    randomBetween(
-      -5,
-      5
-    )+"deg"
-  );
-
-
-  el.style.setProperty(
-    "--bubble-rotate-end",
-    randomBetween(
-      -8,
-      8
-    )+"deg"
-  );
-
-
-  effectLayer.appendChild(
-    el
-  );
-
-
-  setTimeout(
-    ()=>el.remove(),
-    9000
-  );
-
-}
-
-
-function showGifEffect(
-  filename
-){
-
-  if(!filename)return;
-
-
-  const el=
-    document.createElement(
-      "img"
-    );
-
-
-  el.className=
-    "floating-gif";
-
-
-  el.src=
-    filename.startsWith("./")
-      ?filename
-      :"./"+filename;
-
-
-  el.alt=
-    "";
-
-
-  el.style.left=
-    randomBetween(
-      5,
-      82
-    )+"vw";
-
-
-  el.style.top=
-    randomBetween(
-      15,
-      72
-    )+"vh";
-
-
-  el.style.setProperty(
-    "--gif-size",
-    randomBetween(
-      100,
-      220
+      -190,
+      190
     )+"px"
   );
 
 
   el.style.setProperty(
-    "--gif-duration",
-    randomBetween(
-      2.8,
-      4.5
-    )+"s"
-  );
-
-
-  el.style.setProperty(
-    "--gif-drift-1",
-    randomBetween(
-      -35,
-      35
-    )+"px"
-  );
-
-
-  el.style.setProperty(
-    "--gif-drift-2",
-    randomBetween(
-      -70,
-      70
-    )+"px"
-  );
-
-
-  el.style.setProperty(
-    "--gif-drift-3",
-    randomBetween(
-      -110,
-      110
-    )+"px"
-  );
-
-
-  el.style.setProperty(
-    "--gif-rotate-start",
-    randomBetween(
-      -12,
-      12
-    )+"deg"
-  );
-
-
-  el.style.setProperty(
-    "--gif-rotate-mid",
+    "--rotate-start",
     randomBetween(
       -7,
       7
@@ -3112,10 +2909,37 @@ function showGifEffect(
 
 
   el.style.setProperty(
-    "--gif-rotate-end",
+    "--rotate-1",
     randomBetween(
-      -12,
-      12
+      -5,
+      5
+    )+"deg"
+  );
+
+
+  el.style.setProperty(
+    "--rotate-2",
+    randomBetween(
+      -6,
+      6
+    )+"deg"
+  );
+
+
+  el.style.setProperty(
+    "--rotate-3",
+    randomBetween(
+      -5,
+      5
+    )+"deg"
+  );
+
+
+  el.style.setProperty(
+    "--rotate-end",
+    randomBetween(
+      -8,
+      8
     )+"deg"
   );
 
@@ -3127,7 +2951,7 @@ function showGifEffect(
 
   setTimeout(
     ()=>el.remove(),
-    5500
+    16000
   );
 
 }
@@ -3135,8 +2959,6 @@ function showGifEffect(
 
 /* =====================================================
    FIRESTORE EFFECTS
-   เอฟเฟกต์ใหม่เท่านั้น
-   ไม่เล่นของเก่าตอนเปิดหน้า
 ===================================================== */
 
 const effects=
@@ -3160,6 +2982,10 @@ onSnapshot(
   effects,
 
   snapshot=>{
+
+    /*
+     * ไม่เล่นเอฟเฟกต์เก่าตอนเปิดเว็บ
+     */
 
     if(!effectsReady){
 
@@ -3187,23 +3013,22 @@ onSnapshot(
           change.doc.data();
 
 
+        /*
+         * Bubble
+         */
+
         if(
           data.type==="bubble"
         ){
 
+          /*
+           * ลูกเดียวต่อข้อความที่ส่ง
+           * แต่แต่ละข้อความจะค่อย ๆ ลอย
+           * ทำให้หลายข้อความกลายเป็นหลายลูก
+           */
+
           showBubbleEffect(
             data.text||""
-          );
-
-        }
-
-
-        if(
-          data.type==="gif"
-        ){
-
-          showGifEffect(
-            data.gif||""
           );
 
         }
@@ -3225,7 +3050,7 @@ onSnapshot(
 
 
 /* =====================================================
-   SEND NORMAL MESSAGE
+   SEND NORMAL TEXT
 ===================================================== */
 
 async function sendNormalMessage(
@@ -3288,7 +3113,7 @@ async function sendBubble(
 
 
 /* =====================================================
-   SEND GIF
+   SEND GIF AS CHAT STICKER
 ===================================================== */
 
 async function sendGif(
@@ -3298,7 +3123,7 @@ async function sendGif(
   await addDoc(
     collection(
       db,
-      "jaoka_effects"
+      "jaoka_chat"
     ),
     {
 
@@ -3369,7 +3194,7 @@ gifGrid.addEventListener(
 
 
 /* =====================================================
-   SEND BUTTON
+   SEND
 ===================================================== */
 
 async function sendMessage(){
@@ -3393,27 +3218,40 @@ async function sendMessage(){
 
   try{
 
+    /*
+     * BUBBLE
+     */
+
     if(bubbleMode){
 
       await sendBubble(
         text
       );
 
+
       input.value=
         "";
 
+
       resizeInput();
+
 
       setBubbleMode(
         false
       );
 
+
       input.focus();
+
 
       return;
 
     }
 
+
+    /*
+     * NORMAL
+     */
 
     await sendNormalMessage(
       text
@@ -3423,7 +3261,9 @@ async function sendMessage(){
     input.value=
       "";
 
+
     resizeInput();
+
 
     input.focus();
 
